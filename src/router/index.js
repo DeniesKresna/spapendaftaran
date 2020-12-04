@@ -6,6 +6,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    name: 'index',
+    component: () => import('../views/Academy/Form.vue')
+  },
+  {
     path: '/academy/form',
     name: 'AcademyForm',
     component: () => import('../views/Academy/Form.vue')
