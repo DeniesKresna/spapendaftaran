@@ -1,13 +1,19 @@
 <template>
-  <v-form @submit.prevent="storeAcademyCustomer">
     <v-container>
       <v-row>
         <v-col cols="12" md="12">
-          <v-combobox
+          <v-autocomplete
             v-model="jaSelected"
             :items="jaList"
-            label="Akademi"
-          ></v-combobox>
+            item-value="id"
+            item-text="name"
+            outlined
+            dense
+            chips
+            small-chips
+            label="Pilih Kelas"
+            multiple
+          ></v-autocomplete>
         </v-col>
         <v-col cols="12" md="12">
           <v-text-field label="Alamat Email" v-model="customer.email" @blur="checkCustomerExist" />
@@ -19,16 +25,19 @@
           <v-text-field label="Nomor WhatsApp" v-model="customer.phone" />
         </v-col>
         <v-col cols="12" md="12">
-          <v-text-field label="Dari mana tahu Jobhun Academy" v-model="customer.reference" />
+          <v-text-field label="Dari mana kamu mengetahui Jobhun Academy?" v-model="customer.reference" />
+        </v-col>
+        <v-col cols="12" md="12">
+          <v-text-field label="Kode Promo" v-model="customer.promo_code" />
         </v-col>
         <v-col cols="12" md="12">
           <v-textarea
-          label="Apa profesimu"
+          label="Apa profesimu saat ini?"
           v-model="customer.profession"
         ></v-textarea>
         </v-col>
         <v-col cols="12" md="12">
-          <v-text-field label="Di mana domisilimu" v-model="customer.domicile" />
+          <v-text-field label="Kamu berasal dari kota mana?" v-model="customer.domicile" />
         </v-col>        
       </v-row>
       <v-row
@@ -38,7 +47,7 @@
         <v-btn
           tile
           color="primary"
-          type="submit"
+          @click.native="storeAcademyCustomer"
           v-if="user == null"
         >
           <v-icon left>
@@ -50,7 +59,7 @@
           tile
           color="indigo darken-1"
           dark
-          type="submit"
+          @click.native="storeAcademyCustomer"
           v-else
         >
           <v-icon left>
@@ -60,7 +69,6 @@
         </v-btn>
       </v-row>
     </v-container>
-  </v-form>
 </template>
 <script>
   export default{
@@ -74,7 +82,7 @@
           profession: '',
           domicile: ''
         },
-        jaSelected: '',
+        jaSelected: [],
         jaList: []
       }
     },
@@ -88,10 +96,10 @@
       	let name = "";
 
 	      let res = await this.$store.dispatch('academy/list',"?active=1");
+/*
 	      let jaList = res.data.map(obj => {
 	        return obj.name
 	      });
-
         if(this.$route.query.name !== undefined && this.$route.query.name != ""){
           name = this.$route.query.name;
           if(!jaList.includes(name)){
@@ -101,15 +109,15 @@
           }else{
             this.jaSelected = name;
           }
-        }	      
-	      this.jaList = jaList;
+        }	    
+*/  
+	      this.jaList = res.data;
       },
       storeAcademyCustomer: async function(){
-        console.log("cliked");
         let payload = this.customer;
-        payload['ja_name'] = this.jaSelected;
+        payload['ja_ids'] = this.jaSelected;
         let res = await this.$store.dispatch('academy/customerStore',payload);
-        this.reset();
+        console.log("ok");
         if(res.payment)
           window.location.href = res.data.redirect_url;
       },

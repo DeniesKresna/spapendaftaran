@@ -1,6 +1,9 @@
 importScripts('https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.1.2/firebase-messaging.js');
-
+/*
+const firebase = require('firebase/app');
+require('firebase/messaging');
+*/
 firebase.initializeApp({
   	apiKey: "AIzaSyB-pWdwaKoiRubx364ZLbDjGXlix6wFzmA",
     authDomain: "siaone-381eb.firebaseapp.com",

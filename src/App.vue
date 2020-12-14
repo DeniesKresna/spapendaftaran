@@ -5,10 +5,12 @@
       color="white"
       flat
     >
+    <!--
       <v-avatar
         :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
         size="32"
-      ></v-avatar>
+      ></v-avatar>-->
+        <img :src="'https://jobhun.id/wp-content/uploads/2018/11/cropped-logo-jobhun-3.png'" width="32"/>
 
       <v-tabs
         centered
@@ -32,24 +34,25 @@
       ></v-avatar>-->
     </v-app-bar>
 
-    <v-main class="grey lighten-3">
+    <v-main class="grey lighten-3 mb-10">
       <v-container>
         <v-row>
           <v-overlay :value="overlay"></v-overlay>
+          <!--
           <v-col
             cols="12"
             sm="2"
-          ><!--
+          >
             <v-sheet
               rounded="lg"
               min-height="268"
             >
-            </v-sheet>-->
+            </v-sheet>
           </v-col>
-
+          -->
           <v-col
             cols="12"
-            sm="8"
+            sm="12"
           >
             <v-sheet
               min-height="70vh"
@@ -57,14 +60,27 @@
             >
               <router-view />
             </v-sheet>
-          </v-col>
+          </v-col><!--
           <v-col
             cols="12"
             sm="2"
-          ></v-col>
+          ></v-col>-->
         </v-row>
       </v-container>
     </v-main>
+    <div>
+          <v-footer
+              absolute
+              class="font-weight-small"
+            >
+              <v-col
+                class="text-center"
+                cols="12"
+              >
+                <span @click="toogleLogin">2020</span> — <strong>J Indonesia</strong>
+              </v-col>
+            </v-footer>
+    </div>
     <v-dialog
       v-model="loginDialog"
       max-width="290"
@@ -134,6 +150,14 @@
           }
         }
         return false;
+      },
+      toogleLogin: function(){
+        if(this.user == null)
+          this.$store.commit('setLoginDialog',true);
+        else{
+          if(confirm("Lanjutkan Keluar?"))
+            this.$store.commit('logout');
+        }
       },
       login: async function(){
         let res = await this.$store.dispatch("login",this.userForm);

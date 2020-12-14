@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import api from '@/plugins/api'
 
 import academy from './academy';
+import academyPeriod from './academy-period';
 import customer from './customer';
 Vue.use(Vuex);
 
@@ -25,7 +26,7 @@ const mutations = {
     state.page = payload;
     if(payload == "academy"){
       state.links = [
-        {'label':'Pendaftaran','url':'/academy/form','auth':false},
+        {'label':'Daftar Jobhun Academy','url':'/academy/form','auth':false},
         {'label':'Customer','url':'/academy/customer','auth':true},
         {'label':'Periode','url':'/academy/period','auth':true},
         {'label':'List','url':'/academy/list','auth':true},
@@ -42,6 +43,10 @@ const mutations = {
   setUser(state, payload){
     state.loginDialog = false;
     state.user = payload;
+  },
+  logout(state){
+    state.user = null;
+    localStorage.removeItem('token');
   }
 };
 
@@ -91,6 +96,7 @@ export default new Vuex.Store({
     getters,
     modules: {
         academy,
+        academyPeriod,
         customer
     }
 });

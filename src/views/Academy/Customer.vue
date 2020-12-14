@@ -89,26 +89,36 @@
 						          </v-icon>
 						          Filter
 						        </v-btn>
+						        
 						   		<v-btn
+						   			v-show="rowSelected.length > 0"
 						   			small
 						   			tile
 						          color="warning"
-						           @click="loadSummary"
+						           @click="editDialog"
 						        >
 						          <v-icon left>
-						            mdi-file-outline
+						            mdi-pencil
 						          </v-icon>
-						          Summary
+						          Ubah
 						        </v-btn>
+						    	
 							</v-col>
 						</v-row>
 				    	<!-- ==================================== End fo Filtering Form ==========================-->
-						
 						<v-row>
+							<v-col col="12">
+								<h6>total Data = {{pagination.totalData}} row{{pagination.totalData > 1?"s":""}}, total Price IDR {{totalPrice}} </h6>
+							</v-col>
+						</v-row>
+						<v-row v-if="datas.length > 0">
 							<v-col md="12">
 								<v-data-table
+								  v-model="rowSelected"
 							      :headers="headers"
 							      :items="datas"
+							      item-key="id"
+							      show-select
 							      hide-default-footer
 							      :items-per-page="10"
 							    >
@@ -131,6 +141,9 @@
 							    </v-data-table>
 							</v-col>
 						</v-row>
+						<v-row v-else>
+							<v-col><p>no data</p></v-col>
+						</v-row>
 						<v-row v-if="pagination.totalData > 0">
 							<v-col>
 								<div class="text-center">
@@ -151,7 +164,7 @@
 		      persistent
 		    >
 	      <v-card>
-	        <v-card-title class="headline">{{dataDialogMode == "create"? 'Tambah':'Atur Pembayaran'}} Peserta</v-card-title>
+	        <v-card-title class="headline">{{dataDialogMode == "create"? 'Tambah':'Atur'}} Pembayaran Peserta</v-card-title>
 
 	        <v-card-text>
 	          <v-container>
@@ -183,14 +196,14 @@
 	            text
 	            @click="editData"
 	          >
-	            Submit
+	            Kirim
 	          </v-btn>
 	          <v-btn
 	            color="red darken-1"
 	            text
 	            @click="dataDialog = false"
 	          >
-	            Cancel
+	            Tunda
 	          </v-btn>
 	        </v-card-actions>
 	      </v-card>
@@ -201,6 +214,7 @@
 export default{
 	data(){
 		return{
+			rowSelected: [],
 			jaList:[],
 			jaSelected:null,
 			//period: new Date().toISOString().substr(0, 10),
@@ -210,6 +224,7 @@ export default{
 			filterList:[
 				{name: "Semua", link: ""},
 				{name: "Belum Bayar", link: "&status=0"},
+				{name: "Pending Bayar", link: "&status=2"},
 				{name: "Sudah Bayar", link: "&status=1"}
 			],
 			filterSelected: null,
@@ -218,10 +233,12 @@ export default{
 				via: "",
 				amount: ""
 			},
+			totalPrice: 0,
 	        headers: [
 	          { text: 'Akademi', value: 'academy_name', sortable: false},
 	          { text: 'Period', value: 'period', sortable: false},
 	          { text: 'Peserta', value: 'customer_name', sortable: false },
+	          { text: 'Email', value: 'customer_email', sortable: false },
 	          { text: 'Harga', value: 'price', sortable: false },
 	          { text: 'Status', value: 'status', sortable: false },
 	          { text: 'Update', value: 'updated_at', sortable: false },
@@ -245,11 +262,6 @@ export default{
 			this.$store.commit("setPage","academy")
 			let res = await this.$store.dispatch('academy/list',"?active=1");
 			this.jaList = res.data;
-			let res2 = await this.$store.dispatch('academy/customerShow',"");
-			this.datas = res2.data;
-			this.pagination.page = res2.current_page;
-			this.pagination.totalData = res2.total;
-			this.pagination.lastPage = res2.last_page;
 		},
 		loadData: async function(){
 			let jaSelectedId = "";
@@ -264,13 +276,14 @@ export default{
 			if(this.period != null){
 				period = this.period;
 			}
-			let qs = "?search="+this.searchCustomer+"&ja_id="+jaSelectedId+"&period="+period+filterSelected+"&page="+this.page;
+			let qs = "?search="+this.searchCustomer+"&ja_id="+jaSelectedId+"&period="+period+filterSelected+"&page="+this.pagination.page;
 			
 			let res2 = await this.$store.dispatch('academy/customerShow',qs);
-			this.datas = res2.data;
-			this.pagination.page = res2.current_page;
-			this.pagination.totalData = res2.total;
-			this.pagination.lastPage = res2.last_page;
+			this.datas = res2.data.data;
+			this.pagination.page = res2.data.current_page;
+			this.pagination.totalData = res2.data.total;
+			this.pagination.lastPage = res2.data.last_page;
+			this.totalPrice = res2.total_price;
 		},
 		editData: async function(){
 			let res = await this.$store.dispatch('academy/paymentStore',this.payment);

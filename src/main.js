@@ -7,7 +7,6 @@ import api from './plugins/api';
 import './registerServiceWorker'
 
 import firebase from "firebase/app";
-import 'firebase/app';
 import 'firebase/messaging';
 
 firebase.initializeApp({

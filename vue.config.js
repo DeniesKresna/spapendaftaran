@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 module.exports = {
   "transpileDependencies": [
     "vuetify"
@@ -16,5 +18,15 @@ module.exports = {
         swSrc: 'public/service-worker.js',
         // ...other Workbox options...
     }
-  }
+  },
+  devServer: {
+    
+    https: {
+          key: fs.readFileSync('./certs/key.pem'),
+          cert: fs.readFileSync('./certs/cert.pem'),
+        },
+    public: 'https://10.100.100.115:3000/'
+    //home
+    //public: 'https://192.168.100.28:3000/'
+  },
 }

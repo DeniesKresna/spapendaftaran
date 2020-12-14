@@ -5,7 +5,8 @@ import store from '@/store';
 import Vue from 'vue';
 
 const api = axios.create({
- baseURL: 'https://smartit-620a9485.localhost.run/pendaftaran-api/public/api',
+ //baseURL: 'https://smartit-938ae937.localhost.run/pendaftaran-api/public/api',
+ baseURL: 'http://localhost:8080/pendaftaran-api/public/api',
 });
 
 api.defaults.timeout = 10000;

@@ -3,7 +3,7 @@ import api from '@/plugins/api'
 
 const academy= {
     namespaced: true,
-
+/*
     state: {
       loadedPosts: []
     },
@@ -13,11 +13,11 @@ const academy= {
         state.loadedPosts = posts;
       }
     },
-
+*/
     actions: {
-      index(){
+      index({},payload){
         return new Promise((resolve, reject) => {
-          api.get('/users').then(response => {
+          api.get('/academies'+payload).then(response => {
               resolve(response.data);
           });
         });
@@ -29,12 +29,26 @@ const academy= {
           });
         });
       },
+      store({},payload){
+        return new Promise((resolve, reject) => {
+          api.post('/academies',payload).then(response => {
+            resolve(response.data);
+          });
+        });
+      },
+      destroy({}, payload){
+        return new Promise((resolve, reject) => {
+          api.delete('/academies/'+payload).then(response => {
+            resolve(response.data);
+          });
+        });
+      },
       customerStore({}, payload){
         return new Promise((resolve, reject) => {
           api.post('/academies/customer',payload).then(response => {
             resolve(response.data);
           });
-        })
+        });
       },
       customerShow({}, payload){
         return new Promise((resolve, reject) => {
