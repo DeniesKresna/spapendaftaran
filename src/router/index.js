@@ -29,6 +29,11 @@ const routes = [
     path: '/academy/list',
     name: 'AcademyList',
     component: () => import('../views/Academy/List.vue')
+  },
+  {
+    path: '*',
+    name: 'PageNotFound',
+    component: () => import('../views/NoPage.vue')
   }
 ]
 

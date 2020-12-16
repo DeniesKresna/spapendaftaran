@@ -11,7 +11,6 @@
         size="32"
       ></v-avatar>-->
         <img :src="'https://jobhun.id/wp-content/uploads/2018/11/cropped-logo-jobhun-3.png'" width="32"/>
-
       <v-tabs
         centered
         class="ml-n9"
@@ -163,6 +162,9 @@
         let res = await this.$store.dispatch("login",this.userForm);
         this.userForm.email = "";
         this.userForm.password = "";
+      },
+      toJobhun: function(){
+        window.location.href = "https://jobhun.id";
       }
     },
     computed: {

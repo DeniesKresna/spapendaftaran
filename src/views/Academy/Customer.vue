@@ -95,7 +95,7 @@
 						   			small
 						   			tile
 						          color="warning"
-						           @click="editDialog"
+						           @click="editDialog()"
 						        >
 						          <v-icon left>
 						            mdi-pencil
@@ -123,6 +123,14 @@
 							      :items-per-page="10"
 							    >
 							    	<template v-slot:item.actions="{ item }">
+							    	  <v-icon
+								      	v-if="item.status == 1 || item.status == 2"
+								        small
+								        class="mr-2"
+								        @click="showDialog(item)"
+								      >
+								        mdi-eye
+								      </v-icon>
 								      <v-icon
 								      	v-if="item.status != 1"
 								        small
@@ -132,6 +140,7 @@
 								        mdi-pencil
 								      </v-icon>
 								      <v-icon
+								      	v-if="item.status != 1"
 								        small
 								        @click="deleteData(item)"
 								      >
@@ -170,16 +179,17 @@
 	          <v-container>
 	            <v-row>
 	              <v-col cols="12">
-	              	<v-text-field v-model="payment.academy_period_customer_id" label="Id Transaksi" v-show="false"></v-text-field>
+	              	<v-textarea readonly v-model="payment.customer_list_string">
+	              	</v-textarea>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field v-model="payment.transaction_id" label="Id Transaksi" ></v-text-field>
+	              	<v-text-field :readonly="dataDialogMode == 'show'" v-model="payment.transaction_id" label="Id Transaksi" ></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field v-model="payment.via" label="Pembayaran Via" ></v-text-field>
+	              	<v-text-field :readonly="dataDialogMode == 'show'" v-model="payment.via" label="Pembayaran Via" ></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field v-model="payment.amount" label="Jumlah Pembayaran" ></v-text-field>
+	              	<v-text-field :readonly="dataDialogMode == 'show'" v-model="payment.amount" label="Jumlah Pembayaran" type="number"></v-text-field>
 	              </v-col>
 	            </v-row>
 	            <v-row>
@@ -192,6 +202,7 @@
 	        <v-card-actions>
 	          <v-spacer></v-spacer>
 	          <v-btn
+	          	v-if="dataDialogMode != 'show'"
 	            color="green darken-1"
 	            text
 	            @click="editData"
@@ -214,7 +225,6 @@
 export default{
 	data(){
 		return{
-			rowSelected: [],
 			jaList:[],
 			jaSelected:null,
 			//period: new Date().toISOString().substr(0, 10),
@@ -231,7 +241,8 @@ export default{
 			payment: {
 				transaction_id: "",
 				via: "",
-				amount: ""
+				amount: "",
+				customer_list_string: "",
 			},
 			totalPrice: 0,
 	        headers: [
@@ -245,6 +256,7 @@ export default{
 	          { text: 'Aksi', value: 'actions', sortable: false }
 	        ],
 	        datas: [],
+			rowSelected: [],
 	        pagination:{
 	        	page: 1,
 	        	totalData: 0,
@@ -286,7 +298,9 @@ export default{
 			this.totalPrice = res2.total_price;
 		},
 		editData: async function(){
-			let res = await this.$store.dispatch('academy/paymentStore',this.payment);
+			let objCopy = Object.assign({}, this.payment);
+			objCopy.customer_list = this.rowSelected;
+			let res = await this.$store.dispatch('academy/paymentStore',objCopy);
 			this.dataDialog = false;
 			this.resetDialog();
 			this.loadData();
@@ -303,9 +317,35 @@ export default{
 		createDialog: function(){
 			this.$router.push("/academy/form");
 		},
-		editDialog: function(item){
-			this.payment.academy_period_customer_id = item.id;
+		editDialog: function(item=null){
+			if(item != null){
+				/*
+				let exist = false;
+				for(let it of this.rowSelected){
+					if(it.id == item.id)
+						exist = true;
+				}
+				if(!exist)*/
+				this.rowSelected = [];
+				this.rowSelected.push(item);
+			}
+			let customer_list_string = "";
+			for(let itm of this.rowSelected){
+				customer_list_string += itm.customer_name+" - "+itm.academy_name+" - "+itm.period+"\n";
+			}
+			this.payment.customer_list_string = customer_list_string;
 			this.dataDialogMode = "edit";
+			this.dataDialog = true;
+		},
+		showDialog: async function(item){
+			let res = await this.$store.dispatch("payment/show",item.payment_id);
+			let customer_list_string = "";
+			for(let itm of res.data.academy_period_customers){
+				customer_list_string += itm.customer.name+" - "+itm.academy_period.academy.name+" - "+itm.academy_period.period+"\n";
+			}
+			this.payment = res.data;
+			this.payment.customer_list_string = customer_list_string;
+			this.dataDialogMode = "show";
 			this.dataDialog = true;
 		},
 		reset: function(){
@@ -319,6 +359,7 @@ export default{
 			this.payment.transaction_id= "";
 			this.payment.via= "";
 			this.payment.amount= "";
+			this.payment.customer_list_string= "";
 		}
 	}
 }

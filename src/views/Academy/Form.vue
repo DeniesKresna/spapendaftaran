@@ -1,5 +1,24 @@
 <template>
     <v-container>
+      <v-snackbar
+          top
+          v-model="snackbar"
+          timeout="5000"
+          color="cyan darken-2"
+        >
+          Pembayaranmu akan segera diverifikasi Admin. Tunggu pemberitahuan Email dari kami.
+
+          <template v-slot:action="{ attrs }">
+            <v-btn
+              color="white"
+              text
+              v-bind="attrs"
+              @click="snackbar = false"
+            >
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
       <v-row>
         <v-col cols="12" md="12">
           <v-autocomplete
@@ -7,7 +26,6 @@
             :items="jaList"
             item-value="id"
             item-text="name"
-            outlined
             dense
             chips
             small-chips
@@ -74,6 +92,7 @@
   export default{
     data(){
       return{
+        snackbar: false,
         customer: {
           name: '',
           email: '',
@@ -96,6 +115,10 @@
       	let name = "";
 
 	      let res = await this.$store.dispatch('academy/list',"?active=1");
+        this.jaList = res.data;
+        if(this.$route.query.order_id !== undefined && this.$route.query.order_id != ""){
+          this.snackbar = true;
+        }
 /*
 	      let jaList = res.data.map(obj => {
 	        return obj.name
@@ -111,13 +134,11 @@
           }
         }	    
 */  
-	      this.jaList = res.data;
       },
       storeAcademyCustomer: async function(){
         let payload = this.customer;
         payload['ja_ids'] = this.jaSelected;
         let res = await this.$store.dispatch('academy/customerStore',payload);
-        console.log("ok");
         if(res.payment)
           window.location.href = res.data.redirect_url;
       },

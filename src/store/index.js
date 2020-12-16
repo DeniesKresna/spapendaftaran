@@ -5,6 +5,7 @@ import api from '@/plugins/api'
 import academy from './academy';
 import academyPeriod from './academy-period';
 import customer from './customer';
+import payment from './payment';
 Vue.use(Vuex);
 
 const state = {
@@ -27,9 +28,9 @@ const mutations = {
     if(payload == "academy"){
       state.links = [
         {'label':'Daftar Jobhun Academy','url':'/academy/form','auth':false},
-        {'label':'Customer','url':'/academy/customer','auth':true},
+        {'label':'Peserta','url':'/academy/customer','auth':true},
         {'label':'Periode','url':'/academy/period','auth':true},
-        {'label':'List','url':'/academy/list','auth':true},
+        {'label':'Kelas','url':'/academy/list','auth':true},
       ];
     }else if(payload == "ask-career"){
       state.links = [
@@ -97,6 +98,7 @@ export default new Vuex.Store({
     modules: {
         academy,
         academyPeriod,
-        customer
+        customer,
+        payment
     }
 });
