@@ -173,7 +173,7 @@
 		      persistent
 		    >
 	      <v-card>
-	        <v-card-title class="headline">{{dataDialogMode == "create"? 'Tambah':'Atur'}} Pembayaran Peserta</v-card-title>
+	        <v-card-title class="headline">{{dataDialogModeLabel}} Pembayaran Peserta</v-card-title>
 
 	        <v-card-text>
 	          <v-container>
@@ -250,10 +250,11 @@ export default{
 	          { text: 'Period', value: 'period', sortable: false},
 	          { text: 'Peserta', value: 'customer_name', sortable: false },
 	          { text: 'Email', value: 'customer_email', sortable: false },
-	          { text: 'Harga', value: 'price', sortable: false },
-	          { text: 'Status', value: 'status', sortable: false },
-	          { text: 'Update', value: 'updated_at', sortable: false },
-	          { text: 'Aksi', value: 'actions', sortable: false }
+	          { text: 'Harga', value: 'amount', sortable: false },
+	          { text: 'Status', value: 'status_string', sortable: false },
+	          { text: 'Diubah', value: 'updated_at', sortable: false },
+	          { text: 'Pengubah', value: 'updater_name', sortable: false },
+	          { text: 'Aksi', value: 'actions', sortable: false },
 	        ],
 	        datas: [],
 			rowSelected: [],
@@ -360,6 +361,17 @@ export default{
 			this.payment.via= "";
 			this.payment.amount= "";
 			this.payment.customer_list_string= "";
+		}
+	},
+	computed: {
+		dataDialogModeLabel: function(){
+			if(this.dataDialogMode == "create"){
+				return "Tambah";
+			}else if(this.dataDialogMode == "edit"){
+				return "Ubah";
+			}else{
+				return "Lihat";
+			}
 		}
 	}
 }

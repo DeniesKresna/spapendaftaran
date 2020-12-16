@@ -76,7 +76,7 @@
                 class="text-center"
                 cols="12"
               >
-                <span @click="toogleLogin">2020</span> — <strong>J Indonesia</strong>
+                <span @click="toogleLogin">2020</span> — <strong>PT Jobhun Membangun Indonesia</strong>
               </v-col>
             </v-footer>
     </div>
