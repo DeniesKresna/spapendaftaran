@@ -10,7 +10,7 @@
         :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
         size="32"
       ></v-avatar>-->
-        <img :src="'https://jobhun.id/wp-content/uploads/2018/11/cropped-logo-jobhun-3.png'" width="32"/>
+        <img :src="'https://jobhun.id/wp-content/uploads/2018/11/cropped-logo-jobhun-3.png'" width="60"/>
       <v-tabs
         centered
         class="ml-n9"
