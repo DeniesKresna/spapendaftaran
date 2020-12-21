@@ -48,6 +48,7 @@
 						        >
 						          <v-icon left>
 						            mdi-refresh
+						            
 						          </v-icon>
 						          Atur
 						        </v-btn>
@@ -103,21 +104,36 @@
 							      hide-default-footer
 							      :items-per-page="10"
 							    >
-							    	<template v-slot:item.actions="{ item }">
-								      <v-icon
-								        small
-								        class="mr-2"
-								        @click="editDialog(item)"
-								      >
-								        mdi-pencil
-								      </v-icon>
-								      <v-icon
-								        small
-								        @click="deleteData(item)"
-								      >
-								        mdi-delete
-								      </v-icon>
-								    </template>
+							    <template v-slot:body="{ items }" >
+								        <tbody>
+								          <tr
+								            v-for="item in datas"
+								            :key="item.name"
+								          >
+								            <td>{{ item.academy.name }}</td>
+								            <td>{{ item.period }}</td>
+								            <td>{{ item.price }}</td>
+								            <td>{{ item.active }}</td>
+								            <td>{{ item.updated_at }}</td>
+								            <td>{{ item.updater.name }}</td>
+								            <td>
+										      <v-icon
+										        small
+										        class="mr-2"
+										        @click="editDialog(item)"
+										      >
+										        mdi-pencil
+										      </v-icon>
+										      <v-icon
+										        small
+										        @click="deleteData(item)"
+										      >
+										        mdi-delete
+										      </v-icon>
+									  		</td>
+								          </tr>
+								        </tbody>
+							      	</template>
 							    </v-data-table>
 							</v-col>
 						</v-row>
@@ -197,13 +213,17 @@
 					    ></v-textarea>
 		            </v-col>
 					<v-col cols="12">
-		              	<v-select
-			            v-model="academyPeriod.mentor_id"
-			            :items="mentors"
-			            item-text="name"
-			            item-value="id"
-			            label="Pilih Mentor"
-			          ></v-select>
+						<v-autocomplete
+				            v-model="academyPeriod.mentor_ids"
+				            :items="mentorList"
+				            item-value="id"
+				            item-text="name"
+				            dense
+				            chips
+				            small-chips
+				            label="Pilih Mentor"
+				            multiple
+				          ></v-autocomplete>
 		            </v-col>
 	            </v-row>
 	            <v-row>
@@ -261,16 +281,16 @@ export default{
 				price: 0,
 				active: true,
 				description: "",
-				mentor_id: null
+				mentor_ids: null
 			},
-			mentors: [],
+			mentorList: [],
 	        headers: [
-	          { text: 'Akademi', value: 'academy_name', sortable: false},
-	          { text: 'Period', value: 'period', sortable: false},
-	          { text: 'Harga', value: 'price', sortable: false },
-	          { text: 'Aktif', value: 'active', sortable: false },
-	          { text: 'Update', value: 'updated_at', sortable: false },
-	          { text: 'Perubah', value: 'updater_name', sortable: false },
+	          { text: 'Akademi', sortable: false},
+	          { text: 'Period', sortable: false},
+	          { text: 'Harga', sortable: false },
+	          { text: 'Aktif', sortable: false },
+	          { text: 'Update', sortable: false },
+	          { text: 'Perubah', sortable: false },
 	          { text: 'Aksi', value: 'actions', sortable: false }
 	        ],
 	        datas: [],
@@ -290,7 +310,9 @@ export default{
 		setup: async function(){
 			this.$store.commit("setPage","academy")
 			let res = await this.$store.dispatch('academy/list',"");
+			let res2 = await this.$store.dispatch('mentor/list',"");
 			this.jaList = res.data;
+			this.mentorList = res2.data;
 		},
 		loadData: async function(){
 			let jaSelectedId = "";
@@ -346,7 +368,11 @@ export default{
 			this.dataDialog = true;
 		},
 		editDialog: function(item){
-			this.academyPeriod = item;
+			this.academyPeriod = Object.assign({}, item);
+			this.academyPeriod.mentor_ids = [];
+			for(let mentor of item.mentors){
+				this.academyPeriod.mentor_ids.push(mentor.id)
+			};
 			this.dataDialogMode = "edit";
 			this.dataDialog = true;
 		},
@@ -362,7 +388,7 @@ export default{
 			this.academyPeriod.price= 0;
 			this.academyPeriod.active= true;
 			this.academyPeriod.description= "";
-			this.academyPeriod.mentor_id= null;
+			this.academyPeriod.mentor_ids= null;
 		},
 		filterActiveItems: function(){
 			for(let item of this.datas){

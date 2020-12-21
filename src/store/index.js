@@ -6,6 +6,7 @@ import academy from './academy';
 import academyPeriod from './academy-period';
 import customer from './customer';
 import payment from './payment';
+import mentor from './mentor';
 Vue.use(Vuex);
 
 const state = {
@@ -31,6 +32,7 @@ const mutations = {
         {'label':'Peserta','url':'/academy/customer','auth':true},
         {'label':'Periode','url':'/academy/period','auth':true},
         {'label':'Kelas','url':'/academy/list','auth':true},
+        {'label':'Mentor','url':'/user/mentor','auth':true},
       ];
     }else if(payload == "ask-career"){
       state.links = [
@@ -99,6 +101,7 @@ export default new Vuex.Store({
         academy,
         academyPeriod,
         customer,
-        payment
+        payment,
+        mentor
     }
 });

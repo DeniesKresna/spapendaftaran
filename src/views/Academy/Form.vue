@@ -46,9 +46,6 @@
           <v-text-field label="Dari mana kamu mengetahui Jobhun Academy?" v-model="customer.reference" />
         </v-col>
         <v-col cols="12" md="12">
-          <v-text-field label="Kode Promo" v-model="customer.promo_code" />
-        </v-col>
-        <v-col cols="12" md="12">
           <v-textarea
           label="Apa profesimu saat ini?"
           v-model="customer.profession"
@@ -56,7 +53,10 @@
         </v-col>
         <v-col cols="12" md="12">
           <v-text-field label="Kamu berasal dari kota mana?" v-model="customer.domicile" />
-        </v-col>        
+        </v-col>  
+        <v-col cols="12" md="12">
+          <v-text-field label="Kode Promo" v-model="customer.promo_code" />
+        </v-col>      
       </v-row>
       <v-row
         align="center"

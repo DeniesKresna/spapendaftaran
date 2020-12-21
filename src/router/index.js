@@ -29,6 +29,11 @@ const routes = [
     path: '/academy/list',
     name: 'AcademyList',
     component: () => import('../views/Academy/List.vue')
+  },,
+  {
+    path: '/user/mentor',
+    name: 'UserMentor',
+    component: () => import('../views/User/Mentor.vue')
   },
   {
     path: '*',

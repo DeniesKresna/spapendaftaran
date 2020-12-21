@@ -4,7 +4,7 @@
         	<v-col>
         		<v-card>
 				    <v-card-title>
-						Akademi
+						Mentor
 				    </v-card-title>
 				    <v-container>
 				    	<!-- ==================================== Filtering Form ==========================-->
@@ -59,9 +59,23 @@
 								            :key="item.name"
 								          >
 								            <td>{{ item.name }}</td>
+								            <td>{{ item.company_name }}</td>
+								            <td>{{ item.position }}</td>
 								            <td>{{ item.updated_at }}</td>
 								            <td>{{ item.updater.name }}</td>
 								            <td>
+								            	<v-icon
+											        small
+											        @click="showDialog(item)"
+											      >
+											        mdi-eye
+											     </v-icon>
+								            	<v-icon
+											        small
+											        @click="editDialog(item)"
+											      >
+											        mdi-pencil
+											     </v-icon>
 								            	<v-icon
 											        small
 											        @click="deleteData(item)"
@@ -98,13 +112,36 @@
 		      persistent
 		    >
 	      <v-card>
-	        <v-card-title class="headline">{{dataDialogMode == "create"? 'Tambah':'Atur'}} Kelas Akademi</v-card-title>
+	        <v-card-title class="headline">{{dataDialogModeLabel }} Mentor</v-card-title>
 
 	        <v-card-text>
 	          <v-container>
 	            <v-row>
 	              <v-col cols="12">
-	              	<v-text-field v-model="academy.name" label="Nama Kelas"></v-text-field>
+	              	<v-text-field v-model="mentor.name" label="Nama Mentor" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              </v-col>
+	              <v-col cols="12">
+	              	<v-text-field v-model="mentor.company_name" label="Nama Perusahaan" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              </v-col>
+	              <v-col cols="12">
+	              	<v-text-field v-model="mentor.position" label="Jabatan" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              </v-col>
+	              <v-col cols="12">
+	              	<p>Latar Belakang Pendidikan</p>
+	              	<vue-editor v-model="mentor.education" :readonly="dataDialogMode == 'show'"></vue-editor>
+	              </v-col>
+	              <v-col cols="12">
+	              	<p>Pengalaman</p>
+	              	<vue-editor v-model="mentor.experience" :readonly="dataDialogMode == 'show'"></vue-editor>
+	              </v-col>
+	              <v-col cols="12">
+	              	<v-text-field v-model="mentor.linkedin_link" label="Link Linkedin" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              </v-col>
+	              <v-col cols="12">
+	              	<v-text-field v-model="mentor.email" label="Email" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              </v-col>
+	              <v-col cols="12">
+	              	<v-text-field v-model="mentor.phone" label="Nomor Handphone" :readonly="dataDialogMode == 'show'"></v-text-field>
 	              </v-col>
 	            </v-row>
 	          </v-container>
@@ -113,11 +150,20 @@
 	        <v-card-actions>
 	          <v-spacer></v-spacer>
 	          <v-btn
+	          	v-if="dataDialogMode == 'create'"
 	            color="green darken-1"
 	            text
 	            @click="createData"
 	          >
-	            Kirim
+	            Tambah
+	          </v-btn>
+	          <v-btn
+	          	v-if="dataDialogMode == 'edit'"
+	            color="green darken-1"
+	            text
+	            @click="editData"
+	          >
+	            Ubah
 	          </v-btn>
 	          <v-btn
 	            color="red darken-1"
@@ -132,15 +178,29 @@
     </v-container>
 </template>
 <script>
+import { VueEditor } from "vue2-editor";
+
 export default{
+	components: {
+		VueEditor
+	},
 	data(){
 		return{
 			search: "",
-			academy: {
+			mentor: {
 				name: "",
+				company_name: "",
+				position: "",
+				education: "",
+				experience: "",
+				linkedin_link: "",
+				email: "",
+				phone: ""
 			},
 	        headers: [
-	          { text: 'Akademi', sortable: false},
+	          { text: 'Nama', sortable: false},
+	          { text: 'Perusahaan', sortable: false },
+	          { text: 'Jabatan', sortable: false },
 	          { text: 'Ditambah', sortable: false },
 	          { text: 'Penambah', sortable: false },
 	          { text: 'Aksi', value: 'actions', sortable: false }
@@ -160,14 +220,15 @@ export default{
 	},
 	methods: {
 		setup: async function(){
-			this.$store.commit("setPage","academy");
+			this.$store.commit("setPage","academy")
+			//this.$store.commit("setPage","academy");
 		},
 		loadData: async function(){
 			let search = "";
 			if(this.search != ""){
 				search = this.search;
 			}
-			let res = await this.$store.dispatch('academy/index',"?search="+search);
+			let res = await this.$store.dispatch('mentor/index',"?search="+search);
 			this.datas = res.data.data;
 			this.pagination.page = res.data.current_page;
 			this.pagination.totalData = res.data.total;
@@ -175,16 +236,20 @@ export default{
 			this.totalPrice = res.total_price;
 		},
 		createData: async function(){
-			let res = await this.$store.dispatch('academy/store',this.academy);
+			let res = await this.$store.dispatch('mentor/store',this.mentor);
 			this.dataDialog = false;
 			this.resetDialog();
 			this.loadData();
 		},
 		editData: async function(){
+			let res = await this.$store.dispatch('mentor/update',this.mentor);
+			this.dataDialog = false;
+			this.resetDialog();
+			this.loadData();
 		},
 		deleteData: async function(item){
-			if(confirm("Yakin akan menghapus Akademi "+item.name+ " ?")){
-				let res = await this.$store.dispatch("academy/destroy",item.id);
+			if(confirm("Yakin akan menghapus "+item.name+ " sebagai mentor?")){
+				let res = await this.$store.dispatch("mentor/destroy",item.id);
 				this.loadData();
 			}
 		},
@@ -193,15 +258,40 @@ export default{
 			this.dataDialog = true;
 		},
 		editDialog: function(item){
-			this.academyPeriod = item;
+			this.mentor = Object.assign({}, item);
 			this.dataDialogMode = "edit";
+			this.dataDialog = true;
+		},
+		showDialog: function(item){
+			this.mentor = item;
+			this.dataDialogMode = "show";
 			this.dataDialog = true;
 		},
 		reset: function(){
 			this.search = "";
 		},
 		resetDialog: function(){
-			this.academy.name= "";
+			this.mentor = {
+				name: "",
+				company_name: "",
+				position: "",
+				education: "",
+				experience: "",
+				linkedin_link: "",
+				email: "",
+				phone: ""
+			};
+		}
+	},
+	computed: {
+		dataDialogModeLabel: function(){
+			if(this.dataDialogMode == "create"){
+				return "Tambah";
+			}else if(this.dataDialogMode == "edit"){
+				return "Ubah";
+			}else{
+				return "Lihat";
+			}
 		}
 	}
 }
