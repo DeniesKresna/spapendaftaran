@@ -4,7 +4,7 @@
         	<v-col>
         		<v-card>
 				    <v-card-title>
-						Akademi
+						Kelas di Jobhun Academy
 				    </v-card-title>
 				    <v-container>
 				    	<!-- ==================================== Filtering Form ==========================-->
@@ -98,13 +98,13 @@
 		      persistent
 		    >
 	      <v-card>
-	        <v-card-title class="headline">{{dataDialogMode == "create"? 'Tambah':'Atur'}} Kelas Akademi</v-card-title>
+	        <v-card-title class="headline">{{dataDialogMode == "create"? 'Tambah':'Atur'}} kelas</v-card-title>
 
 	        <v-card-text>
 	          <v-container>
 	            <v-row>
 	              <v-col cols="12">
-	              	<v-text-field v-model="academy.name" label="Nama Kelas"></v-text-field>
+	              	<v-text-field v-model="academy.name" label="Nama kelas"></v-text-field>
 	              </v-col>
 	            </v-row>
 	          </v-container>
@@ -140,7 +140,7 @@ export default{
 				name: "",
 			},
 	        headers: [
-	          { text: 'Akademi', sortable: false},
+	          { text: 'Kelas', sortable: false},
 	          { text: 'Ditambah', sortable: false },
 	          { text: 'Penambah', sortable: false },
 	          { text: 'Aksi', value: 'actions', sortable: false }
@@ -183,7 +183,7 @@ export default{
 		editData: async function(){
 		},
 		deleteData: async function(item){
-			if(confirm("Yakin akan menghapus Akademi "+item.name+ " ?")){
+			if(confirm("Yakin akan menghapus kelas "+item.name+ " ?")){
 				let res = await this.$store.dispatch("academy/destroy",item.id);
 				this.loadData();
 			}

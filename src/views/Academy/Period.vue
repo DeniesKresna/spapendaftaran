@@ -4,7 +4,7 @@
         	<v-col>
         		<v-card>
 				    <v-card-title>
-						Periode Akademi
+						Periode kelas
 				    </v-card-title>
 				    <v-container>
 				    	<!-- ==================================== Filtering Form ==========================-->
@@ -15,7 +15,7 @@
 						            :items="jaList"
 						            item-text="name"
 						            item-value="id"
-						            label="Nama Akademi"
+						            label="Nama kelas"
 						          ></v-select>
 						    </v-col>
 						   	<v-col cols="12" md="6" sm="6">
@@ -30,7 +30,7 @@
 							        <template v-slot:activator="{ on, attrs }">
 							          <v-text-field
 							            v-model="period"
-							            label="Period"
+							            label="Periode"
 							            readonly
 							            v-bind="attrs"
 							            v-on="on"
@@ -160,13 +160,13 @@
 		      persistent
 		    >
 	      <v-card>
-	        <v-card-title class="headline">{{dataDialogMode == "create"? 'Tambah':'Atur Akademi'}} Peserta</v-card-title>
+	        <v-card-title class="headline">{{dataDialogMode == "create"? 'Tambah':'Atur'}} periode</v-card-title>
 
 	        <v-card-text>
 	          <v-container>
 	            <v-row>
 	              <v-col cols="12" v-if="dataDialogMode == 'edit'">
-	              	<v-text-field v-model="academyPeriod.id" label="Id Periode Akademi" v-show="false"></v-text-field>
+	              	<v-text-field v-model="academyPeriod.id" label="Id Periode Kelas" v-show="false"></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
 			        <v-select
@@ -174,7 +174,7 @@
 			            :items="jaList"
 			            item-text="name"
 			            item-value="id"
-			            label="Nama Akademi"
+			            label="Nama kelas"
 			            :disabled="dataDialogMode == 'edit'"
 			          ></v-select>
 			      </v-col>
@@ -190,7 +190,7 @@
 					        <template v-slot:activator="{ on, attrs }">
 					          <v-text-field
 					            v-model="academyPeriod.period"
-					            label="Period"
+					            label="Periode"
 					            readonly
 					            v-bind="attrs"
 					            v-on="on"
@@ -204,7 +204,7 @@
 	              	<v-text-field v-model="academyPeriod.price" label="Harga" type="number"></v-text-field>
 	              </v-col>
 					<v-col cols="12">
-		              	<v-checkbox v-model="academyPeriod.active" label="Aktif? Pengaktifan Akademi akan menonaktifkan akademi yang sama di periode lain"></v-checkbox>
+		              	<v-checkbox v-model="academyPeriod.active" label="Aktif? Pengaktifan kelas akan menonaktifkan kelas yang sama di periode lain"></v-checkbox>
 		            </v-col>
 					<v-col cols="12">
 		              	<v-textarea
@@ -221,7 +221,7 @@
 				            dense
 				            chips
 				            small-chips
-				            label="Pilih Mentor"
+				            label="Pilih mentor"
 				            multiple
 				          ></v-autocomplete>
 		            </v-col>
@@ -285,7 +285,7 @@ export default{
 			},
 			mentorList: [],
 	        headers: [
-	          { text: 'Akademi', sortable: false},
+	          { text: 'Kelas', sortable: false},
 	          { text: 'Period', sortable: false},
 	          { text: 'Harga', sortable: false },
 	          { text: 'Aktif', sortable: false },
@@ -355,7 +355,7 @@ export default{
 			this.loadData();
 		},
 		deleteData: async function(item){
-			if(confirm("Yakin akan menghapus Akademi "+item.academy_name+" periode "+ item.period + " ?")){
+			if(confirm("Yakin akan menghapus kelas "+item.academy_name+" periode "+ item.period + " ?")){
 				let res = await this.$store.dispatch("academyPeriod/destroy",item.id);
 				this.loadData();
 			}
