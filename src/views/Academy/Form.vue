@@ -6,7 +6,7 @@
           timeout="5000"
           color="cyan darken-2"
         >
-          Pembayaranmu akan segera diverifikasi Admin. Tunggu pemberitahuan Email dari kami.
+          Pembayaranmu akan segera diverifikasi admin. Tunggu pemberitahuan dari kami melalui email.
 
           <template v-slot:action="{ attrs }">
             <v-btn
@@ -29,15 +29,15 @@
             dense
             chips
             small-chips
-            label="Pilih Kelas"
+            label="Pilih kelas"
             multiple
           ></v-autocomplete>
         </v-col>
         <v-col cols="12" md="12">
-          <v-text-field label="Alamat Email" v-model="customer.email" @blur="checkCustomerExist" />
+          <v-text-field label="Alamat email" v-model="customer.email" @blur="checkCustomerExist" />
         </v-col>
         <v-col cols="12" md="12">
-          <v-text-field label="Nama Lengkap" v-model="customer.name" />
+          <v-text-field label="Nama lengkap" v-model="customer.name" />
         </v-col>
         <v-col cols="12" md="12">
           <v-text-field label="Nomor WhatsApp" v-model="customer.phone" />
@@ -55,7 +55,7 @@
           <v-text-field label="Kamu berasal dari kota mana?" v-model="customer.domicile" />
         </v-col>  
         <v-col cols="12" md="12">
-          <v-text-field label="Kode Promo" v-model="customer.promo_code" />
+          <v-text-field label="Kode promo" v-model="customer.promo_code" />
         </v-col>      
       </v-row>
       <v-row
@@ -71,7 +71,7 @@
           <v-icon left>
             mdi-check-circle
           </v-icon>
-          Lanjutkan Pembayaran
+          Lanjutkan pembayaran
         </v-btn>
         <v-btn
           tile
@@ -83,7 +83,7 @@
           <v-icon left>
             mdi-plus
           </v-icon>
-          Tambah Peserta
+          Tambah peserta
         </v-btn>
       </v-row>
     </v-container>

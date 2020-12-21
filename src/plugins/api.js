@@ -30,7 +30,7 @@ api.interceptors.response.use(
     if (response.status === 200 || response.status === 201) {
       let msg = response.data.message;
       if(msg !== undefined){
-        Vue.swal('Berhasil',msg,'success');
+        Vue.swal('Berhasil!',msg,'success');
       }
       return Promise.resolve(response);
     } else {

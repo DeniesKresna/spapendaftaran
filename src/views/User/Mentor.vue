@@ -112,22 +112,22 @@
 		      persistent
 		    >
 	      <v-card>
-	        <v-card-title class="headline">{{dataDialogModeLabel }} Mentor</v-card-title>
+	        <v-card-title class="headline">{{dataDialogModeLabel }} mentor</v-card-title>
 
 	        <v-card-text>
 	          <v-container>
 	            <v-row>
 	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.name" label="Nama Mentor" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              	<v-text-field v-model="mentor.name" label="Nama mentor" :readonly="dataDialogMode == 'show'"></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.company_name" label="Nama Perusahaan" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              	<v-text-field v-model="mentor.company_name" label="Nama perusahaan" :readonly="dataDialogMode == 'show'"></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
 	              	<v-text-field v-model="mentor.position" label="Jabatan" :readonly="dataDialogMode == 'show'"></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
-	              	<p>Latar Belakang Pendidikan</p>
+	              	<p>Latar belakang pendidikan</p>
 	              	<vue-editor v-model="mentor.education" :readonly="dataDialogMode == 'show'"></vue-editor>
 	              </v-col>
 	              <v-col cols="12">
@@ -135,13 +135,13 @@
 	              	<vue-editor v-model="mentor.experience" :readonly="dataDialogMode == 'show'"></vue-editor>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.linkedin_link" label="Link Linkedin" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              	<v-text-field v-model="mentor.linkedin_link" label="URL akun Linkedin" :readonly="dataDialogMode == 'show'"></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.email" label="Email" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              	<v-text-field v-model="mentor.email" label="Alamat email" :readonly="dataDialogMode == 'show'"></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.phone" label="Nomor Handphone" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              	<v-text-field v-model="mentor.phone" label="Nomor handphone" :readonly="dataDialogMode == 'show'"></v-text-field>
 	              </v-col>
 	            </v-row>
 	          </v-container>

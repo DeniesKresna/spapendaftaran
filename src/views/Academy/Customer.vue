@@ -4,7 +4,7 @@
         	<v-col>
         		<v-card>
 				    <v-card-title>
-						Akademi
+						Peserta
 				    </v-card-title>
 				    <v-container>
 				    	<!-- ==================================== Filtering Form ==========================-->
@@ -15,7 +15,7 @@
 						            :items="jaList"
 						            item-text="name"
 						            item-value="id"
-						            label="Nama Akademi"
+						            label="Nama kelas"
 						          ></v-select>
 						    </v-col>
 						   	<v-col cols="12" md="6" sm="6">
@@ -30,7 +30,7 @@
 							        <template v-slot:activator="{ on, attrs }">
 							          <v-text-field
 							            v-model="period"
-							            label="Period"
+							            label="Periode"
 							            readonly
 							            v-bind="attrs"
 							            v-on="on"
@@ -42,7 +42,7 @@
 						   	<v-col cols="12" md="6" sm="6">
 						   		<v-text-field
 							        v-model="searchCustomer"
-							        label="Customer"
+							        label="Peserta"
 							      ></v-text-field>
 							</v-col>
 						   	<v-col cols="12" md="6" sm="6">
@@ -173,7 +173,7 @@
 		      persistent
 		    >
 	      <v-card>
-	        <v-card-title class="headline">{{dataDialogModeLabel}} Pembayaran Peserta</v-card-title>
+	        <v-card-title class="headline">{{dataDialogModeLabel}} pembayaran peserta</v-card-title>
 
 	        <v-card-text>
 	          <v-container>
@@ -183,13 +183,13 @@
 	              	</v-textarea>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field :readonly="dataDialogMode == 'show'" v-model="payment.transaction_id" label="Id Transaksi" ></v-text-field>
+	              	<v-text-field :readonly="dataDialogMode == 'show'" v-model="payment.transaction_id" label="Id transaksi" ></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field :readonly="dataDialogMode == 'show'" v-model="payment.via" label="Pembayaran Via" ></v-text-field>
+	              	<v-text-field :readonly="dataDialogMode == 'show'" v-model="payment.via" label="Pembayaran via" ></v-text-field>
 	              </v-col>
 	              <v-col cols="12">
-	              	<v-text-field :readonly="dataDialogMode == 'show'" v-model="payment.amount" label="Jumlah Pembayaran" type="number"></v-text-field>
+	              	<v-text-field :readonly="dataDialogMode == 'show'" v-model="payment.amount" label="Jumlah pembayaran" type="number"></v-text-field>
 	              </v-col>
 	            </v-row>
 	            <v-row>
@@ -246,8 +246,8 @@ export default{
 			},
 			totalPrice: 0,
 	        headers: [
-	          { text: 'Akademi', value: 'academy_name', sortable: false},
-	          { text: 'Period', value: 'period', sortable: false},
+	          { text: 'Kelas', value: 'academy_name', sortable: false},
+	          { text: 'Periode', value: 'period', sortable: false},
 	          { text: 'Peserta', value: 'customer_name', sortable: false },
 	          { text: 'Email', value: 'customer_email', sortable: false },
 	          { text: 'Harga', value: 'amount', sortable: false },
@@ -307,7 +307,7 @@ export default{
 			this.loadData();
 		},
 		deleteData: async function(item){
-			if(confirm("Yakin akan menghapus peserta "+item.customer_name+" di Akademi "+item.academy_name+" periode "+ item.period + " ?")){
+			if(confirm("Yakin akan menghapus peserta "+item.customer_name+" di kelas "+item.academy_name+" periode "+ item.period + " ?")){
 				let res = await this.$store.dispatch("academy/customerDestroy",item.id);
 				this.loadData();
 			}

@@ -286,7 +286,7 @@ export default{
 			mentorList: [],
 	        headers: [
 	          { text: 'Kelas', sortable: false},
-	          { text: 'Period', sortable: false},
+	          { text: 'Periode', sortable: false},
 	          { text: 'Harga', sortable: false },
 	          { text: 'Aktif', sortable: false },
 	          { text: 'Update', sortable: false },
