@@ -158,8 +158,9 @@
 								<div class="text-center">
 								    <v-pagination
 								      v-model="pagination.page"
-								      :length="pagination.last_page"
+								      :length="pagination.lastPage"
 								      :total-visible="7"
+								      @input = "loadData"
 								    ></v-pagination>
 								 </div>
 							</v-col>
@@ -214,7 +215,7 @@
 	            text
 	            @click="dataDialog = false"
 	          >
-	            Tunda
+	            Tutup
 	          </v-btn>
 	        </v-card-actions>
 	      </v-card>
@@ -276,7 +277,8 @@ export default{
 			let res = await this.$store.dispatch('academy/list',"?active=1");
 			this.jaList = res.data;
 		},
-		loadData: async function(){
+		loadData: async function(page=1){
+			this.pagination.page = page;
 			let jaSelectedId = "";
 			let filterSelected = "";
 			let period = "";
@@ -297,6 +299,7 @@ export default{
 			this.pagination.totalData = res2.data.total;
 			this.pagination.lastPage = res2.data.last_page;
 			this.totalPrice = res2.total_price;
+			console.log(this.pagination.lastPage);
 		},
 		editData: async function(){
 			let objCopy = Object.assign({}, this.payment);

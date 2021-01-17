@@ -9,12 +9,29 @@ import payment from './payment';
 import mentor from './mentor';
 Vue.use(Vuex);
 
+const serverAssetUrl = "https://localhost:443/pendaftaran-api/public/assets/";
+
 const state = {
+  assetUrl: serverAssetUrl,
   overlay: false,
   page: "",
-  links: [],
-  user:null,
-  loginDialog:false
+  user:{id: null, name:"Jobhun Indonesia", image_url: serverAssetUrl + "images/logo.png"},
+  loginDialog:false,
+  menus: [
+    { 'text': 'Academy', 'icon':'mdi-school', 'active': false,
+      'children':[{'text':'Peserta','url':'/academy/customer','active':false},
+      {'text':'Periode','url':'/academy/period','active':false},
+      {'text':'Kelas','url':'/academy/list','active':false}]
+    },{ 'text': 'Ask Career', 'icon':'mdi-teach', 'active': false,
+      'children':[{'text':'Ask Career','url':'/ask-career/customer','active':false},
+      {'text':'Periode','url':'/ask-career/period','active':false},
+      {'text':'Kelas','url':'/ask-career/list','active':false}]
+    },{ 'text': 'Layanan', 'icon':'mdi-hand-heart', 'active': false,
+      'children':[{'text':'Jobhun Academy','url':'/academy/form','active':false},
+      {'text':'Ask Career', 'url':'/ask-career/period','active':false},
+      {'text':'Career Hub','url':'/ask-career/list','active':false}]
+    }
+  ]
 };
 
 const mutations = {
@@ -26,29 +43,13 @@ const mutations = {
   },
   setPage(state, payload){
     state.page = payload;
-    if(payload == "academy"){
-      state.links = [
-        {'label':'Daftar Jobhun Academy','url':'/academy/form','auth':false},
-        {'label':'Peserta','url':'/academy/customer','auth':true},
-        {'label':'Periode','url':'/academy/period','auth':true},
-        {'label':'Kelas','url':'/academy/list','auth':true},
-        {'label':'Mentor','url':'/user/mentor','auth':true},
-      ];
-    }else if(payload == "ask-career"){
-      state.links = [
-        {'label':'Pendaftaran','url':'/ask-career/form','auth':false},
-        {'label':'Customer','url':'/ask-career/customer','auth':true},
-        {'label':'Periode','url':'/ask-career/period','auth':true},
-        {'label':'List','url':'/ask-career/list','auth':true},
-      ]
-    }
   },
   setUser(state, payload){
     state.loginDialog = false;
     state.user = payload;
   },
   logout(state){
-    state.user = null;
+    state.user = {id: null, name:"Jobhun Indonesia", image_url: state.assetUrl + "images/logo.png"};
     localStorage.removeItem('token');
   }
 };
@@ -78,17 +79,17 @@ const getters = {
   overlay(state){
     return state.overlay;
   },
-  page(state){
-    return state.page;
-  },
-  links(state){
-    return state.links;
+  title(state){
+    return state.page.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   },
   user(state){
     return state.user;
   },
   loginDialog(state){
     return state.loginDialog;
+  },
+  menus(state){
+    return state.menus;
   }
 };
 

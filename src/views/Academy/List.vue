@@ -83,8 +83,9 @@
 								<div class="text-center">
 								    <v-pagination
 								      v-model="pagination.page"
-								      :length="pagination.last_page"
+								      :length="pagination.lastPage"
 								      :total-visible="7"
+								      @input = "loadData"
 								    ></v-pagination>
 								 </div>
 							</v-col>
@@ -107,6 +108,16 @@
 	              	<v-text-field v-model="academy.name" label="Nama kelas"></v-text-field>
 	              </v-col>
 	            </v-row>
+	            <v-row v-if="academy.media != null">
+	            	<v-col cols="12">
+	            		<img :src="academy.media.url" height="200" />
+	            	</v-col>
+	            </v-row>
+	            <v-row>
+	              <v-col cols="12">
+	              	<v-file-input v-model="academy.media" accept="image/*" label="Gambar File"  @change="setDataImage"></v-file-input>
+	              </v-col>
+	            </v-row>
 	          </v-container>
 	        </v-card-text>
 
@@ -124,7 +135,7 @@
 	            text
 	            @click="dataDialog = false"
 	          >
-	            Batal
+	            Tutup
 	          </v-btn>
 	        </v-card-actions>
 	      </v-card>
@@ -138,6 +149,8 @@ export default{
 			search: "",
 			academy: {
 				name: "",
+				media: null,
+				file: null
 			},
 	        headers: [
 	          { text: 'Kelas', sortable: false},
@@ -162,12 +175,13 @@ export default{
 		setup: async function(){
 			this.$store.commit("setPage","academy");
 		},
-		loadData: async function(){
+		loadData: async function(page=1){
+			this.pagination.page = page;
 			let search = "";
 			if(this.search != ""){
 				search = this.search;
 			}
-			let res = await this.$store.dispatch('academy/index',"?search="+search);
+			let res = await this.$store.dispatch('academy/index',"?page="+this.pagination.page+"&search="+search);
 			this.datas = res.data.data;
 			this.pagination.page = res.data.current_page;
 			this.pagination.totalData = res.data.total;
@@ -175,7 +189,8 @@ export default{
 			this.totalPrice = res.total_price;
 		},
 		createData: async function(){
-			let res = await this.$store.dispatch('academy/store',this.academy);
+			//let res = await this.$store.dispatch('academy/store',this.academy);
+			console.log(this.academy);
 			this.dataDialog = false;
 			this.resetDialog();
 			this.loadData();
@@ -202,6 +217,10 @@ export default{
 		},
 		resetDialog: function(){
 			this.academy.name= "";
+		},
+		setDataImage: function(img){
+			if(img != null)
+				this.academy.media.url = URL.createObjectURL(img);
 		}
 	}
 }

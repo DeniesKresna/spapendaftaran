@@ -1,71 +1,107 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar
-      app
-      color="white"
-      flat
+     <!-- src="https://picsum.photos/1920/1080?random"-->
+    <v-toolbar
+      fixed
+      :height="$route.path == '/'? 60:130"
     >
-    <!--
-      <v-avatar
-        :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
-        size="32"
-      ></v-avatar>-->
-        <img :src="'https://jobhun.id/wp-content/uploads/2018/11/cropped-logo-jobhun-3.png'" width="60"/>
-      <v-tabs
-        centered
-        class="ml-n9"
-        color="grey darken-1"
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+        ></v-img>
+      </template>
+
+      <div v-if="user.id == null">
+        <img src="@/assets/logo.png" height="100"></img>
+      </div>
+      <div v-else>
+        <v-app-bar-nav-icon @click="openDrawer"></v-app-bar-nav-icon>
+        <span>{{title}}</span>
+      </div>
+
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              v-bind="attrs"
+              v-on="on"
+            >
+              Layanan
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title to="/academy/form">Jobhun Academy</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>Jobhun Ask Expert</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>Jobhun Career Hub</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-btn @click="toogleLogin" text>
+          <span v-if="user.id == null">Masuk</span>
+          <span v-else>Logout</span>
+        </v-btn><!--
+        <v-btn @click="toogleLogin" icon>
+          <v-icon v-if="user.id == null">mdi-login</v-icon>
+          <v-icon v-else>mdi-logout</v-icon>
+        </v-btn>-->
+      </v-toolbar-items>
+    </v-toolbar>
+    <v-navigation-drawer
+        v-model="drawer"
+        fixed
+        temporary
       >
-        <v-tab
-          v-for="link in links"
-          :key="link.label" :to="link.url"
-          v-if="setInvis(link)"
-        >
-          {{ link.label }}
-        </v-tab>
-      </v-tabs>
+      <template v-slot:prepend>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+            <img :src="user.image_url">
+          </v-list-item-avatar>
 
-      <!--
-      <v-avatar
-        class="hidden-sm-and-down"
-        color="grey darken-1 shrink"
-        size="32"
-      ></v-avatar>-->
-    </v-app-bar>
+          <v-list-item-content>
+            <v-list-item-title>{{user.name}}</v-list-item-title>
+            <v-list-item-subtitle class="purple--text" v-if="user.id != null">Setting</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
 
+      <v-divider></v-divider>
+     <NodeList :nodes="menus"/>
+    </v-navigation-drawer>
     <v-main class="grey lighten-3 mb-10">
-      <v-container>
-        <v-row>
-          <v-overlay :value="overlay"></v-overlay>
-          <!--
-          <v-col
-            cols="12"
-            sm="2"
-          >
-            <v-sheet
-              rounded="lg"
-              min-height="268"
+      <div v-if="$route.path == '/'">
+        <router-view />
+      </div>
+      <div v-else>
+        <v-container fluid>
+          <v-row>
+            <v-overlay :value="overlay"></v-overlay>
+            <v-col
+              cols="12"
+              sm="12"
             >
-            </v-sheet>
-          </v-col>
-          -->
-          <v-col
-            cols="12"
-            sm="12"
-          >
-            <v-sheet
-              min-height="70vh"
-              rounded="lg"
-            >
-              <router-view />
-            </v-sheet>
-          </v-col><!--
-          <v-col
-            cols="12"
-            sm="2"
-          ></v-col>-->
-        </v-row>
-      </v-container>
+                <v-sheet
+                  min-height="70vh"
+                  rounded="lg"
+                >
+                  <router-view />
+                </v-sheet>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
     </v-main>
     <div>
           <v-footer
@@ -76,7 +112,7 @@
                 class="text-center"
                 cols="12"
               >
-                <span @click="toogleLogin">2020</span> — <strong>PT Jobhun Membangun Indonesia</strong>
+                <span>2021</span> — <strong>PT Jobhun Membangun Indonesia</strong>
               </v-col>
             </v-footer>
     </div>
@@ -92,7 +128,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field append-icon="mdi-account" label="Email" v-model="userForm.email" />
+                <v-text-field append-icon="mdi-account" label="Email" v-model="userForm.email" @keyup.enter="login"/>
               </v-col>
             </v-row>
             <v-row>
@@ -101,6 +137,7 @@
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 label="Password"
+                @keyup.enter="login"
                 @click:append="show1 = !show1"
                 v-model="userForm.password"
                 />
@@ -117,7 +154,14 @@
             text
             @click="login"
           >
-            Submit
+            Login
+          </v-btn>
+          <v-btn
+            color="red darken-1"
+            text
+            @click="closeLogin"
+          >
+            Tutup
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -126,8 +170,13 @@
 </template>
 
 <script>
+  import NodeList from '@/components/NodeList'
   export default {
+    components:{
+      NodeList
+    },
     data: () => ({
+      drawer: false,
       userForm: {
         email: "",
         password: ""
@@ -141,22 +190,16 @@
       setup: async function(){
         this.$store.dispatch("me");
       },
-      setInvis: function(li){
-        if(!li.auth) return true;
-        else {
-          if(this.user != null){
-            return true;
-          }
-        }
-        return false;
-      },
       toogleLogin: function(){
-        if(this.user == null)
+        if(this.user.id == null)
           this.$store.commit('setLoginDialog',true);
         else{
           if(confirm("Lanjutkan Keluar?"))
             this.$store.commit('logout');
         }
+      },
+      closeLogin: function(){
+        this.$store.commit('setLoginDialog',false);
       },
       login: async function(){
         let res = await this.$store.dispatch("login",this.userForm);
@@ -165,6 +208,9 @@
       },
       toJobhun: function(){
         window.location.href = "https://jobhun.id";
+      },
+      openDrawer: function(){
+        this.drawer = !this.drawer;
       }
     },
     computed: {
@@ -174,15 +220,19 @@
       page(){
         return this.$store.getters.page
       },
-      links(){
-        return this.$store.getters.links
-      },
       user(){
         return this.$store.getters.user
       },
       loginDialog(){
         return this.$store.getters.loginDialog;
+      },
+      menus(){
+        return this.$store.getters.menus;
+      },
+      title(){
+        return this.$store.getters.title;
       }
     }
   }
 </script>
+<style> *{ text-transform: none !important; } </style>

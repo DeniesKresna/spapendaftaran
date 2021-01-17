@@ -97,8 +97,9 @@
 								<div class="text-center">
 								    <v-pagination
 								      v-model="pagination.page"
-								      :length="pagination.last_page"
+								      :length="pagination.lastPage"
 								      :total-visible="7"
+								      @input = "loadData"
 								    ></v-pagination>
 								 </div>
 							</v-col>
@@ -223,12 +224,13 @@ export default{
 			this.$store.commit("setPage","academy")
 			//this.$store.commit("setPage","academy");
 		},
-		loadData: async function(){
+		loadData: async function(page=1){
+			this.pagination.page = page;
 			let search = "";
 			if(this.search != ""){
 				search = this.search;
 			}
-			let res = await this.$store.dispatch('mentor/index',"?search="+search);
+			let res = await this.$store.dispatch('mentor/index',"?page="+this.pagination.page+"&search="+search);
 			this.datas = res.data.data;
 			this.pagination.page = res.data.current_page;
 			this.pagination.totalData = res.data.total;
@@ -292,7 +294,6 @@ export default{
 			}else{
 				return "Lihat";
 			}
-		}
-	}
+		}	}
 }
 </script>

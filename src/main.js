@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import api from './plugins/api';
-import './registerServiceWorker'
+import './registerServiceWorker';
 
 import firebase from "firebase/app";
 import 'firebase/messaging';

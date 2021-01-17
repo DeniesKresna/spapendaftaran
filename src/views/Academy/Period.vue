@@ -145,8 +145,9 @@
 								<div class="text-center">
 								    <v-pagination
 								      v-model="pagination.page"
-								      :length="pagination.last_page"
+								      :length="pagination.lastPage"
 								      :total-visible="7"
+								      @input = "loadData"
 								    ></v-pagination>
 								 </div>
 							</v-col>
@@ -256,7 +257,7 @@
 	            text
 	            @click="dataDialog = false"
 	          >
-	            Batal
+	            Tutup
 	          </v-btn>
 	        </v-card-actions>
 	      </v-card>
@@ -314,7 +315,8 @@ export default{
 			this.jaList = res.data;
 			this.mentorList = res2.data;
 		},
-		loadData: async function(){
+		loadData: async function(page=1){
+			this.pagination.page = page;
 			let jaSelectedId = "";
 			let period = "";
 			if(this.jaSelected != null){

@@ -5,8 +5,10 @@ import store from '@/store';
 import Vue from 'vue';
 
 const api = axios.create({
- //baseURL: 'https://smartit-c0f9f575.localhost.run/pendaftaran-api/public/api',
- baseURL: 'http://localhost:8080/pendaftaran-api/public/api',
+ //baseURL: 'https://smartit-32ba08c9.localhost.run/pendaftaran-api/public/api',
+ baseURL: 'https://localhost:443/pendaftaran-api/public/api',
+ //baseURL: 'https://10.219.12.94:443/pendaftaran-api/public/api',
+ //baseURL: 'https://api.jobhun.id/api',
 });
 
 api.defaults.timeout = 10000;

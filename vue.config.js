@@ -31,10 +31,13 @@ module.exports = {
     //public: "cobadenies.loca.lt",
     //host: "localhost"
     //office
-    //public: 'https://10.100.100.115:3000/'
+    //public: 'https://10.100.100.127:3000/'
     
     //home
     public: 'https://192.168.100.28:3000/'
     //public: 'https://cobadenies.loca.lt/'
+
+    //dilo
+    //public: 'https://10.219.12.94:3000/'
   },
 }

@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: () => import('../views/Academy/Form.vue')
+    component: () => import('../views/AuthWarning.vue')
   },
   {
     path: '/academy/form',

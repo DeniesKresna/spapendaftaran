@@ -20,6 +20,11 @@
           </template>
         </v-snackbar>
       <v-row>
+        <v-col>
+          <div class="title">Pendaftaran Jobhun Academy</div>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col cols="12" md="12">
           <v-autocomplete
             v-model="jaSelected"
