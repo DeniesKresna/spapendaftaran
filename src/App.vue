@@ -27,14 +27,26 @@
               text
               v-bind="attrs"
               v-on="on"
+              to="/"
+            >
+              Beranda
+            </v-btn>
+          </template>
+        </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              v-bind="attrs"
+              v-on="on"
             >
               Layanan
             </v-btn>
           </template>
           <v-list>
-            <v-list-item>
+            <v-list-item to="/jobhun/academy">
               <v-list-item-content>
-                <v-list-item-title to="/academy/form">Jobhun Academy</v-list-item-title>
+                <v-list-item-title>Jobhun Academy</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
@@ -80,7 +92,7 @@
       <v-divider></v-divider>
      <NodeList :nodes="menus"/>
     </v-navigation-drawer>
-    <v-main class="grey lighten-3 mb-10">
+    <v-main class="lighten-3 mb-10">
       <div v-if="$route.path == '/'">
         <router-view />
       </div>

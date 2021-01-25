@@ -1,7 +1,7 @@
 //import qs from 'qs';
 import api from '@/plugins/api'
 
-const mentor= {
+const expert= {
     namespaced: true,
 /*
     state: {
@@ -17,35 +17,42 @@ const mentor= {
     actions: {
       index({}, payload){
         return new Promise((resolve, reject) => {
-          api.get('/mentors'+payload).then(response => {
+          api.get('/experts'+payload).then(response => {
               resolve(response.data);
           });
         });
       },
       list({}, payload){
         return new Promise((resolve, reject) => {
-          api.get('/mentors/list'+payload).then(response => {
+          api.get('/experts/list'+payload).then(response => {
               resolve(response.data);
           });
         });
       },
       store({}, payload){
         return new Promise((resolve, reject) => {
-          api.post('/mentors', payload).then(response => {
+          api.post('/experts', payload).then(response => {
             resolve(response.data);
           });
         });
       },
       update({}, payload){
         return new Promise((resolve, reject) => {
-          api.post('/mentors/'+payload.get('id'),payload).then(response => {
+          api.put('/experts/'+payload.id,payload).then(response => {
             resolve(response.data);
           });
         });
       },
       destroy({}, payload){
         return new Promise((resolve, reject) => {
-          api.delete('/mentors/'+payload).then(response => {
+          api.delete('/experts/'+payload).then(response => {
+            resolve(response.data);
+          });
+        });
+      },
+      pageData({}, payload=""){
+        return new Promise((resolve, reject)=>{
+          api.get('/experts/page_data'+payload).then(response =>{
             resolve(response.data);
           });
         });
@@ -56,4 +63,4 @@ const mentor= {
     }
 }
 
-export default mentor;
+export default expert;

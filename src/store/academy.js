@@ -36,6 +36,13 @@ const academy= {
           });
         });
       },
+      update({},payload){
+        return new Promise((resolve, reject) => {
+          api.post('/academies/'+payload.get('id'),payload).then(response => {
+            resolve(response.data);
+          });
+        });
+      },
       destroy({}, payload){
         return new Promise((resolve, reject) => {
           api.delete('/academies/'+payload).then(response => {
@@ -67,6 +74,13 @@ const academy= {
       paymentStore({}, payload){
         return new Promise((resolve, reject)=>{
           api.post('/academies/payment',payload).then(response => {
+            resolve(response.data);
+          });
+        });
+      },
+      pageData({}, payload=""){
+        return new Promise((resolve, reject)=>{
+          api.get('/academies/page_data'+payload).then(response =>{
             resolve(response.data);
           });
         });

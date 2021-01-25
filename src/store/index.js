@@ -7,6 +7,7 @@ import academyPeriod from './academy-period';
 import customer from './customer';
 import payment from './payment';
 import mentor from './mentor';
+import expert from './expert';
 Vue.use(Vuex);
 
 const serverAssetUrl = "https://localhost:443/pendaftaran-api/public/assets/";
@@ -26,10 +27,13 @@ const state = {
       'children':[{'text':'Ask Career','url':'/ask-career/customer','active':false},
       {'text':'Periode','url':'/ask-career/period','active':false},
       {'text':'Kelas','url':'/ask-career/list','active':false}]
-    },{ 'text': 'Layanan', 'icon':'mdi-hand-heart', 'active': false,
+    },{ 'text': 'Pendaftaran', 'icon':'mdi-account-plus', 'active': false,
       'children':[{'text':'Jobhun Academy','url':'/academy/form','active':false},
       {'text':'Ask Career', 'url':'/ask-career/period','active':false},
       {'text':'Career Hub','url':'/ask-career/list','active':false}]
+    },{ 'text': 'Pengguna', 'icon':'mdi-account', 'active': false,
+      'children':[{'text':'Mentor','url':'/user/mentor','active':false},
+      {'text':'Expert','url':'/user/expert','active':false}]
     }
   ]
 };
@@ -103,6 +107,7 @@ export default new Vuex.Store({
         academyPeriod,
         customer,
         payment,
-        mentor
+        mentor,
+        expert
     }
 });

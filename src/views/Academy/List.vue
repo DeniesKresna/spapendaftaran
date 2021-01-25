@@ -16,7 +16,7 @@
 						   		<v-btn
 						   			tile
 						          color="primary"
-						           @click="loadData"
+						           @click="loadData(1)"
 						        >
 						          <v-icon left>
 						            mdi-cloud-search-outline
@@ -62,6 +62,13 @@
 								            <td>{{ item.updated_at }}</td>
 								            <td>{{ item.updater.name }}</td>
 								            <td>
+									            <v-icon
+											        small
+											        class="mr-2"
+											        @click="editDialog(item)"
+											      >
+											        mdi-pencil
+											    </v-icon>
 								            	<v-icon
 											        small
 											        @click="deleteData(item)"
@@ -105,9 +112,15 @@
 	          <v-container>
 	            <v-row>
 	              <v-col cols="12">
-	              	<v-text-field v-model="academy.name" label="Nama kelas"></v-text-field>
+	              	<v-text-field v-model="academy.name" label="Nama kelas" :readonly="dataDialogMode == 'edit'"></v-text-field>
 	              </v-col>
 	            </v-row>
+				<v-col cols="12">
+	              	<v-textarea
+				      label="Deskripsi"
+				      v-model="academy.description"
+				    ></v-textarea>
+	            </v-col>
 	            <v-row v-if="academy.media != null">
 	            	<v-col cols="12">
 	            		<img :src="academy.media.url" height="200" />
@@ -115,7 +128,7 @@
 	            </v-row>
 	            <v-row>
 	              <v-col cols="12">
-	              	<v-file-input v-model="academy.media" accept="image/*" label="Gambar File"  @change="setDataImage"></v-file-input>
+	              	<v-file-input v-model="academy.file" accept="image/*" label="Gambar File"  @change="setDataImage"></v-file-input>
 	              </v-col>
 	            </v-row>
 	          </v-container>
@@ -124,11 +137,20 @@
 	        <v-card-actions>
 	          <v-spacer></v-spacer>
 	          <v-btn
+	            v-if="dataDialogMode == 'create'"
 	            color="green darken-1"
 	            text
 	            @click="createData"
 	          >
-	            Kirim
+	            Tambah
+	          </v-btn>
+	          <v-btn
+	          	v-else
+	            color="green darken-1"
+	            text
+	            @click="editData"
+	          >
+	            Ubah
 	          </v-btn>
 	          <v-btn
 	            color="red darken-1"
@@ -148,7 +170,9 @@ export default{
 		return{
 			search: "",
 			academy: {
+				id: null,
 				name: "",
+				description: "",
 				media: null,
 				file: null
 			},
@@ -186,16 +210,26 @@ export default{
 			this.pagination.page = res.data.current_page;
 			this.pagination.totalData = res.data.total;
 			this.pagination.lastPage = res.data.last_page;
-			this.totalPrice = res.total_price;
 		},
 		createData: async function(){
-			//let res = await this.$store.dispatch('academy/store',this.academy);
-			console.log(this.academy);
+			let formData = new FormData();
+			for ( let key in this.academy ) {
+			    formData.append(key, this.academy[key]);
+			}
+			let res = await this.$store.dispatch('academy/store',formData);
 			this.dataDialog = false;
 			this.resetDialog();
 			this.loadData();
 		},
 		editData: async function(){
+			let formData = new FormData();
+			for ( let key in this.academy ) {
+			    formData.append(key, this.academy[key]);
+			}
+			let res = await this.$store.dispatch('academy/update',formData);
+			this.dataDialog = false;
+			this.resetDialog();
+			this.loadData();
 		},
 		deleteData: async function(item){
 			if(confirm("Yakin akan menghapus kelas "+item.name+ " ?")){
@@ -208,7 +242,7 @@ export default{
 			this.dataDialog = true;
 		},
 		editDialog: function(item){
-			this.academyPeriod = item;
+			this.academy = Object.assign({}, item);
 			this.dataDialogMode = "edit";
 			this.dataDialog = true;
 		},
@@ -217,10 +251,18 @@ export default{
 		},
 		resetDialog: function(){
 			this.academy.name= "";
+			this.academy.media=null;
+			this.academy.description="";
+			this.academy.file=null;
 		},
 		setDataImage: function(img){
-			if(img != null)
+			if(img != null){
+				this.academy.media = {};
+				this.academy.file = img;
 				this.academy.media.url = URL.createObjectURL(img);
+			}else{
+				this.academy.media = {};
+			}
 		}
 	}
 }

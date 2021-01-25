@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: () => import('../views/AuthWarning.vue')
+    component: () => import('../views/Index.vue')
   },
   {
     path: '/academy/form',
@@ -29,11 +29,21 @@ const routes = [
     path: '/academy/list',
     name: 'AcademyList',
     component: () => import('../views/Academy/List.vue')
-  },,
+  },
+  {
+    path: '/jobhun/academy',
+    name: 'JobhunAcademy',
+    component: () => import('../views/Jobhun/Academy.vue')
+  },
   {
     path: '/user/mentor',
     name: 'UserMentor',
     component: () => import('../views/User/Mentor.vue')
+  },
+  {
+    path: '/user/expert',
+    name: 'UserExpert',
+    component: () => import('../views/User/Expert.vue')
   },
   {
     path: '*',

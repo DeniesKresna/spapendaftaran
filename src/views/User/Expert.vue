@@ -4,14 +4,23 @@
         	<v-col>
         		<v-card>
 				    <v-card-title>
-						Mentor
+						Expert di Jobhun Ask Career
 				    </v-card-title>
 				    <v-container>
 				    	<!-- ==================================== Filtering Form ==========================-->
 				    	<v-row>
-						   	<v-col md="6">
-						   		<v-text-field v-model="search" label="Cari"></v-text-field>
+						   	<v-col cols="8" md="4">
+						   		<v-text-field v-model="filter.search" label="Cari"></v-text-field>
 						    </v-col>
+						    <v-col cols="4" md="2">
+						   		<v-select
+						            v-model="filter.active"
+						            :items="activeList"
+						            item-text="name"
+						            item-value="value"
+						            label="Status"
+						          ></v-select>
+							</v-col>
 						    <v-col>
 						   		<v-btn
 						   			tile
@@ -56,28 +65,21 @@
 								        <tbody>
 								          <tr
 								            v-for="item in datas"
-								            :key="item.name"
+								            :key="item.id"
 								          >
-								            <td>{{ item.name }}</td>
-								            <td>{{ item.company_name }}</td>
-								            <td>{{ item.position }}</td>
+								            <td>{{ item.mentor_name }}</td>
+								            <td>{{ item.job }}</td>
+								            <td>{{ item.price }}</td>
 								            <td>{{ item.updated_at }}</td>
-								            <td>{{ item.updater.name }}</td>
+								            <td>{{ item.updater_name }}</td>
 								            <td>
-								            	<v-icon
-								            		class="mr-2"
+									            <v-icon
 											        small
-											        @click="showDialog(item)"
-											      >
-											        mdi-eye
-											     </v-icon>
-								            	<v-icon
-								            		class="mr-2"
-											        small
+											        class="mr-2"
 											        @click="editDialog(item)"
 											      >
 											        mdi-pencil
-											     </v-icon>
+											    </v-icon>
 								            	<v-icon
 											        small
 											        @click="deleteData(item)"
@@ -115,43 +117,46 @@
 		      persistent
 		    >
 	      <v-card>
-	        <v-card-title class="headline">{{dataDialogModeLabel }} mentor</v-card-title>
+	        <v-card-title class="headline">{{dataDialogMode == "create"? 'Tambah':'Atur'}} expert</v-card-title>
 
 	        <v-card-text>
 	          <v-container>
 	            <v-row>
 	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.name" label="Nama mentor" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              	<v-autocomplete
+				            v-model="expert.mentor_id"
+				            :items="mentorList"
+				            item-value="id"
+				            item-text="name"
+				            dense
+				            chips
+				            small-chips
+				            label="Pilih mentor"
+				          ></v-autocomplete>
 	              </v-col>
-	              <v-col cols="12" v-if="mentor.media != null">
-	            	<img :src="mentor.media.url" height="200" />
-	              </v-col>
+	            </v-row>
+	            <v-row>
 	              <v-col cols="12">
-	              	<v-file-input v-model="mentor.file" accept="image/*" label="Gambar File"  @change="setDataImage" :disabled="dataDialogMode == 'show'"></v-file-input>
+	              	<v-text-field v-model="expert.job" label="Pekerjaan yang dimentorkan"></v-text-field>
 	              </v-col>
+	            </v-row>
+	            <v-row>
 	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.company_name" label="Nama perusahaan" :readonly="dataDialogMode == 'show'"></v-text-field>
+	              	<v-text-field v-model="expert.price" type="number" label="Harga per jam"></v-text-field>
 	              </v-col>
-	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.position" label="Jabatan" :readonly="dataDialogMode == 'show'"></v-text-field>
-	              </v-col>
-	              <v-col cols="12">
-	              	<p>Latar belakang pendidikan</p>
-	              	<vue-editor v-model="mentor.education" :readonly="dataDialogMode == 'show'"></vue-editor>
-	              </v-col>
-	              <v-col cols="12">
-	              	<p>Pengalaman</p>
-	              	<vue-editor v-model="mentor.experience" :readonly="dataDialogMode == 'show'"></vue-editor>
-	              </v-col>
-	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.linkedin_link" label="URL akun Linkedin" :readonly="dataDialogMode == 'show'"></v-text-field>
-	              </v-col>
-	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.email" label="Alamat email" :readonly="dataDialogMode == 'show'"></v-text-field>
-	              </v-col>
-	              <v-col cols="12">
-	              	<v-text-field v-model="mentor.phone" label="Nomor handphone" :readonly="dataDialogMode == 'show'"></v-text-field>
-	              </v-col>
+	            </v-row>
+	            <v-row>
+	            	<v-col cols="12">
+		              	<v-checkbox v-model="expert.active" label="Aktifkan?"></v-checkbox>
+		            </v-col>
+	            </v-row>
+	            <v-row>
+					<v-col cols="12">
+		              	<v-textarea
+					      label="Deskripsi"
+					      v-model="expert.description"
+					    ></v-textarea>
+		            </v-col>
 	            </v-row>
 	          </v-container>
 	        </v-card-text>
@@ -159,7 +164,7 @@
 	        <v-card-actions>
 	          <v-spacer></v-spacer>
 	          <v-btn
-	          	v-if="dataDialogMode == 'create'"
+	            v-if="dataDialogMode == 'create'"
 	            color="green darken-1"
 	            text
 	            @click="createData"
@@ -167,7 +172,7 @@
 	            Tambah
 	          </v-btn>
 	          <v-btn
-	          	v-if="dataDialogMode == 'edit'"
+	          	v-else
 	            color="green darken-1"
 	            text
 	            @click="editData"
@@ -179,7 +184,7 @@
 	            text
 	            @click="dataDialog = false"
 	          >
-	            Batal
+	            Tutup
 	          </v-btn>
 	        </v-card-actions>
 	      </v-card>
@@ -187,33 +192,30 @@
     </v-container>
 </template>
 <script>
-import { VueEditor } from "vue2-editor";
-
 export default{
-	components: {
-		VueEditor
-	},
 	data(){
 		return{
-			search: "",
-			mentor: {
+			filter: {
+				search: "",
+				active: 2
+			},
+			activeList: [{name: 'Aktif', value: 1},{name:'Tidak Aktif', value: 0},
+				{name:'Semua', value:2}],
+			expert: {
+				id: null,
 				name: "",
-				company_name: "",
-				position: "",
-				education: "",
-				experience: "",
-				linkedin_link: "",
-				email: "",
-				phone: "",
-				media: null,
-				file: null
+				price: "",
+				mentor_id: null,
+				job: null,
+				description: "",
+				active: null
 			},
 	        headers: [
 	          { text: 'Nama', sortable: false},
-	          { text: 'Perusahaan', sortable: false },
-	          { text: 'Jabatan', sortable: false },
-	          { text: 'Ditambah', sortable: false },
-	          { text: 'Penambah', sortable: false },
+	          { text: 'Kelas Konsul', sortable: false },
+	          { text: 'Harga', sortable: false },
+	          { text: 'Diupdate', sortable: false },
+	          { text: 'Pengupdate', sortable: false },
 	          { text: 'Aksi', value: 'actions', sortable: false }
 	        ],
 	        datas: [],
@@ -223,7 +225,10 @@ export default{
 	        	lastPage: 1
 	        },
 	        dataDialog:false,
-	        dataDialogMode:"create"
+	        dataDialogMode:"create",
+
+	        mentorList: [],
+	        jobList: []
 		}
 	},
 	mounted(){
@@ -231,97 +236,71 @@ export default{
 	},
 	methods: {
 		setup: async function(){
-			this.$store.commit("setPage","academy")
-			//this.$store.commit("setPage","academy");
+			this.$store.commit("setPage","academy");
+			let res = await this.$store.dispatch('mentor/list',"");
+			this.mentorList = res.data;
 		},
 		loadData: async function(page=1){
 			this.pagination.page = page;
 			let search = "";
-			if(this.search != ""){
-				search = this.search;
+			if(this.filter.search != ""){
+				search = this.filter.search;
 			}
-			let res = await this.$store.dispatch('mentor/index',"?page="+this.pagination.page+"&search="+search);
+			let res = await this.$store.dispatch('expert/index',"?page="+this.pagination.page+"&search="+search+"&active="+this.filter.active);
 			this.datas = res.data.data;
 			this.pagination.page = res.data.current_page;
 			this.pagination.totalData = res.data.total;
 			this.pagination.lastPage = res.data.last_page;
 		},
 		createData: async function(){
-			let formData = new FormData();
-			for ( let key in this.mentor ) {
-			    formData.append(key, this.mentor[key]);
-			}
-			let res = await this.$store.dispatch('mentor/store',formData);
+			let objCopy = Object.assign({}, this.expert);
+			let res = await this.$store.dispatch('expert/store',objCopy);
 			this.dataDialog = false;
 			this.resetDialog();
 			this.loadData();
 		},
 		editData: async function(){
-			let formData = new FormData();
-			for ( let key in this.mentor ) {
-			    formData.append(key, this.mentor[key]);
+			let objCopy = Object.assign({}, this.expert);
+			if(objCopy.active){
+				objCopy.active=1;
+			}else{
+				objCopy.active=0;
 			}
-			let res = await this.$store.dispatch('mentor/update',formData);
+			let res = await this.$store.dispatch('expert/update',objCopy);
 			this.dataDialog = false;
 			this.resetDialog();
 			this.loadData();
 		},
 		deleteData: async function(item){
-			if(confirm("Yakin akan menghapus "+item.name+ " sebagai mentor?")){
-				let res = await this.$store.dispatch("mentor/destroy",item.id);
+			if(confirm("Yakin akan menghapus "+item.mentor_name+ " sebagai expert?")){
+				let res = await this.$store.dispatch("expert/destroy",item.id);
 				this.loadData();
 			}
 		},
 		createDialog: function(){
+			this.resetDialog();
 			this.dataDialogMode = "create";
 			this.dataDialog = true;
 		},
 		editDialog: function(item){
-			this.mentor = Object.assign({}, item);
+			this.expert = Object.assign({}, item);
 			this.dataDialogMode = "edit";
-			this.dataDialog = true;
-		},
-		showDialog: function(item){
-			this.mentor = item;
-			this.dataDialogMode = "show";
 			this.dataDialog = true;
 		},
 		reset: function(){
 			this.search = "";
 		},
 		resetDialog: function(){
-			this.mentor = {
+			this.expert = {
+				id: null,
 				name: "",
-				company_name: "",
-				position: "",
-				education: "",
-				experience: "",
-				linkedin_link: "",
-				email: "",
-				phone: "",
-				media: null,
-				file: null
+				price: "",
+				mentor_id: null,
+				job: null,
+				description: "",
+				active: null
 			};
-		},
-		setDataImage: function(img){
-			if(img != null){
-				this.mentor.media = {};
-				this.mentor.file = img;
-				this.mentor.media.url = URL.createObjectURL(img);
-			}else{
-				this.mentor.media = {};
-			}
 		}
-	},
-	computed: {
-		dataDialogModeLabel: function(){
-			if(this.dataDialogMode == "create"){
-				return "Tambah";
-			}else if(this.dataDialogMode == "edit"){
-				return "Ubah";
-			}else{
-				return "Lihat";
-			}
-		}	}
+	}
 }
 </script>
