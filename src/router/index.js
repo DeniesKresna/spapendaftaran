@@ -46,6 +46,11 @@ const routes = [
     component: () => import('../views/User/Expert.vue')
   },
   {
+    path: '/user/register',
+    name: 'UserRegister',
+    component: () => import('../views/User/Register.vue')
+  },
+  {
     path: '*',
     name: 'PageNotFound',
     component: () => import('../views/NoPage.vue')

@@ -15,7 +15,7 @@
               v-bind="attrs"
               @click="snackbar = false"
             >
-              Close
+              Tutup
             </v-btn>
           </template>
         </v-snackbar>
@@ -124,21 +124,10 @@
         if(this.$route.query.order_id !== undefined && this.$route.query.order_id != ""){
           this.snackbar = true;
         }
-/*
-	      let jaList = res.data.map(obj => {
-	        return obj.name
-	      });
-        if(this.$route.query.name !== undefined && this.$route.query.name != ""){
-          name = this.$route.query.name;
-          if(!jaList.includes(name)){
-            this.$swal("Maaf","Tidak ada academy dengan nama " + name,"warning").then(()=>{
-                this.jaSelected = "";
-            });
-          }else{
-            this.jaSelected = name;
-          }
-        }	    
-*/  
+        if(this.user != null && this.user.role_id == 2){
+          this.customer.email = this.user.email;
+          this.checkCustomerExist();
+        }
       },
       storeAcademyCustomer: async function(){
         let payload = this.customer;

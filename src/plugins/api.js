@@ -63,7 +63,7 @@ error => {
         });
     }
     else if(error.response.status === 500){
-        let msg = "Server mengalami permasalahan";
+        let msg = "Server mengalami permasalahan. Coba restart ulang.";
         Vue.swal('Maaf',msg,'error');
     }
     else if(error.response.status === 430){

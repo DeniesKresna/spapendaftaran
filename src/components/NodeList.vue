@@ -6,6 +6,7 @@
         v-model="item.active"
         :prepend-icon="item.icon"
         no-action
+        v-if="item.allow.includes(user.role_id)"
       >
         <template v-slot:activator>
           <v-list-item-content>
@@ -29,5 +30,10 @@
 <script>
 export default {
     props: ['nodes'],
+    computed: {
+      user(){
+        return this.$store.getters.user
+      }
+    }
 }
 </script>

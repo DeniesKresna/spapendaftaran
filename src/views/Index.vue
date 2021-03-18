@@ -104,7 +104,7 @@
 		    </v-btn>
 		</v-col>
 	</v-row>
-	<v-row class="mt-6" justify="center" align="center"">
+	<v-row class="mt-6" justify="center" align="center">
 		<v-col cols="6">
 			<v-img src="@/assets/images/web/mentor1.jpg" contain/>
 		</v-col>
@@ -129,7 +129,8 @@
 			      :src="expert.url"
 			    ></v-img>
 
-			    <v-card-title><span class="deep-purple--text text--darken-2 mr-1">{{expert.name}}</span>- {{expert.job}}</v-card-title>
+			    <v-card-title><span class="deep-purple--text text--darken-2 mr-1">{{expert.name}}</span></v-card-title>
+				<v-card-subtitle>{{expert.job}}</v-card-subtitle>
 
 			    <v-card-text>
 			      <v-row
@@ -149,32 +150,13 @@
 			      </v-row>
 
 			      <div class="my-4 subtitle-1">
-			        IDR • {{expert.price}} / hour
+			        IDR • {{expert.price}} / jam
 			      </div>
 			      
 			      <div>{{ (expert.description != null && expert.description.length > 70)? expert.description.substring(0,70) + "...." : expert.description }}</div>
 			    </v-card-text>
 
 			    <v-divider class="mx-4"></v-divider>
-<!--
-			    <v-card-title>Tonight's availability</v-card-title>
-
-			    <v-card-text>
-			      <v-chip-group
-			        v-model="selection"
-			        active-class="deep-purple accent-4 white--text"
-			        column
-			      >
-			        <v-chip>5:30PM</v-chip>
-
-			        <v-chip>7:30PM</v-chip>
-
-			        <v-chip>8:00PM</v-chip>
-
-			        <v-chip>9:00PM</v-chip>
-			      </v-chip-group>
-			    </v-card-text>
--->
 			    <v-card-actions>
 			      <v-btn
 			        color="deep-purple lighten-2"

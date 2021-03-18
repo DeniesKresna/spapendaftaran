@@ -8,6 +8,7 @@ import customer from './customer';
 import payment from './payment';
 import mentor from './mentor';
 import expert from './expert';
+import auth from './auth';
 Vue.use(Vuex);
 
 const serverAssetUrl = "https://localhost:443/pendaftaran-api/public/assets/";
@@ -19,19 +20,19 @@ const state = {
   user:{id: null, name:"Jobhun Indonesia", image_url: serverAssetUrl + "images/logo.png"},
   loginDialog:false,
   menus: [
-    { 'text': 'Academy', 'icon':'mdi-school', 'active': false,
+    { 'text': 'Academy', 'icon':'mdi-school', 'allow':[1],'active': false,
       'children':[{'text':'Peserta','url':'/academy/customer','active':false},
       {'text':'Periode','url':'/academy/period','active':false},
       {'text':'Kelas','url':'/academy/list','active':false}]
-    },{ 'text': 'Ask Career', 'icon':'mdi-teach', 'active': false,
+    },{ 'text': 'Ask Career', 'icon':'mdi-teach', 'allow':[1],'active': false,
       'children':[{'text':'Ask Career','url':'/ask-career/customer','active':false},
       {'text':'Periode','url':'/ask-career/period','active':false},
       {'text':'Kelas','url':'/ask-career/list','active':false}]
-    },{ 'text': 'Pendaftaran', 'icon':'mdi-account-plus', 'active': false,
+    },{ 'text': 'Pendaftaran', 'icon':'mdi-account-plus', 'allow':[1,2],'active': false,
       'children':[{'text':'Jobhun Academy','url':'/academy/form','active':false},
       {'text':'Ask Career', 'url':'/ask-career/period','active':false},
       {'text':'Career Hub','url':'/ask-career/list','active':false}]
-    },{ 'text': 'Pengguna', 'icon':'mdi-account', 'active': false,
+    },{ 'text': 'Pengguna', 'icon':'mdi-account', 'allow':[1], 'active': false,
       'children':[{'text':'Mentor','url':'/user/mentor','active':false},
       {'text':'Expert','url':'/user/expert','active':false}]
     }
@@ -108,6 +109,7 @@ export default new Vuex.Store({
         customer,
         payment,
         mentor,
-        expert
+        expert,
+        auth
     }
 });

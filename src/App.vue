@@ -155,6 +155,7 @@
                 />
               </v-col>
             </v-row>
+            <v-row><v-col><v-btn text rounded color="primary" @click="toRegister" small>Tidak ada akun? Daftar di sini.</v-btn></v-col></v-row>
           </v-container>
         </v-card-text>
 
@@ -220,6 +221,10 @@
       },
       toJobhun: function(){
         window.location.href = "https://jobhun.id";
+      },
+      toRegister: function(){
+        this.$store.commit('setLoginDialog',false);
+        this.$router.push("/user/register");
       },
       openDrawer: function(){
         this.drawer = !this.drawer;
