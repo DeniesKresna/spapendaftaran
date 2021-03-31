@@ -27,12 +27,36 @@
               text
               v-bind="attrs"
               v-on="on"
-              to="/"
+              to="/jobhun/academy"
             >
-              Beranda
+              Academy
             </v-btn>
           </template>
         </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              v-bind="attrs"
+              v-on="on"
+              to="/"
+            >
+              Ask Career
+            </v-btn>
+          </template>
+        </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              v-bind="attrs"
+              v-on="on"
+              to="/"
+            >
+              Career Hub
+            </v-btn>
+          </template>
+        </v-menu><!--
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -60,7 +84,7 @@
               </v-list-item-content>
             </v-list-item>
           </v-list>
-        </v-menu>
+        </v-menu>-->
         <v-btn @click="toogleLogin" text>
           <span v-if="user.id == null">Masuk</span>
           <span v-else>Logout</span>
@@ -151,7 +175,7 @@
       </v-btn>
       </div>
 
-        <v-row justify="center pb-1">
+        <v-row justify="center" class="pb-1">
 
           <v-img  src="@/assets/cropped-logo-jobhun-3.png" contain max-width="120px" alt=""></v-img>
         </v-row>
@@ -272,6 +296,7 @@
       NodeList
     },
     data: () => ({
+      checkbox: false,
       drawer: false,
       userForm: {
         namaLengkap: "",
