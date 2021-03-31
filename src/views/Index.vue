@@ -1,29 +1,33 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+
 <template>
 
 <div>
-	<v-parallax
-	    src="@/assets/images/web/banner.jpeg"
-	  >
-	    <v-row
-	      align="center"
-	      justify="center"
-	    >
-	      <v-col cols="12" md="1" class="d-none d-md-block">
-	      </v-col>
-	      <v-col
-	        class="black--text"
-	        cols="12"
-	        md="11"
-	      >
-	        <h1 class="font-weight-thin mb-4">
-	          Persiapkan Dirimu
-	        </h1>
-	        <h4 class="subheading">
-	          untuk Karier Terbaik di Masa Depan
-	        </h4>
-	      </v-col>
-	    </v-row>
-	</v-parallax>
+	<v-img
+			src="@/assets/images/web/foto slider beranda-3.png" aspect-ratio="3" height="665"
+		position="center center"> 
+			<v-row
+			align="center"
+			justify="center"
+			>
+			<v-col cols="12" md="1" class="d-none d-md-block">
+			</v-col>
+			<v-col
+				class="black--text"
+				cols="15"
+				my-4="11"
+			>
+				<h1 class="changeFont">
+				Persiapkan Dirimu untuk Karier<br>
+				Terbaik di Masa Depan
+				</h1>
+				<h4 class="subheading">
+				untuk Karier Terbaik di Masa Depan
+				</h4>
+			</v-col>
+			</v-row>
+	</v-img>
 	<v-row class="mt-12 text-center">
 		<v-col cols="12">
 			<h3 class="font-weight-bold">Belajar kemampuan baru untuk karier impian di Jobhun Academy!</h3>
@@ -203,3 +207,10 @@ export default{
 	}
 }
 </script>
+
+<style>
+
+.changeFont{
+	body-font-family: 'Montserrat', sans-serif;
+}
+</style>
