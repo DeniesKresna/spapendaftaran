@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-     <!-- src="https://picsum.photos/1920/1080?random"-->
+    <!-- src="https://picsum.photos/1920/1080?random"-->
     <v-toolbar
       fixed
       :height="$route.path == '/'? 60:130"
@@ -12,7 +12,7 @@
       </template>
 
       <div v-if="user.id == null">
-        <img src="@/assets/logo.png" height="100"></img>
+        <img src="@/assets/cropped-logo-jobhun-3.png" height="30">
       </div>
       <div v-else>
         <v-app-bar-nav-icon @click="openDrawer"></v-app-bar-nav-icon>
@@ -27,12 +27,36 @@
               text
               v-bind="attrs"
               v-on="on"
-              to="/"
+              to="/jobhun/academy"
             >
-              Beranda
+              Academy
             </v-btn>
           </template>
         </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              v-bind="attrs"
+              v-on="on"
+              to="/"
+            >
+              Ask Career
+            </v-btn>
+          </template>
+        </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              v-bind="attrs"
+              v-on="on"
+              to="/"
+            >
+              Career Hub
+            </v-btn>
+          </template>
+        </v-menu><!--
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -60,7 +84,7 @@
               </v-list-item-content>
             </v-list-item>
           </v-list>
-        </v-menu>
+        </v-menu>-->
         <v-btn @click="toogleLogin" text>
           <span v-if="user.id == null">Masuk</span>
           <span v-else>Logout</span>
@@ -90,7 +114,7 @@
       </template>
 
       <v-divider></v-divider>
-     <NodeList :nodes="menus"/>
+    <NodeList :nodes="menus"/>
     </v-navigation-drawer>
     <v-main class="lighten-3 mb-10">
       <div v-if="$route.path == '/'">
@@ -128,57 +152,140 @@
               </v-col>
             </v-footer>
     </div>
+
     <v-dialog
       v-model="loginDialog"
-      max-width="290"
+      max-width="400"
       persistent
-    >
-      <v-card>
-        <v-card-title class="headline">Login</v-card-title>
+      
+      >
+      
+      <v-card class=""  
+      max-height="750"
+      >  
 
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field append-icon="mdi-account" label="Email" v-model="userForm.email" @keyup.enter="login"/>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12">
+      <div class="text-right">
+      <v-btn
+            color="red darken-1"
+            text
+            @click="closeLogin"
+            class="align-right font-weight-bold"
+          >
+            x
+      </v-btn>
+      </div>
+
+        <v-row justify="center" class="pb-1">
+
+          <v-img  src="@/assets/cropped-logo-jobhun-3.png" contain max-width="120px" alt=""></v-img>
+        </v-row>
+          
+        
+        <div class="text-center pt-5 pb-2">
+            <v-btn class="text--black rounded-l-xl rounded-r-0" 
+            outlined color="black" small>
+              Masuk</v-btn>
+            <v-btn class="rounded-r-xl rounded-l-0 text--black" 
+            outlined color="black" small>
+              Daftar</v-btn>
+        </div>
+
+    <v-card-text class="mx-3">
+      <v-row>
+
+        <v-row class="px-3 mb-0">
+          <v-col md="9" class="pb-0">
+          <v-text-field label="Nama Lengkap" v-model="userForm.namaLengkap"></v-text-field>
+        </v-col>
+        </v-row>
+
+        <v-row class="px-3">
+          <v-col md="9" class="pb-0">
+          <v-text-field label="Alamat Email" v-model="userForm.email" @keyup.enter="login"></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row class="px-3" >
+          <v-col md="9" class="pb-0">
+          <v-text-field label="No Handphone" v-model="userForm.noHp" ></v-text-field>
+        </v-col>
+        </v-row>
+
+        <v-row class="px-3">
+              <v-col md="9" class="pb-0">
                 <v-text-field 
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
-                label="Password"
+                label="Kata sandi"
                 @keyup.enter="login"
                 @click:append="show1 = !show1"
                 v-model="userForm.password"
                 />
               </v-col>
             </v-row>
-            <v-row><v-col><v-btn text rounded color="primary" @click="toRegister" small>Tidak ada akun? Daftar di sini.</v-btn></v-col></v-row>
-          </v-container>
-        </v-card-text>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
+            <v-row class="px-3">
+              <v-col md="9" class="pb-0">
+                <v-text-field 
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show1 ? 'text' : 'password'"
+                label="Konfirmasi kata sandi"
+                @keyup.enter="login"
+                @click:append="show1 = !show1"
+                v-model="userForm.password"
+                />
+              </v-col>
+            </v-row>
+      </v-row>
 
-          <v-btn
-            color="green darken-1"
-            text
-            @click="login"
-          >
-            Login
-          </v-btn>
-          <v-btn
-            color="red darken-1"
-            text
-            @click="closeLogin"
-          >
-            Tutup
-          </v-btn>
-        </v-card-actions>
+        <v-checkbox v-model="checkbox" class="">
+          <template v-slot:label>
+            <div style="font-size:0.9em" class="pl-2">
+                Saya setuju dengan
+                  <a
+                    target="_blank"
+                    href="https://vuetifyjs.com"
+                    @click.stop
+                    v-on="on"
+                  >
+                    Ketentuan Pengguna
+                  </a>
+                dan
+                  <a
+                    target="_blank"
+                    href="https://vuetifyjs.com"
+                    @click.stop
+                    v-on="on"
+                  >
+                    Kebijakan Privasi
+                  </a>
+            </div>
+          </template>
+        </v-checkbox>    
+    </v-card-text>
+  
+          <div>
+            <v-row >
+              <v-col >
+                <div class="text-center">
+                    <v-btn 
+                    rounded
+                    color="#48B391"
+                    dark
+                    class="font-weight-bold mb-4"
+                    >
+                      Daftar
+                    </v-btn>
+              </div>
+              </v-col>
+            </v-row>
+          </div>
+
+
       </v-card>
     </v-dialog>
+
+
   </v-app>
 </template>
 
@@ -189,8 +296,10 @@
       NodeList
     },
     data: () => ({
+      checkbox: false,
       drawer: false,
       userForm: {
+        namaLengkap: "",
         email: "",
         password: ""
       },
@@ -252,4 +361,8 @@
     }
   }
 </script>
-<style> *{ text-transform: none !important; } </style>
+<style> *{ text-transform: none !important; } 
+
+
+
+</style>
