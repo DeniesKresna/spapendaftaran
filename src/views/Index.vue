@@ -7,24 +7,128 @@
 			<v-row
 			align="center"
 			justify="center"
+			
 			>
 			<v-col cols="12" md="1" class="d-none d-md-block">
 			</v-col>
 			<v-col
 				class="black--text"
-				cols="15"
+				cols="10"
 				my-4="11"
 			>
-				<h1 class="changeFont">
+			<div class="mx-n16">
+				
+				<h1 class="changeFont font-weight-black pt-16 mt-16">
 				Persiapkan Dirimu untuk Karier<br>
 				Terbaik di Masa Depan
 				</h1>
 				<h4 class="subheading">
-				untuk Karier Terbaik di Masa Depan
+				Pelajari <i>skill</i> baru, cari mentor yang<br>
+				bisa membimbingmu, dan cari pekerjaan<br>
+				impianmu di Jobhun.
 				</h4>
+				</div>
 			</v-col>
 			</v-row>
 	</v-img>
+
+<v-spacer></v-spacer>
+		
+	<v-row class="mt-1" justify="center" align="center">
+		<v-col cols="4">
+			<div>
+				<h1>Ikuti penawaran terbaru
+				<br>dari Jobhun!</h1>
+			</div>
+			
+		</v-col>
+		<v-col cols="4" class="mt-10 mb-10">
+			<v-card height="300px" width="450px" 
+			class="mx-lg-12 elevation-10 d-flex justify-end mt-lg-16 mx-lg-16" >
+				<v-carousel hide-delimiters height="300px" width="450px">
+					<v-carousel-item
+						v-for="(item,i) in items"
+						:key="i"
+						:src="item.src"
+						></v-carousel-item>
+					</v-carousel>
+			</v-card>
+		</v-col>
+	</v-row>
+
+	
+	
+	<v-spacer></v-spacer>
+
+	<div>
+		<v-img src="@/assets/images/web/ja.jpg"
+		class="mt-16"
+		>
+
+		
+
+		</v-img>
+	</div>
+
+	<div>
+		<v-row class="mt-10 text-center">
+			<v-col cols="15">
+				<h2 class="font-weight-black changeFont">Belajar <i>skill</i> baru untuk karier impian!</h2>
+			</v-col>
+
+			<v-card>
+
+			</v-card>
+		</v-row>
+	</div>
+<v-spacer></v-spacer>
+	<div>
+		<v-img src="@/assets/images/web/jac.jpg"
+		class="mt-16"
+		>
+
+		
+
+		</v-img>
+	</div>
+
+	<div>
+		<v-row class="mt-10 text-center">
+			<v-col cols="15">
+				<h2 class="font-weight-black changeFont">Temukan mentor yang sesuai dengan bidang
+				<br>kariermu di sini!</h2>
+			</v-col>
+
+			<v-card>
+
+			</v-card>
+		</v-row>
+	</div>
+
+	<v-spacer></v-spacer>
+	<div>
+		<v-img src="@/assets/images/web/jch.jpg"
+		class="mt-16"
+		>
+
+		
+
+		</v-img>
+	</div>
+
+	<div>
+		<v-row class="mt-10 text-center">
+			<v-col cols="15">
+				<h2 class="font-weight-black changeFont">Cari pekerjaan impianmu!</h2>
+			</v-col>
+
+			<v-card>
+
+			</v-card>
+		</v-row>
+	</div>
+
+<v-spacer></v-spacer>
 	<v-row class="mt-12 text-center">
 		<v-col cols="12">
 			<h3 class="font-weight-bold">Belajar kemampuan baru untuk karier impian di Jobhun Academy!</h3>
@@ -185,7 +289,21 @@ export default{
 	data(){
 		return {
 			academies: [],
-			experts: []
+			experts: [],
+			items: [
+				{
+					src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+				},
+				{
+					src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+				},
+				{
+					src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+				},
+				{
+					src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+				},
+			],
 		}
 	},
 	mounted(){
@@ -208,6 +326,6 @@ export default{
 <style>
 
 .changeFont{
-	body-font-family: 'Montserrat', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
 </style>

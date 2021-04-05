@@ -12,7 +12,10 @@
       </template>
 
       <div v-if="user.id == null">
-        <img src="@/assets/cropped-logo-jobhun-3.png" height="30">
+        <img src="@/assets/cropped-logo-jobhun-3.png" 
+        height="30"
+        class="mx-15"
+        >
       </div>
       <div v-else>
         <v-app-bar-nav-icon @click="openDrawer"></v-app-bar-nav-icon>
@@ -20,8 +23,8 @@
       </div>
 
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-menu offset-y>
+      <v-toolbar-items class="mx-15">
+        <v-menu offset-y >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               text
