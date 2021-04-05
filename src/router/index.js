@@ -21,6 +21,11 @@ const routes = [
     component: () => import('../views/Academy/Form.vue')
   },
   {
+    path: '/popup/masuklogin',
+    name: 'MasukLogin',
+    component: () => import('../views/Popup/MasukLogin.vue')
+  },
+  {
     path: '/academy/customer',
     name: 'AcademyCustomer',
     component: () => import('../views/Academy/Customer.vue')

@@ -28,6 +28,14 @@
 	<v-row class="mt-12 text-center">
 		<v-col cols="12">
 			<h3 class="font-weight-bold">Belajar kemampuan baru untuk karier impian di Jobhun Academy!</h3>
+			<v-btn
+  				color="primary"
+  				depressed
+				text
+  				elevation="10"
+  				small
+				  to="/Popup/MasukLogin"> UNTUK POP UP
+			</v-btn>
 		</v-col>
 		<v-col cols="6" md="4" lg="3" v-for="academy in academies" :key="academy.id">
 			<v-card
