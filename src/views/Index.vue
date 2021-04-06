@@ -68,7 +68,7 @@
 <div>
 		<v-row class="mt-10 text-center">
 			<v-col cols="15">
-				<h2 class="font-weight-black changeFont">Belajar <i>skill</i> baru untuk karier impian!</h2>
+				<span class="headline">Belajar <i>skill</i> baru untuk karier impian!</span>
 			</v-col>
 		</v-row>
 	</div>
@@ -114,14 +114,16 @@
 
 				</v-card-title>
 				
-
+				
 				<v-card-actions>
+					
 					<v-btn flat 
 					color="#4DBA87" 
 					dark
 					small
-					class="mt-n5 font-weight-bold"
+					class="mt-n5 font-weight-bold align-right"
 					>Pilih mentor</v-btn>
+					
 				</v-card-actions>
 				
 			</v-card>
@@ -195,12 +197,14 @@
 				
 
 				<v-card-actions>
+					<v-spacer></v-spacer>
 					<v-btn flat 
 					color="#4DBA87" 
 					dark
 					small
-					class="mt-n5 font-weight-bold"
+					class="mt-n10"
 					>Pilih mentor</v-btn>
+					
 				</v-card-actions>
 				
 			</v-card>
@@ -240,7 +244,7 @@
 				text
   				elevation="10"
   				small
-				  to="/Popup/MasukLogin"> UNTUK POP UP
+				to="/Popup/MasukLogin"> UNTUK POP UP
 			</v-btn>
 		</v-col>
 		<v-col cols="6" md="4" lg="3" v-for="academy in academies" :key="academy.id">
@@ -437,8 +441,11 @@ export default{
 </script>
 
 <style>
-
-.changeFont{
-	font-family: 'Montserrat', sans-serif;
+.subtitle-mentor{
+	font-size: 2em;
+	font-weight: 500;
 }
+
+
+
 </style>

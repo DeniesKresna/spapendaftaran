@@ -21,7 +21,7 @@
   </div> 
 
         <v-row>
-     <div class="mb-5 font-weight-bold" >Silahkan masuk akun milikmu!</div>
+          <div class="mb-5 font-weight-bold" >Silahkan masuk akun milikmu!</div>
         </v-row>
     
     <v-form v-model="valid" class="justify-center">
@@ -53,7 +53,7 @@
       <v-btn text class="ml-5 font-weight-bold">Lupa kata sandi</v-btn>
       </div> 
     
-   <div class="text-center">
+  <div class="text-center">
     <v-btn
       rounded
       color="#49BF94"

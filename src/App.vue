@@ -156,92 +156,92 @@
             </v-footer>
     </div>
 
-    <v-dialog
-      v-model="loginDialog"
-      max-width="400"
-      persistent
-      
-      >
-      
+  <v-dialog
+    v-model="loginDialog"
+    max-width="400"
+    persistent
+    >
+    <div>
       <v-card class=""  
       max-height="750"
       >  
-
+      
       <div class="text-right">
-      <v-btn
-            color="red darken-1"
-            text
-            @click="closeLogin"
-            class="align-right font-weight-bold"
-          >
-            x
-      </v-btn>
+        <v-btn
+              color="red darken-1"
+              text
+              @click="closeLogin"
+              class="align-right font-weight-bold"
+            >
+              x
+        </v-btn>
       </div>
 
         <v-row justify="center" class="pb-1">
-
           <v-img  src="@/assets/cropped-logo-jobhun-3.png" contain max-width="120px" alt=""></v-img>
         </v-row>
           
         
         <div class="text-center pt-5 pb-2">
-            <v-btn class="text--black rounded-l-xl rounded-r-0" 
-            outlined color="black" small>
+            <v-btn 
+            class="text--black rounded-l-xl rounded-r-0" 
+            outlined 
+            color="black" 
+            small>
               Masuk</v-btn>
-            <v-btn class="rounded-r-xl rounded-l-0 text--black" 
-            outlined color="black" small>
-              Daftar</v-btn>
         </div>
+        
+        <v-tabs>
+          <v-tab-item>
+            <v-card-text class="mx-3">
 
-    <v-card-text class="mx-3">
-      <v-row>
-
-        <v-row class="px-3 mb-0">
-          <v-col md="9" class="pb-0">
-          <v-text-field label="Nama Lengkap" v-model="userForm.namaLengkap"></v-text-field>
-        </v-col>
-        </v-row>
-
-        <v-row class="px-3">
-          <v-col md="9" class="pb-0">
-          <v-text-field label="Alamat Email" v-model="userForm.email" @keyup.enter="login"></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-row class="px-3" >
-          <v-col md="9" class="pb-0">
-          <v-text-field label="No Handphone" v-model="userForm.noHp" ></v-text-field>
-        </v-col>
-        </v-row>
-
-        <v-row class="px-3">
-              <v-col md="9" class="pb-0">
-                <v-text-field 
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="show1 ? 'text' : 'password'"
-                label="Kata sandi"
-                @keyup.enter="login"
-                @click:append="show1 = !show1"
-                v-model="userForm.password"
-                />
+              <v-row>
+              <v-row class="px-3 mb-0">
+                <v-col md="9" class="pb-0">
+                <v-text-field label="Nama Lengkap" v-model="userForm.namaLengkap"></v-text-field>
               </v-col>
-            </v-row>
+              </v-row>
 
-            <v-row class="px-3">
-              <v-col md="9" class="pb-0">
-                <v-text-field 
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="show1 ? 'text' : 'password'"
-                label="Konfirmasi kata sandi"
-                @keyup.enter="login"
-                @click:append="show1 = !show1"
-                v-model="userForm.password"
-                />
+              <v-row class="px-3">
+                <v-col md="9" class="pb-0">
+                <v-text-field label="Alamat Email" v-model="userForm.email" @keyup.enter="login"></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-row class="px-3" >
+                <v-col md="9" class="pb-0">
+                <v-text-field label="No Handphone" v-model="userForm.noHp" ></v-text-field>
               </v-col>
-            </v-row>
-      </v-row>
+              </v-row>
 
-        <v-checkbox v-model="checkbox" class="">
+              <v-row class="px-3">
+                    <v-col md="9" class="pb-0">
+                      <v-text-field 
+                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                      :type="show1 ? 'text' : 'password'"
+                      label="Kata sandi"
+                      @keyup.enter="login"
+                      @click:append="show1 = !show1"
+                      v-model="userForm.password"
+                      />
+                    </v-col>
+                  </v-row>
+
+                  <v-row class="px-3">
+                    <v-col md="9" class="pb-0">
+                      <v-text-field 
+                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                      :type="show1 ? 'text' : 'password'"
+                      label="Konfirmasi kata sandi"
+                      @keyup.enter="login"
+                      @click:append="show1 = !show1"
+                      v-model="userForm.password"
+                      />
+                    </v-col>
+                  </v-row>
+            </v-row>
+          </v-card-text>
+          <v-checkbox v-model="checkbox" class="">
           <template v-slot:label>
             <div style="font-size:0.9em" class="pl-2">
                 Saya setuju dengan
@@ -253,7 +253,7 @@
                   >
                     Ketentuan Pengguna
                   </a>
-                dan
+                  dan
                   <a
                     target="_blank"
                     href="https://vuetifyjs.com"
@@ -264,10 +264,13 @@
                   </a>
             </div>
           </template>
-        </v-checkbox>    
-    </v-card-text>
-  
-          <div>
+        </v-checkbox> 
+        </v-tab-item>
+        </v-tabs>
+          
+        
+        
+        <div>
             <v-row >
               <v-col >
                 <div class="text-center">
@@ -281,11 +284,25 @@
                     </v-btn>
               </div>
               </v-col>
-            </v-row>
+            </v-row>    
           </div>
-
-
-      </v-card>
+          
+          
+        
+        </v-card>
+      
+        <v-tab-item>
+            <v-btn 
+            class="rounded-r-xl rounded-l-0 text--black" 
+            outlined 
+            color="black" 
+            small
+            
+            >
+              Daftar</v-btn>
+        </v-tab-item>
+      
+    </div>
     </v-dialog>
 
 
