@@ -147,6 +147,17 @@
               absolute
               class="font-weight-small"
             >
+
+            <!-- <v-card
+              color="black"
+              height="500px"
+              width="1920px"
+              flat
+              > -->
+
+
+              </v-card>
+
               <v-col
                 class="text-center"
                 cols="12"

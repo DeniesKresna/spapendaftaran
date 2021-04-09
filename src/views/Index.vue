@@ -65,73 +65,79 @@
 	<v-img src="@/assets/images/web/ja.jpg"
 		></v-img>
 
-<div>
+	<div>
 		<v-row class="mt-10 text-center">
 			<v-col cols="15">
-				<span class="headline">Belajar <i>skill</i> baru untuk karier impian!</span>
+				<span class="changeFont font-weight-black">Belajar <i>skill</i> baru untuk karier impian!</span>
 			</v-col>
 		</v-row>
 	</div>
 
-	<v-row class="mt-5">
-		<v-col class="" 
+
+	<v-row 
+		class="mt-5 mx-15"
+		
+		>
+		<v-col class="my-4" 
 		cols="3" 
 		v-for="n in 6"
         :key="n"
         sm="4"
+		align="center"
 		>
-		<v-layout>
-			<v-flex xs12 sm6 offset-sm3>
-			<v-card class=""
-			height="310px"
-			width="600px"
+
+		<v-card 
+			class=""
+			width="400px"
+			
 			>
-				<v-img
-				src="@/assets/images/web/bby.jpg"
-				height="150px"
-				aspect-ratio="1"
-				></v-img>
+			<v-layout>
+				<v-flex xs5>
+					<v-img src="@/assets/images/web/bby.jpg"
+					height="230px"
+					></v-img>
+				</v-flex>
 
+				<v-flex xs7>
 				<v-card-title primary-title>
-				<div>
-					<h6 class="headline font-weight-bold mb-0 mt-n2">Nama Mentor</h6>
-					<div class="font-weight-bold mt-n2">{{ card_text_1 }} </div>
-					<h5 class="font-weight-thin mt-n1">Rp600.000,-</h5>
-				</div>
+						<div class="mx-n1 mt-1 text-left"
+						
+						>
+							<div class="headline font-weight-bold">{{ cardHeadlineJa }}</div>
+							<div class="font-weight-bold mt-n1"> {{ mentorName }}</div>
+							<div class="font-weight-thin mt-n1">Jabatan</div><br>
+							<div class="font-weight-thin mt-n6">Jadwal Kelas</div><br>
+							<div class="font-weight-thin mt-n10">Rp600.000,-</div>
+						</div>
+					</v-card-title>
 
-				<div class="mx-n2 mt-n2">
-					<v-rating
-					v-model="rating"
-					color="yellow darken-3"
-					background-color="grey darken-1"
-					empty-icon="$ratingFull"
-					half-increments
-					hover
-					size="18"
-					readonly
-					></v-rating>
-				</div>
-
-				</v-card-title>
-				
-				
-				<v-card-actions>
-					
+					<v-card-actions>
+					<v-spacer></v-spacer>
 					<v-btn flat 
 					color="#4DBA87" 
 					dark
 					small
-					class="mt-n5 font-weight-bold align-right"
-					>Pilih mentor</v-btn>
+					class="mt-n1 mr-1 font-weight-bold"
+					>Pilih kelas</v-btn>
 					
 				</v-card-actions>
-				
-			</v-card>
-		</v-flex>
-	</v-layout>
-	</v-col>
+				</v-flex>
+			</v-layout>
+		</v-card>
+</v-col>
 </v-row>
 
+<div class="text-right mr-15">
+	<v-btn flat 
+		color="#4DBA87" 
+		dark
+		small
+		class="mt-n1 mr-1 font-weight-bold"
+		rounded
+		>
+		Cari kelas
+	</v-btn>
+</div>
 
 
 <v-spacer></v-spacer>
@@ -139,8 +145,6 @@
 		<v-img src="@/assets/images/web/jac.jpg"
 		class="mt-16"
 		>
-
-		
 
 		</v-img>
 	</div>
@@ -154,45 +158,45 @@
 		</v-row>
 	</div>
 
-	<v-row class="mt-5">
-		<v-col class="" 
+	<v-row 
+	class="mt-5 mx-md-16"
+	>
+		<v-col class="my-5" 
 		cols="3" 
 		v-for="n in 6"
         :key="n"
         sm="4"
+		align="center"
 		>
 		<v-layout>
-			<v-flex xs12 sm6 offset-sm3>
+			<v-flex sm8 offset-sm3>
 			<v-card class=""
-			height="310px"
-			width="300px"
+			height="340px"
 			>
 				<v-img
 				src="@/assets/images/web/bby.jpg"
-				height="150px"
-				aspect-ratio="1"
+				height="180px"
 				></v-img>
 
 				<v-card-title primary-title>
-				<div>
-					<h6 class="headline font-weight-bold mb-0 mt-n2">Nama Mentor</h6>
-					<div class="font-weight-bold mt-n2">{{ card_text_2 }} </div>
-					<h5 class="font-weight-thin mt-n1">Rp600.000,-</h5>
-				</div>
+					<div class="text-left">
+						<div class="headline font-weight-bold mb-0 mt-n2">{{cardHeadlineJac}}</div>
+						<div class="font-weight-bold mt-n2">Posisi</div>
+						<div class="font-weight-thin mt-n1">Rp600.000,-</div>
+					</div>
 
-				<div class="mx-n2 mt-n2">
-					<v-rating
-					v-model="rating"
-					color="yellow darken-3"
-					background-color="grey darken-1"
-					empty-icon="$ratingFull"
-					half-increments
-					hover
-					size="18"
-					readonly
-					></v-rating>
-				</div>
-
+					<div class="mx-n2 mt-n2">
+						<v-rating
+						v-model="rating"
+						color="yellow darken-3"
+						background-color="grey darken-1"
+						empty-icon="$ratingFull"
+						half-increments
+						hover
+						size="18"
+						readonly
+						></v-rating>
+					</div>
 				</v-card-title>
 				
 
@@ -202,7 +206,7 @@
 					color="#4DBA87" 
 					dark
 					small
-					class="mt-n10"
+					class="mt-n5 mr-1 font-weight-bold"
 					>Pilih mentor</v-btn>
 					
 				</v-card-actions>
@@ -213,14 +217,33 @@
 	</v-col>
 </v-row>
 
+<div class="text-right mr-15">
+	<v-btn flat 
+		color="#4DBA87" 
+		dark
+		small
+		class="mt-n1 mr-3 font-weight-bold"
+		rounded
+		>
+		Cari mentor
+	</v-btn>
+
+	<v-btn flat 
+		color="#4DBA87" 
+		dark
+		small
+		class="mt-n1 mr-2 font-weight-bold"
+		rounded
+		>
+		Testimoni
+	</v-btn>
+</div>
+
 	<v-spacer></v-spacer>
 	<div>
 		<v-img src="@/assets/images/web/jch.jpg"
 		class="mt-16"
 		>
-
-		
-
 		</v-img>
 	</div>
 
@@ -232,21 +255,139 @@
 		</v-row>
 	</div>
 
+	<v-row 
+		class="mt-5 mx-16 "
+		>
+		<v-col class="my-5" 
+		cols="3" 
+		v-for="n in 6"
+        :key="n"
+        sm="4"
+		align="center"
+		>
+		<v-card 
+			class="rounded-0"
+			max-width="400px"
+			height="180px"
+			>
+			<v-layout>
+				<v-flex xs5>
+					<v-img src="@/assets/images/web/bby.jpg"
+					height="180px"
+					></v-img>
+				</v-flex>
+
+				<v-flex xs7>
+				<v-card-title primary-title>
+						<div class="mx-n1 mt-1 text-left">
+							<div class="headline font-weight-bold">{{ cardHeadlineJch }}</div>
+							<div class="font-weight-bold mt-n1">Nama Perusahaan</div>
+							<div class="font-weight-thin mt-n1">Lokasi</div><br>
+							<div class="font-weight-thin mt-n10">Jenis Pekerjaan</div>
+						</div>
+				</v-card-title>
+
+				</v-flex>
+			</v-layout>
+		</v-card>
+</v-col>
+</v-row>
+
+<div class="text-right mr-15">
+	<v-btn flat 
+		color="#4DBA87" 
+		dark
+		medium
+		class="mt-n1 mr-1 font-weight-bold"
+		rounded
+		>
+		Cari lowongan <br>kerja
+	</v-btn>
+</div>
+
+<v-card 
+	color="grey lighten-5 mt-16"
+	height="1000px"
+	width="1920px"
+	flat
+	>
+	
+	<div>
+		<v-row class="text-center">
+			<v-col cols="15" class="mt-10">
+				<h2 class="font-weight-black changeFont">Bekerjasama dengan</h2>
+			</v-col>
+		</v-row>
+	</div>
+
+	<v-row 
+		class="mt-5 mx-16 "
+		>
+		<v-col 
+		class="my-5" 
+		cols="3" 
+		v-for="partnershipLogo in partnershipLogos"
+        :key="partnershipLogo"
+        sm="4"
+		>
+		<v-img 
+		:src="partnershipLogo.src"
+		/>
+
+		<span>{{partnershipLogo.src}}</span>
+		
+		</v-col>
+	</v-row>
+
+
+		<div>
+			<v-row class="text-center">
+				<v-col cols="15" class="mt-10">
+					<h2 class="font-weight-black changeFont">Mitra penjualan</h2>
+				</v-col>
+			</v-row>
+		</div>
+
+
 	
 
-<v-spacer></v-spacer>
+	
+		<div>
+			<v-row class="text-center">
+				<v-col cols="15" class="mt-10">
+					<h2 class="font-weight-black changeFont">Mitra pembayaran</h2>
+				</v-col>
+			</v-row>
+		</div>
+
+
+	
+
+	
+		<div>
+			<v-row class="text-center">
+				<v-col cols="15" class="mt-10">
+					<h2 class="font-weight-black changeFont">Pernah diliput di</h2>
+				</v-col>
+			</v-row>
+		</div>
+
+
+
+</v-card>
+
+	
+
+	<!-- <v-btn
+		color="primary"
+		depressed
+		text
+		elevation="10"
+		small
+		to="/Popup/MasukLogin"> UNTUK POP UP
+	</v-btn>
+
 	<v-row class="mt-12 text-center">
-		<v-col cols="12">
-			<h3 class="font-weight-bold">Belajar kemampuan baru untuk karier impian di Jobhun Academy!</h3>
-			<v-btn
-  				color="primary"
-  				depressed
-				text
-  				elevation="10"
-  				small
-				to="/Popup/MasukLogin"> UNTUK POP UP
-			</v-btn>
-		</v-col>
 		<v-col cols="6" md="4" lg="3" v-for="academy in academies" :key="academy.id">
 			<v-card
 			    class="mx-2"
@@ -283,7 +424,7 @@
 			      <div>{{ (academy.description != null && academy.description.length > 70)? academy.description.substring(0,70) + "...." : academy.description }}</div>
 			    </v-card-text>
 
-			    <v-divider class="mx-4"></v-divider>
+			    <v-divider class="mx-4"></v-divider> -->
 <!--
 			    <v-card-title>Tonight's availability</v-card-title>
 
@@ -303,7 +444,7 @@
 			      </v-chip-group>
 			    </v-card-text>
 -->
-			    <v-card-actions>
+			    <!-- <v-card-actions>
 			      <v-btn
 			        color="deep-purple lighten-2"
 			        text
@@ -322,7 +463,7 @@
 		      </v-icon>
 		    </v-btn>
 		</v-col>
-	</v-row>
+	</v-row> -->
 	<!-- <v-row class="mt-6" justify="center" align="center">
 		<v-col cols="6">
 			<v-img src="@/assets/images/web/mentor1.jpg" contain/>
@@ -334,7 +475,7 @@
 			</div>
 		</v-col>
 	</v-row> -->
-	<v-row class="mt-12">
+	<!-- <v-row class="mt-12">
 		<v-col cols="12">
 			<h3 class="font-weight-bold text-center">Daftar Expert</h3>
 		</v-col>
@@ -395,7 +536,7 @@
 		      </v-icon>
 		    </v-btn>
 		</v-col>
-	</v-row>
+	</v-row> -->
 </div>
 </template>
 <script>
@@ -418,9 +559,25 @@ export default{
 					src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
 				},
 			],
-			card_text_1: 'Nama Mentor',
-			card_text_2: 'Posisi',
-			rating: 4.3
+			cardHeadlineJa: 'Judul Kelas',
+			mentorName : 'Nama Mentor',
+			cardHeadlineJac: 'Nama Mentor',
+			cardHeadlineJch: 'Posisi',
+			rating: 4.3,
+			partnershipLogos: [
+				{
+					src: '../assets/bekerjasama/telkomsel.png',
+				},
+				{
+					src: '@/assets/bekerjasama/ilmupedia.png',
+				},
+				{
+					src: '@/assets/bekerjasama/dilo.png',
+				},
+				{
+					src: '@/assets/bekerjasama/cicil.png',
+				},
+			],
 		}
 	},
 	mounted(){
@@ -441,11 +598,13 @@ export default{
 </script>
 
 <style>
-.subtitle-mentor{
-	font-size: 2em;
-	font-weight: 500;
-}
+	.subtitle-mentor{
+		font-size: 3em;
+		font-weight: 400;
+	}
 
-
+	.marginJa{
+		align-content:space-around;
+	}
 
 </style>
