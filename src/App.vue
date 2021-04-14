@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <!-- src="https://picsum.photos/1920/1080?random"-->
+    
     <v-toolbar
       fixed
       :height="$route.path == '/'? 60:130"
@@ -25,77 +25,45 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="mx-15">
         <v-menu offset-y >
-          <template v-slot:activator="{ on, attrs }">
+          <template v-slot:activator="{ attrs }">
             <v-btn
               text
               v-bind="attrs"
-              v-on="on"
               to="/jobhun/academy"
+              color="black"
             >
               Academy
             </v-btn>
           </template>
         </v-menu>
         <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
+          <template v-slot:activator="{ attrs }">
             <v-btn
               text
               v-bind="attrs"
-              v-on="on"
               to="/"
+              color="black"
             >
               Ask Career
             </v-btn>
           </template>
         </v-menu>
         <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
+          <template v-slot:activator="{ attrs }">
             <v-btn
               text
               v-bind="attrs"
-              v-on="on"
               to="/"
+              color="black"
             >
               Career Hub
             </v-btn>
           </template>
-        </v-menu><!--
-        <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              text
-              v-bind="attrs"
-              v-on="on"
-            >
-              Layanan
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item to="/jobhun/academy">
-              <v-list-item-content>
-                <v-list-item-title>Jobhun Academy</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Jobhun Ask Expert</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Jobhun Career Hub</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-menu>-->
+        </v-menu>
         <v-btn @click="toogleLogin" text>
           <span v-if="user.id == null">Masuk</span>
           <span v-else>Logout</span>
-        </v-btn><!--
-        <v-btn @click="toogleLogin" icon>
-          <v-icon v-if="user.id == null">mdi-login</v-icon>
-          <v-icon v-else>mdi-logout</v-icon>
-        </v-btn>-->
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-navigation-drawer
@@ -115,13 +83,15 @@
           </v-list-item-content>
         </v-list-item>
       </template>
-
       <v-divider></v-divider>
     <NodeList :nodes="menus"/>
     </v-navigation-drawer>
-    <v-main class="lighten-3 mb-10">
+    <v-main class="lighten-3 mb-0">
       <div v-if="$route.path == '/'">
         <router-view />
+        <footter>
+              
+            </footter>
       </div>
       <div v-else>
         <v-container fluid>
@@ -136,36 +106,19 @@
                   rounded="lg"
                 >
                   <router-view />
+                  <footter>
+              
+            </footter>
                 </v-sheet>
             </v-col>
           </v-row>
+          
         </v-container>
       </div>
     </v-main>
-    <div>
-          <v-footer
-              absolute
-              class="font-weight-small"
-            >
+    <div>     
+  </div>
 
-            <!-- <v-card
-              color="black"
-              height="500px"
-              width="1920px"
-              flat
-              > -->
-
-
-              </v-card>
-
-              <v-col
-                class="text-center"
-                cols="12"
-              >
-                <span>2021</span> — <strong>PT Jobhun Membangun Indonesia</strong>
-              </v-col>
-            </v-footer>
-    </div>
 
   <v-dialog
     v-model="loginDialog"
@@ -173,8 +126,8 @@
     persistent
     >
     <div>
-      <v-card class=""  
-      max-height="750"
+      <v-card class="hide-scroll"  
+      
       >  
       
       <div class="text-right">
@@ -187,48 +140,84 @@
               x
         </v-btn>
       </div>
-
-        <v-row justify="center" class="pb-1">
-          <v-img  src="@/assets/cropped-logo-jobhun-3.png" contain max-width="120px" alt=""></v-img>
+        <v-row justify="center" class="pb-2">
+          <v-img  src="@/assets/cropped-logo-jobhun-3.png" contain max-width="100px" alt=""></v-img>
         </v-row>
           
-        
-        <div class="text-center pt-5 pb-2">
-            <v-btn 
-            class="text--black rounded-l-xl rounded-r-0" 
-            outlined 
-            color="black" 
-            small>
-              Masuk</v-btn>
-        </div>
-        
-        <v-tabs>
-          <v-tab-item>
-            <v-card-text class="mx-3">
 
+      <v-tabs background-color="white"
+      centered
+      color="none"
+      hide-slider
+      class="bg-bar"
+      v-model="tabs"
+      >
+        <v-tab>
+          <v-row
+            cols="12"
+            md="3"
+            class="mt-n5"
+            >
+              <v-col
+              >
+                <div class="text-center pt-5 pb-2">
+                  <v-btn 
+                  class="rounded-l-xl rounded-r-0 font-weight-bold" 
+                  outlined 
+                  small>
+                    Masuk</v-btn>
+                </div>
+              </v-col>
+          </v-row>
+        </v-tab>
+        <v-tab>
+          <v-row
+            cols="12"
+            md="3"
+            class="mt-n5"
+            >
+              <v-col
+              >
+              <div class="text-center pt-5 pb-2">
+                  <v-btn 
+                  class="rounded-r-xl rounded-r-0 font-weight-bold" 
+                  outlined 
+                  small>
+                    Daftar</v-btn>
+              </div>
+            </v-col>
+          </v-row>
+          </v-tab>
+        </v-tabs>
+        
+        <v-tabs-items v-model="tabs">
+          <v-tab-item>
+            <v-card-text class="mx-3 mt-n7">
               <v-row>
-              <v-row class="px-3 mb-0">
+              <v-row class="px-3 mb-n5">
                 <v-col md="9" class="pb-0">
-                <v-text-field label="Nama Lengkap" v-model="userForm.namaLengkap"></v-text-field>
+                <v-text-field color="#48B391"
+                label="Nama Lengkap" v-model="userForm.fullName"></v-text-field>
               </v-col>
               </v-row>
 
               <v-row class="px-3">
-                <v-col md="9" class="pb-0">
-                <v-text-field label="Alamat Email" v-model="userForm.email" @keyup.enter="login"></v-text-field>
+                <v-col md="9" class="pb-0 mb-n5">
+                <v-text-field color="#48B391"
+                label="Alamat Email" v-model="userForm.email" @keyup.enter="login"></v-text-field>
                 </v-col>
               </v-row>
 
               <v-row class="px-3" >
-                <v-col md="9" class="pb-0">
-                <v-text-field label="No Handphone" v-model="userForm.noHp" ></v-text-field>
+                <v-col md="9" class="pb-0 mb-n5">
+                <v-text-field color="#48B391"
+                label="No Handphone" v-model="userForm.phone" ></v-text-field>
               </v-col>
               </v-row>
 
               <v-row class="px-3">
-                    <v-col md="9" class="pb-0">
-                      <v-text-field 
-                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    <v-col md="9" class="pb-0 mb-n5">
+                      <v-text-field color="#48B391"
                       :type="show1 ? 'text' : 'password'"
                       label="Kata sandi"
                       @keyup.enter="login"
@@ -239,28 +228,28 @@
                   </v-row>
 
                   <v-row class="px-3">
-                    <v-col md="9" class="pb-0">
-                      <v-text-field 
-                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    <v-col md="9" class="pb-0 mb-n5">
+                      <v-text-field color="#48B391"
                       :type="show1 ? 'text' : 'password'"
                       label="Konfirmasi kata sandi"
                       @keyup.enter="login"
                       @click:append="show1 = !show1"
-                      v-model="userForm.password"
+                      v-model="userForm.passwordConfirmation"
                       />
                     </v-col>
                   </v-row>
             </v-row>
           </v-card-text>
-          <v-checkbox v-model="checkbox" class="">
+
+          <v-checkbox v-model="checkbox" class="mr-10 pa-5 mt-n4">
           <template v-slot:label>
-            <div style="font-size:0.9em" class="pl-2">
+            <span style="font-size:0.9em" class="pl-2 font-weight-bold">
                 Saya setuju dengan
                   <a
                     target="_blank"
                     href="https://vuetifyjs.com"
                     @click.stop
-                    v-on="on"
+                    class="link-color"
                   >
                     Ketentuan Pengguna
                   </a>
@@ -269,27 +258,23 @@
                     target="_blank"
                     href="https://vuetifyjs.com"
                     @click.stop
-                    v-on="on"
+                    class="link-color"
                   >
                     Kebijakan Privasi
                   </a>
-            </div>
+            </span>
           </template>
         </v-checkbox> 
-        </v-tab-item>
-        </v-tabs>
-          
-        
-        
         <div>
             <v-row >
               <v-col >
                 <div class="text-center">
                     <v-btn 
+                  @click="signUp"
                     rounded
                     color="#48B391"
                     dark
-                    class="font-weight-bold mb-4"
+                    class="font-weight-bold mb-4 mt-n6"
                     >
                       Daftar
                     </v-btn>
@@ -297,44 +282,111 @@
               </v-col>
             </v-row>    
           </div>
-          
-          
-        
-        </v-card>
-      
-        <v-tab-item>
-            <v-btn 
-            class="rounded-r-xl rounded-l-0 text--black" 
-            outlined 
-            color="black" 
-            small
-            
-            >
-              Daftar</v-btn>
-        </v-tab-item>
-      
-    </div>
-    </v-dialog>
+          </v-tab-item>
+          <v-tab-item>
+            <v-card-text class="mx-3">
 
+              
+              <v-row class="px-3">
+                <v-col
+                      md="10" class="mb-n4"
+                      >
+                  <span 
+                  style="font-size:1.2em"
+                  class="mb-5 font-weight-bold" >Silahkan masuk akun milikmu!</span>
+                </v-col>
+              </v-row>
+            
+                      <v-row
+                        class="px-3"
+                      >
+                      <v-col
+                      md="9" class="pb-0 mb-n5"
+                      >
+                        <v-text-field
+                          color="#48B391"
+                          v-model="userForm.email"
+                          label="Alamat email"
+                          class=""
+                          required
+                        ></v-text-field>
+                        </v-col>
+                      </v-row>
+
+                      <v-row
+                        class="px-3"
+                      >
+                      <v-col md="9" class="pb-0 mb-n5">
+                        <v-text-field
+                          color="#48B391"
+                          v-model="userForm.password"
+                          label="kata Sandi"
+                          type="password"
+                          class=""
+                          required
+                        ></v-text-field>
+                        </v-col>
+                      </v-row>  
+                  
+                  <v-row class="mt-5">
+                    <v-col class="text-right">
+                      <a 
+                      class=" font-weight-bold forgot-password pa-10"
+                      >Lupa kata sandi</a>
+                    </v-col>
+                  </v-row>
+                  
+                <div>
+                  <v-row >
+                    <v-col class="text-center">
+                      <div>
+                        <v-btn
+                          rounded
+                          color="#48B391"
+                          dark
+                          class="mt-5 font-weight-bold mb-4"
+                        >
+                          Masuk
+                        </v-btn>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </div>
+
+            </v-card-text>
+              </v-tab-item>
+
+            </v-tabs-items>
+
+            </v-card>
+        </div>
+  </v-dialog>
 
   </v-app>
 </template>
 
 <script>
   import NodeList from '@/components/NodeList'
+  import Footter from '@/components/Footer'
   export default {
     components:{
-      NodeList
+      NodeList,
+      Footter
     },
     data: () => ({
       checkbox: false,
       drawer: false,
       userForm: {
-        namaLengkap: "",
+        fullName: "",
         email: "",
-        password: ""
+        password: "",
+        passwordConfirmation: "",
+        phone: "",
       },
-      show1: false
+      show1: false,
+      tabSignIn: null,
+      tabSignUp: null,
+      tabs: null
     }),
     mounted(){
       this.setup();
@@ -361,6 +413,18 @@
       },
       toJobhun: function(){
         window.location.href = "https://jobhun.id";
+      },
+      signUp: function(){
+        if(this.userForm.password != this.userForm.passwordConfirmation){
+          alert("Konfirmasi Password kamu tidak cocok!");
+          this.userForm.passwordConfirmation = "";
+          this.userForm.password = "";
+        }
+        if(this.userForm.password.length < 8){
+          alert("Password minimal 8 karakter");
+          this.userForm.passwordConfirmation = "";
+          this.userForm.password = "";
+        }
       },
       toRegister: function(){
         this.$store.commit('setLoginDialog',false);
@@ -394,6 +458,23 @@
 </script>
 <style> *{ text-transform: none !important; } 
 
+  .link-color{
+          color: #48B391 !important;
+          text-decoration: none;
+      }
 
+  .forgot-password{
+    color: black !important;
+    text-decoration: none;
+  }
+  
+  .hide-scroll{
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .text-color-black{
+    color: black !important;
+  }
 
 </style>

@@ -6,11 +6,11 @@ module.exports = {
   ],
   pwa: {
   	name: 'Jobhun Service App',
-  	themeColor: "#42b983",
-    msTileColor: "#42b983",
+  	themeColor: "#48B391",
+    msTileColor: "#48B391",
     appleMobileWebAppCache: "yes",
     manifestOptions: {
-      background_color: "#42b983"
+      background_color: "#48B391"
     },
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {

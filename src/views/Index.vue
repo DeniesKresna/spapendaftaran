@@ -18,11 +18,11 @@
 			>
 			<div class="mx-n16">
 				
-				<h1 class="changeFont font-weight-black pt-16 mt-16">
+				<h1 class="changeFont font-weight-black pt-16 mt-16 mx-n16">
 				Persiapkan Dirimu untuk Karier<br>
 				Terbaik di Masa Depan
 				</h1>
-				<h4 class="subheading">
+				<h4 class="subheading mx-n16">
 				Pelajari <i>skill</i> baru, cari mentor yang<br>
 				bisa membimbingmu, dan cari pekerjaan<br>
 				impianmu di Jobhun.
@@ -68,7 +68,8 @@
 	<div>
 		<v-row class="mt-10 text-center">
 			<v-col cols="15">
-				<span class="changeFont font-weight-black">Belajar <i>skill</i> baru untuk karier impian!</span>
+				<span class="changeFont font-weight-black">
+					Belajar <i>skill</i> baru untuk karier impian!</span>
 			</v-col>
 		</v-row>
 	</div>
@@ -113,8 +114,8 @@
 
 					<v-card-actions>
 					<v-spacer></v-spacer>
-					<v-btn flat 
-					color="#4DBA87" 
+					<v-btn 
+					color="#48B391" 
 					dark
 					small
 					class="mt-n1 mr-1 font-weight-bold"
@@ -128,8 +129,8 @@
 </v-row>
 
 <div class="text-right mr-15">
-	<v-btn flat 
-		color="#4DBA87" 
+	<v-btn 
+		color="#48B391" 
 		dark
 		small
 		class="mt-n1 mr-1 font-weight-bold"
@@ -152,8 +153,8 @@
 	<div>
 		<v-row class="mt-10 text-center">
 			<v-col cols="15">
-				<h2 class="font-weight-black changeFont">Temukan mentor yang sesuai dengan bidang
-				<br>kariermu di sini!</h2>
+				<span class="font-weight-black changeFont">Temukan mentor yang sesuai dengan bidang
+				<br>kariermu di sini!</span>
 			</v-col>
 		</v-row>
 	</div>
@@ -202,8 +203,8 @@
 
 				<v-card-actions>
 					<v-spacer></v-spacer>
-					<v-btn flat 
-					color="#4DBA87" 
+					<v-btn 
+					color="#48B391" 
 					dark
 					small
 					class="mt-n5 mr-1 font-weight-bold"
@@ -218,8 +219,8 @@
 </v-row>
 
 <div class="text-right mr-15">
-	<v-btn flat 
-		color="#4DBA87" 
+	<v-btn 
+		color="#48B391" 
 		dark
 		small
 		class="mt-n1 mr-3 font-weight-bold"
@@ -228,8 +229,8 @@
 		Cari mentor
 	</v-btn>
 
-	<v-btn flat 
-		color="#4DBA87" 
+	<v-btn
+		color="#48B391" 
 		dark
 		small
 		class="mt-n1 mr-2 font-weight-bold"
@@ -239,7 +240,7 @@
 	</v-btn>
 </div>
 
-	<v-spacer></v-spacer>
+	
 	<div>
 		<v-img src="@/assets/images/web/jch.jpg"
 		class="mt-16"
@@ -249,7 +250,7 @@
 
 	<div>
 		<v-row class="mt-10 text-center">
-			<v-col cols="15">
+			<v-col >
 				<h2 class="font-weight-black changeFont">Cari pekerjaan impianmu!</h2>
 			</v-col>
 		</v-row>
@@ -294,8 +295,8 @@
 </v-row>
 
 <div class="text-right mr-15">
-	<v-btn flat 
-		color="#4DBA87" 
+	<v-btn 
+		color="#48B391" 
 		dark
 		medium
 		class="mt-n1 mr-1 font-weight-bold"
@@ -305,238 +306,109 @@
 	</v-btn>
 </div>
 
-<v-card 
+<v-card	
 	color="grey lighten-5 mt-16"
-	height="1000px"
-	width="1920px"
 	flat
 	>
-	
+	<v-card-text>
 	<div>
 		<v-row class="text-center">
-			<v-col cols="15" class="mt-10">
-				<h2 class="font-weight-black changeFont">Bekerjasama dengan</h2>
+			<v-col class="mt-10">
+				<span class="font-weight-black changeFont">Bekerjasama dengan</span>
 			</v-col>
 		</v-row>
-	</div>
-
-	<v-row 
-		class="mt-5 mx-16 "
-		>
-		<v-col 
-		class="my-5" 
-		cols="3" 
-		v-for="partnershipLogo in partnershipLogos"
-        :key="partnershipLogo"
-        sm="4"
-		>
-		<v-img 
-		:src="partnershipLogo.src"
-		/>
-
-		<span>{{partnershipLogo.src}}</span>
+			<v-row
+			class="mt-5 mx-16"
+			>
+				<v-col 
+				class="my-5" 
+				cols="3" 
+				v-for="(partnershipLogo, i) in partnershipLogos"
+				:key="i"
+				sm="2"
+				>
+				<v-img 
+				:src="`${partnershipLogo}`"
+				width="80px"
+				class="img-original hover-img"
+				/>
+			</v-col>
+		</v-row>
 		
-		</v-col>
-	</v-row>
+		<v-row class="text-center">
+			<v-col class="mt-10">
+				<span class="font-weight-black changeFont">Mitra penjualan</span>
+			</v-col>
+		</v-row>
+		<v-row
+			class="mt-5 mx-16"
+			>
+				<v-col 
+				class="my-5" 
+				cols="3" 
+				v-for="(salesPartnerLogo, i) in salesPartnerLogos"
+				:key="i"
+				sm="2"
+				>
+				<v-img 
+				:src="`${salesPartnerLogo}`"
+				width="80px"
+				class="img-original hover-img"
+				/>
+			</v-col>
+		</v-row>
 
+		<v-row class="text-center">
+			<v-col class="mt-10">
+				<span class="font-weight-black changeFont">Mitra pembayaran</span>
+			</v-col>
+		</v-row>
+		<v-row
+			class="mt-5 mx-16"
+			>
+				<v-col 
+				class="my-5" 
+				cols="3" 
+				v-for="(paymentPartnerLogo, i) in paymentPartnerLogos"
+				:key="i"
+				sm="2"
+				>
+				<v-img 
+				:src="`${paymentPartnerLogo}`"
+				width="80px"
+				class="img-original hover-img"
+				/>
+			</v-col>
+		</v-row>
 
-		<div>
-			<v-row class="text-center">
-				<v-col cols="15" class="mt-10">
-					<h2 class="font-weight-black changeFont">Mitra penjualan</h2>
-				</v-col>
-			</v-row>
-		</div>
+		<v-row class="text-center">
+			<v-col class="mt-10">
+				<span class="font-weight-black changeFont">Pernah diliput di</span>
+			</v-col>
+		</v-row>
+		<v-row
+			class="mt-5 mx-16 mb-16"
+			>
+				<v-col 
+				class="my-5" 
+				cols="3" 
+				v-for="(featuredOnLogo, i) in featuredOnLogos"
+				:key="i"
+				sm="2"
+				>
+				<v-img 
+				:src="`${featuredOnLogo}`"
+				width="80px"
+				class="img-original hover-img"
+				/>
+			</v-col>
+		</v-row>
 
-
-	
-
-	
-		<div>
-			<v-row class="text-center">
-				<v-col cols="15" class="mt-10">
-					<h2 class="font-weight-black changeFont">Mitra pembayaran</h2>
-				</v-col>
-			</v-row>
-		</div>
-
-
-	
-
-	
-		<div>
-			<v-row class="text-center">
-				<v-col cols="15" class="mt-10">
-					<h2 class="font-weight-black changeFont">Pernah diliput di</h2>
-				</v-col>
-			</v-row>
-		</div>
-
-
+	</div>
+	</v-card-text>
 
 </v-card>
-
 	
-
-	<!-- <v-btn
-		color="primary"
-		depressed
-		text
-		elevation="10"
-		small
-		to="/Popup/MasukLogin"> UNTUK POP UP
-	</v-btn>
-
-	<v-row class="mt-12 text-center">
-		<v-col cols="6" md="4" lg="3" v-for="academy in academies" :key="academy.id">
-			<v-card
-			    class="mx-2"
-			    max-width="374"
-			  >
-			    <v-img
-			      height="150"
-			      :src="academy.url"
-			    ></v-img>
-
-			    <v-card-title>{{academy.name}}</v-card-title>
-
-			    <v-card-text>
-			      <v-row
-			        align="center"
-			        class="mx-0"
-			      >
-			        <v-rating
-			          :value="5"
-			          color="yellow"
-			          dense
-			          half-increments
-			          readonly
-			          size="14"
-			        ></v-rating>
-
-			        <div class="grey--text ml-4">5</div>
-			      </v-row>
-
-			      <div class="my-4 subtitle-1">
-			        IDR • {{academy.price}}
-			      </div>
-			      
-			      <div>{{ (academy.description != null && academy.description.length > 70)? academy.description.substring(0,70) + "...." : academy.description }}</div>
-			    </v-card-text>
-
-			    <v-divider class="mx-4"></v-divider> -->
-<!--
-			    <v-card-title>Tonight's availability</v-card-title>
-
-			    <v-card-text>
-			      <v-chip-group
-			        v-model="selection"
-			        active-class="deep-purple accent-4 white--text"
-			        column
-			      >
-			        <v-chip>5:30PM</v-chip>
-
-			        <v-chip>7:30PM</v-chip>
-
-			        <v-chip>8:00PM</v-chip>
-
-			        <v-chip>9:00PM</v-chip>
-			      </v-chip-group>
-			    </v-card-text>
--->
-			    <!-- <v-card-actions>
-			      <v-btn
-			        color="deep-purple lighten-2"
-			        text
-			        @click="toAcademyForm"
-			      >
-			        Daftar
-			      </v-btn>
-			    </v-card-actions>
-			  </v-card>
-		</v-col>
-		<v-col cols="12">
-			<v-btn color="blue-grey" class="ma-2 white--text" to="/jobhun/academy">
-		      Lihat Kelas lain 
-		      <v-icon right dark >
-		        mdi-chevron-right
-		      </v-icon>
-		    </v-btn>
-		</v-col>
-	</v-row> -->
-	<!-- <v-row class="mt-6" justify="center" align="center">
-		<v-col cols="6">
-			<v-img src="@/assets/images/web/mentor1.jpg" contain/>
-		</v-col>
-		<v-col cols="6">
-			<div>
-				<h1>Bingung bekerja atau memilih pekerjaan impian kamu?</h1>
-				<h3>Tanyakan pada expertnya!</h3>
-			</div>
-		</v-col>
-	</v-row> -->
-	<!-- <v-row class="mt-12">
-		<v-col cols="12">
-			<h3 class="font-weight-bold text-center">Daftar Expert</h3>
-		</v-col>
-		<v-col cols="6" md="4" lg="3" v-for="expert in experts" :key="expert.id">
-			<v-card
-			    class="mx-2"
-			    max-width="374"
-			  >
-			    <v-img
-			      height="300"
-			      :src="expert.url"
-			    ></v-img>
-
-			    <v-card-title><span class="deep-purple--text text--darken-2 mr-1">{{expert.name}}</span></v-card-title>
-				<v-card-subtitle>{{expert.job}}</v-card-subtitle>
-
-			    <v-card-text>
-			      <v-row
-			        align="center"
-			        class="mx-0"
-			      >
-			        <v-rating
-			          :value="5"
-			          color="yellow"
-			          dense
-			          half-increments
-			          readonly
-			          size="14"
-			        ></v-rating>
-
-			        <div class="grey--text ml-4">5</div>
-			      </v-row>
-
-			      <div class="my-4 subtitle-1">
-			        IDR • {{expert.price}} / jam
-			      </div>
-			      
-			      <div>{{ (expert.description != null && expert.description.length > 70)? expert.description.substring(0,70) + "...." : expert.description }}</div>
-			    </v-card-text>
-
-			    <v-divider class="mx-4"></v-divider>
-			    <v-card-actions>
-			      <v-btn
-			        color="deep-purple lighten-2"
-			        text
-			        @click="toAcademyForm"
-			      >
-			        Daftar
-			      </v-btn>
-			    </v-card-actions>
-			  </v-card>
-		</v-col>
-		<v-col cols="12" class="text-center">
-			<v-btn color="blue-grey" class="ma-2 white--text" to="/jobhun/academy">
-		      Lihat Expert lain 
-		      <v-icon right dark >
-		        mdi-chevron-right
-		      </v-icon>
-		    </v-btn>
-		</v-col>
-	</v-row> -->
 </div>
 </template>
 <script>
@@ -565,18 +437,63 @@ export default{
 			cardHeadlineJch: 'Posisi',
 			rating: 4.3,
 			partnershipLogos: [
-				{
-					src: '../assets/bekerjasama/telkomsel.png',
-				},
-				{
-					src: '@/assets/bekerjasama/ilmupedia.png',
-				},
-				{
-					src: '@/assets/bekerjasama/dilo.png',
-				},
-				{
-					src: '@/assets/bekerjasama/cicil.png',
-				},
+				require('@/assets/bekerjasama/telkomsel.png'),
+				require('@/assets/bekerjasama/ilmupedia.png'),
+				require('@/assets/bekerjasama/dilo.png'),
+				require('@/assets/bekerjasama/cicil.png'),
+				require('@/assets/bekerjasama/ipbi.png'),
+				require('@/assets/bekerjasama/panggilin.png'),
+				require('@/assets/bekerjasama/lias.png'),
+				require('@/assets/bekerjasama/cakap.png'),
+				require('@/assets/bekerjasama/sertiva.png'),
+				require('@/assets/bekerjasama/midtrans.png'),
+				require('@/assets/bekerjasama/qlue.png'),
+				require('@/assets/bekerjasama/dpkka.png'),
+				require('@/assets/bekerjasama/mpwr.png'),
+				require('@/assets/bekerjasama/alterra.png'),
+				require('@/assets/bekerjasama/ikigai.png'),
+				require('@/assets/bekerjasama/blibli.png'),
+				require('@/assets/bekerjasama/maubelajarapa.png'),
+				require('@/assets/bekerjasama/edufund.png'),
+				require('@/assets/bekerjasama/shipper.png'),
+				require('@/assets/bekerjasama/sekolahmu.png'),
+			],
+			salesPartnerLogos: [
+				require('@/assets/mitra-penjualan/maubelajarapa.png'),
+				require('@/assets/mitra-penjualan/loket.png'),
+				require('@/assets/mitra-penjualan/shopee.png'),
+				require('@/assets/mitra-penjualan/gotix.svg'),
+				require('@/assets/mitra-penjualan/blibli.png'),
+				require('@/assets/mitra-penjualan/cicil.png'),
+				require('@/assets/mitra-penjualan/libreria.png'),
+				require('@/assets/mitra-penjualan/maubelajarapa.png'),
+				require('@/assets/mitra-penjualan/rvang.png'),
+			],
+			paymentPartnerLogos: [
+				require('@/assets/mitra-penjualan/update/midtrans.png'),
+				require('@/assets/mitra-penjualan/update/alfamart.png'),
+				require('@/assets/mitra-penjualan/update/alfamidi.png'),
+				require('@/assets/mitra-penjualan/update/dandan.png'),
+				require('@/assets/mitra-penjualan/update/lawson.png'),
+			],
+			featuredOnLogos: [
+				require('@/assets/media/dailysocial.png'),
+				require('@/assets/media/tvri-jatim.png'),
+				require('@/assets/media/surya.png'),
+				require('@/assets/media/tribun.png'),
+				require('@/assets/media/idn.png'),
+				require('@/assets/media/suarasurabaya.png'),
+				require('@/assets/media/basha.png'),
+				require('@/assets/media/sonora.png'),
+				require('@/assets/media/provoke.png'),
+				require('@/assets/media/sbotv.png'),
+				require('@/assets/media/scg.png'),
+				require('@/assets/media/pasfm.jpg'),
+				require('@/assets/media/prima.png'),
+				require('@/assets/media/yot.png'),
+				require('@/assets/media/ebs.png'),
+				require('@/assets/media/harianbernas.png'),
+				require('@/assets/media/hipwee.png'),
 			],
 		}
 	},
@@ -607,4 +524,27 @@ export default{
 		align-content:space-around;
 	}
 
+	.headlineFooter{
+		font-size: large;
+	}
+
+	.sublineFooter{
+		font-size: small;
+		
+	}
+
+	.changeFont{
+		font-size: 1.8em;
+		
+	}
+
+	.img-original{
+		filter: grayscale(100%)!important;
+		transition: .5s ease-in-out;
+	}
+
+	.hover-img:hover{
+		filter: grayscale(0%)!important;
+		transition: .5s ease-in-out;
+	}
 </style>

@@ -20,9 +20,9 @@
     </v-btn>
   </div> 
 
-        <v-row>
-          <div class="mb-5 font-weight-bold" >Silahkan masuk akun milikmu!</div>
-        </v-row>
+    <v-row>
+      <div class="mb-5 font-weight-bold" >Silahkan masuk akun milikmu!</div>
+    </v-row>
     
     <v-form v-model="valid" class="justify-center">
         <v-row
