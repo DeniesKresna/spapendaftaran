@@ -192,26 +192,96 @@
         
         <v-tabs-items v-model="tabs">
           <v-tab-item>
+            <v-card-text class="mx-3">
+              <v-row class="px-3">
+                <v-col
+                      md="10" class="mb-n4"
+                      >
+                  <span 
+                  style="font-size:1.2em"
+                  class="mb-5 font-weight-bold" >Silahkan masuk akun milikmu!</span>
+                </v-col>
+              </v-row>
+            
+                      <v-row
+                        class="px-3"
+                      >
+                      <v-col
+                      md="9" class="pb-0 mb-n5"
+                      >
+                        <v-text-field
+                          color="#48B391"
+                          v-model="userForm.email"
+                          label="Alamat email"
+                          class=""
+                          required
+                        ></v-text-field>
+                        </v-col>
+                      </v-row>
+
+                      <v-row
+                        class="px-3"
+                      >
+                      <v-col md="9" class="pb-0 mb-n5">
+                        <v-text-field
+                          color="#48B391"
+                          v-model="userForm.password"
+                          label="Kata sandi"
+                          type="password"
+                          class=""
+                          required
+                        ></v-text-field>
+                        </v-col>
+                      </v-row>  
+                  
+                  <v-row class="mt-5">
+                    <v-col class="text-right">
+                      <a 
+                      class=" font-weight-bold forgot-password pa-10"
+                      >Lupa kata sandi</a>
+                    </v-col>
+                  </v-row>
+                  
+                <div>
+                  <v-row >
+                    <v-col class="text-center">
+                      <div>
+                        <v-btn
+                          rounded
+                          color="#48B391"
+                          dark
+                          class="mt-5 font-weight-bold mb-4"
+                        >
+                          Masuk
+                        </v-btn>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </div>
+
+            </v-card-text>
+              </v-tab-item>
+          <v-tab-item>
             <v-card-text class="mx-3 mt-n7">
               <v-row>
               <v-row class="px-3 mb-n5">
                 <v-col md="9" class="pb-0">
                 <v-text-field color="#48B391"
-                label="Nama Lengkap" v-model="userForm.fullName"></v-text-field>
+                label="Nama lengkap" v-model="userForm.fullName"></v-text-field>
               </v-col>
               </v-row>
 
               <v-row class="px-3">
                 <v-col md="9" class="pb-0 mb-n5">
                 <v-text-field color="#48B391"
-                label="Alamat Email" v-model="userForm.email" @keyup.enter="login"></v-text-field>
+                label="Alamat email" v-model="userForm.email" @keyup.enter="login"></v-text-field>
                 </v-col>
               </v-row>
 
               <v-row class="px-3" >
                 <v-col md="9" class="pb-0 mb-n5">
                 <v-text-field color="#48B391"
-                label="No Handphone" v-model="userForm.phone" ></v-text-field>
+                label="No handphone" v-model="userForm.phone" ></v-text-field>
               </v-col>
               </v-row>
 
@@ -242,8 +312,8 @@
           </v-card-text>
 
           <v-checkbox v-model="checkbox" class="mr-10 pa-5 mt-n4">
-          <template v-slot:label>
-            <span style="font-size:0.9em" class="pl-2 font-weight-bold">
+          <template v-slot:label class="">
+            <span style="font-size:0.9em" class="pl-2 font-weight-bold text-color-black">
                 Saya setuju dengan
                   <a
                     target="_blank"
@@ -283,82 +353,8 @@
             </v-row>    
           </div>
           </v-tab-item>
-          <v-tab-item>
-            <v-card-text class="mx-3">
-
-              
-              <v-row class="px-3">
-                <v-col
-                      md="10" class="mb-n4"
-                      >
-                  <span 
-                  style="font-size:1.2em"
-                  class="mb-5 font-weight-bold" >Silahkan masuk akun milikmu!</span>
-                </v-col>
-              </v-row>
-            
-                      <v-row
-                        class="px-3"
-                      >
-                      <v-col
-                      md="9" class="pb-0 mb-n5"
-                      >
-                        <v-text-field
-                          color="#48B391"
-                          v-model="userForm.email"
-                          label="Alamat email"
-                          class=""
-                          required
-                        ></v-text-field>
-                        </v-col>
-                      </v-row>
-
-                      <v-row
-                        class="px-3"
-                      >
-                      <v-col md="9" class="pb-0 mb-n5">
-                        <v-text-field
-                          color="#48B391"
-                          v-model="userForm.password"
-                          label="kata Sandi"
-                          type="password"
-                          class=""
-                          required
-                        ></v-text-field>
-                        </v-col>
-                      </v-row>  
-                  
-                  <v-row class="mt-5">
-                    <v-col class="text-right">
-                      <a 
-                      class=" font-weight-bold forgot-password pa-10"
-                      >Lupa kata sandi</a>
-                    </v-col>
-                  </v-row>
-                  
-                <div>
-                  <v-row >
-                    <v-col class="text-center">
-                      <div>
-                        <v-btn
-                          rounded
-                          color="#48B391"
-                          dark
-                          class="mt-5 font-weight-bold mb-4"
-                        >
-                          Masuk
-                        </v-btn>
-                      </div>
-                    </v-col>
-                  </v-row>
-                </div>
-
-            </v-card-text>
-              </v-tab-item>
-
             </v-tabs-items>
-
-            </v-card>
+          </v-card>
         </div>
   </v-dialog>
 
