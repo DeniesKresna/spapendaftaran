@@ -3,7 +3,6 @@
     
     <v-toolbar
       fixed
-      :height="$route.path == '/'? 60:130"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -12,10 +11,13 @@
       </template>
 
       <div v-if="user.id == null">
-        <img src="@/assets/cropped-logo-jobhun-3.png" 
-        height="30"
-        class="mx-15"
-        >
+        <router-link to="/">
+          <img
+          src="@/assets/cropped-logo-jobhun-3.png" 
+          height="30"
+          class="mx-15"
+          >
+        </router-link>
       </div>
       <div v-else>
         <v-app-bar-nav-icon @click="openDrawer"></v-app-bar-nav-icon>
@@ -41,7 +43,7 @@
             <v-btn
               text
               v-bind="attrs"
-              to="/"
+              to="/jobhun/askcareer"
               color="black"
             >
               Ask Career
@@ -53,7 +55,7 @@
             <v-btn
               text
               v-bind="attrs"
-              to="/"
+              to="/jobhun/careerhub"
               color="black"
             >
               Career Hub
@@ -87,33 +89,11 @@
     <NodeList :nodes="menus"/>
     </v-navigation-drawer>
     <v-main class="lighten-3 mb-0">
-      <div v-if="$route.path == '/'">
+      <div>
         <router-view />
         <footter>
               
             </footter>
-      </div>
-      <div v-else>
-        <v-container fluid>
-          <v-row>
-            <v-overlay :value="overlay"></v-overlay>
-            <v-col
-              cols="12"
-              sm="12"
-            >
-                <v-sheet
-                  min-height="70vh"
-                  rounded="lg"
-                >
-                  <router-view />
-                  <footter>
-              
-            </footter>
-                </v-sheet>
-            </v-col>
-          </v-row>
-          
-        </v-container>
       </div>
     </v-main>
     <div>     
@@ -380,8 +360,6 @@
         phone: "",
       },
       show1: false,
-      tabSignIn: null,
-      tabSignUp: null,
       tabs: null
     }),
     mounted(){

@@ -6,68 +6,116 @@
     padless
     color="black"
         >
-        <v-row class="mt-10">
-            <v-col md="3">
-                <v-container>
-                    <v-row>
-                        <v-col>
-                            <div class="mx-15">
-                                <span 
+        <v-row class="mt-10" justify="center">
+                <v-col md="4">
+                    <v-container>
+                        <v-row>
+                            <v-col>
+                                <div class="mx-15 ">
+                                    <span 
+                                    class="font-weight-bold headlineFooter"
+                                    >Satu platform untuk kebutuhan pekerja dan perusahaan</span><br><br>
+                                
+                                    <span 
+                                    class="font-weight-thin mt-10 sublineFooter"
+                                    >Semua hal yang dibutuhkan para 
+                                    pencari kerja maupun perusahaan yang sedang
+                                    mencari pekerja ada di
+                                    Jobhun. Pencari kerja dapat 
+                                    menemukan pekerjaan, 
+                                    membekali diri dengan
+                                    kemampuan yang relevan 
+                                    dengan industry, serta 
+                                    menemukan mentor yang tepat. 
+                                    Sedangkan perusahaan bisa mencari 
+                                    pekerja dengan cara 
+                                    yang cepat dan mudah.</span>
+                            <br><br>
+                            <span 
                                 class="font-weight-bold headlineFooter"
-                                >Jobhun</span><br><br>
-                            
-                                <span 
-                                class="font-weight-thin mt-10 sublineFooter"
-                                >Semua hal yang dibutuhkan 
-                                para 
-                                pencari kerja maupun perusahaan yang sedang
-                                mencari pekerja ada di
-                                Jobhun. Pencari kerja dapat 
-                                menemukan pekerjaan, 
-                                membekali diri dengan
-                                kemampuan yang relevan 
-                                dengan industry, serta 
-                                menemukan mentor yang tepat. 
-                                Sedangkan perusahaan bisa mencari 
-                                pekerja dengan cara 
-                                yang cepat dan mudah.</span>
-                        </div>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-col>
+                                >Kamu mau cari apa di Jobhun?</span><br>
+
+                                <v-container class="mx-n3">
+                                    <v-row justify="center">
+                                    <v-col
+                                        cols="12"
+                                        md="12"
+                                        >
+                                        <v-text-field
+                                            label="Cari ..."
+                                            solo
+                                            right
+                                            prepend-inner-icon="mdi-magnify"
+                                            @keyup.enter="searchFooter"
+                                            color="white"
+                                            dark
+                                        >
+                                        <v-icon>mdi-magnify</v-icon>
+                                        </v-text-field>
+                                        
+                                    </v-col>
+                                    </v-row>
+                                </v-container>   
+
+                                <div class="">
+                                    <v-btn 
+                                        color="#48B391" 
+                                        dark
+                                        medium
+                                        class="mt-n10 mr-1 font-weight-bold"
+                                        rounded
+                                        >
+                                        Saya mau!
+                                    </v-btn>
+                                </div>
+                            </div>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-col>
         <v-col md="3">
             <v-container>
                 <v-row>
                     <v-col>
-                        <div>
-                            <a href="#"
-                                class="font-weight-thin text-hover"
-                                >Program</a><br><br>
+                        <div class="size-text">
                             <a href="#"
                                 class="font-weight-thin text-hover"
                                 >Blog</a><br><br>
+                                <v-divider></v-divider>
+                                <br>
+                            <a href="#"
+                                class="font-weight-thin text-hover"
+                                >Program</a><br><br>
+                                <v-divider></v-divider>
+                                <br>
+                            <a href="#"
+                                class="font-weight-thin text-hover"
+                                >Kerja Sama dengan Jobhun</a><br><br>
+                                <v-divider></v-divider>
+                                <br>
                             <a href="#"
                                 class="font-weight-thin text-hover"
                                 >Tentang Jobhun</a><br><br>
-                            <a href="#"
-                                class="font-weight-thin text-hover"
-                                >Pasang Lowongan Kerja</a><br><br>
-                            <a href="#"
-                                class="font-weight-thin text-hover"
-                                >Berkarier di Jobhun</a><br><br>
-                            <a href="#"
-                                class="font-weight-thin text-hover"
-                                >Kerjasama Media Partner</a><br><br>
-                            <a href="#"
-                                class="font-weight-thin text-hover"
-                                >Syarat & Ketentuan</a><br><br>
-                            <a href="#"
-                                class="font-weight-thin text-hover"
-                                >Kebijakan Privasi</a><br><br>
+                                <v-divider></v-divider>
+                                <br>
                             <a href="#"
                                 class="font-weight-thin text-hover"
                                 >Profil Perusahaan & Brand Kit</a><br><br>
+                                <v-divider></v-divider>
+                                <br>
+                            <a href="#"
+                                class="font-weight-thin text-hover"
+                                >Berkarier di Jobhun</a><br><br>
+                                <v-divider></v-divider>
+                                <br>
+                            <a href="#"
+                                class="font-weight-thin text-hover"
+                                >Syarat & Ketentuan</a><br><br>
+                                <v-divider></v-divider>
+                                <br>
+                            <a href="#"
+                                class="font-weight-thin text-hover"
+                                >Kebijakan Privasi</a><br><br>
                         </div>
                     </v-col>
                 </v-row>
@@ -97,17 +145,8 @@
                             <span 
                                 class="font-weight-thin"
                                 >Phone: 081332905635</span><br><br>
-                        </div>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-col>
-        <v-col md="2">
-            <v-container>
-                <v-row>
-                    <v-col>
-                        <div>
-                            <span 
+                        
+                        <span 
                                 class="font-weight-bold headlineFooter"
                                 >Media sosial Jobhun</span><br><br>
 
@@ -123,42 +162,7 @@
                                         <a href="https://www.youtube.com/channel/UCCzKrMp711xzX8nI8zempKw?view_as=subscriber">
                                             <v-img src="@/assets/medsos/youtube-tosca.png" class="img-hover" width="25px"></v-img>
                                         </a>
-                                </v-row><br><br>
-                            
-                                <span 
-                                class="font-weight-bold headlineFooter"
-                                >Masukkan alamat emailmu
-                                untuk mendapatkan
-                                informasi seputar layanan
-                                dan program Jobhun!</span><br><br>
-
-                                <v-col
-                                class="mx-n3"
-                                    md="16"
-                                    >
-                                    <v-text-field
-                                    class="text-black"
-                                        focusable
-                                        dense
-                                        outlined
-                                        background-color="white" 
-                                        color="#48B391"
-                                ></v-text-field>
-                                </v-col>    
-
-                                <div class="">
-                                    <v-btn 
-                                        color="#48B391" 
-                                        dark
-                                        medium
-                                        class="mt-n10 mr-1 font-weight-bold"
-                                        rounded
-                                        >
-                                        Saya mau!
-                                    </v-btn>
-                                </div>
-                                    
-                                
+                                </v-row>
                         </div>
                     </v-col>
                 </v-row>
@@ -170,7 +174,7 @@
             class="text-center"
             cols="12"
             >
-            <span>2021</span> — <strong>PT Jobhun Membangun Indonesia</strong>
+            <span>&copy; Copyright 2021</span> <strong>PT Jobhun Membangun Indonesia. All Right Reserved.</strong>
             </v-col>
     </div>
 </template>
@@ -211,5 +215,9 @@ export default {
 
     .text-black input {
         color: black !important;
+    }
+
+    .size-text{
+        font-size: small    ;
     }
 </style>

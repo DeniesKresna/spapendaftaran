@@ -90,7 +90,7 @@
 		<v-card 
 			class=""
 			width="400px"
-			
+			rounded="0"
 			>
 			<v-layout>
 				<v-flex xs5>
@@ -185,21 +185,21 @@
 						<div class="font-weight-bold mt-n2">Posisi</div>
 						<div class="font-weight-thin mt-n1">Rp600.000,-</div>
 					</div>
-
-					<div class="mx-n2 mt-n2">
+				</v-card-title>
+				<div class="mr-16 mt-n5">
 						<v-rating
 						v-model="rating"
 						color="yellow darken-3"
 						background-color="grey darken-1"
 						empty-icon="$ratingFull"
+						class="mr-16 ml-n7"
+						dense
 						half-increments
 						hover
 						size="18"
 						readonly
 						></v-rating>
 					</div>
-				</v-card-title>
-				
 
 				<v-card-actions>
 					<v-spacer></v-spacer>
@@ -207,7 +207,7 @@
 					color="#48B391" 
 					dark
 					small
-					class="mt-n5 mr-1 font-weight-bold"
+					class="mt-1  font-weight-bold"
 					>Pilih mentor</v-btn>
 					
 				</v-card-actions>
@@ -268,7 +268,7 @@
 		>
 		<v-card 
 			class="rounded-0"
-			max-width="400px"
+			max-width="500px"
 			height="180px"
 			>
 			<v-layout>
@@ -281,10 +281,10 @@
 				<v-flex xs7>
 				<v-card-title primary-title>
 						<div class="mx-n1 mt-1 text-left">
-							<div class="headline font-weight-bold">{{ cardHeadlineJch }}</div>
-							<div class="font-weight-bold mt-n1">Nama Perusahaan</div>
-							<div class="font-weight-thin mt-n1">Lokasi</div><br>
-							<div class="font-weight-thin mt-n10">Jenis Pekerjaan</div>
+							<div class="headline font-weight-bold mt-n1">{{ cardHeadlineJch }}</div>
+							<div class="font-weight-bold mt-2">{{companyNameJch}}</div>
+							<div class="font-weight-thin mt-n1">{{locationComp}}</div><br>
+							<div class="font-weight-thin mt-n3">{{workType}}</div>
 						</div>
 				</v-card-title>
 
@@ -314,7 +314,7 @@
 	<div>
 		<v-row class="text-center">
 			<v-col class="mt-10">
-				<span class="font-weight-black changeFont">Bekerjasama dengan</span>
+				<span class="font-weight-black changeFont color-text-black">Bekerjasama dengan</span>
 			</v-col>
 		</v-row>
 			<v-row
@@ -329,13 +329,13 @@
 				>
 				<v-img 
 				:src="`${partnershipLogo}`"
-				width="80px"
+				width="100px"
 				class="img-original hover-img"
 				/>
 			</v-col>
 		</v-row>
 		
-		<v-row class="text-center">
+		<!-- <v-row class="text-center">
 			<v-col class="mt-10">
 				<span class="font-weight-black changeFont">Mitra penjualan</span>
 			</v-col>
@@ -356,11 +356,11 @@
 				class="img-original hover-img"
 				/>
 			</v-col>
-		</v-row>
+		</v-row> -->
 
 		<v-row class="text-center">
 			<v-col class="mt-10">
-				<span class="font-weight-black changeFont">Mitra pembayaran</span>
+				<span class="font-weight-black changeFont color-text-black">Mitra pembayaran</span>
 			</v-col>
 		</v-row>
 		<v-row
@@ -375,7 +375,7 @@
 				>
 				<v-img 
 				:src="`${paymentPartnerLogo}`"
-				width="80px"
+				width="100px"
 				class="img-original hover-img"
 				/>
 			</v-col>
@@ -383,7 +383,7 @@
 
 		<v-row class="text-center">
 			<v-col class="mt-10">
-				<span class="font-weight-black changeFont">Pernah diliput di</span>
+				<span class="font-weight-black changeFont color-text-black">Pernah diliput di</span>
 			</v-col>
 		</v-row>
 		<v-row
@@ -398,7 +398,7 @@
 				>
 				<v-img 
 				:src="`${featuredOnLogo}`"
-				width="80px"
+				width="100px"
 				class="img-original hover-img"
 				/>
 			</v-col>
@@ -435,6 +435,9 @@ export default{
 			mentorName : 'Nama Mentor',
 			cardHeadlineJac: 'Nama Mentor',
 			cardHeadlineJch: 'Posisi',
+			companyNameJch: 'Nama Perusahaan',
+			locationComp: 'Lokasi',
+			workType: 'Tipe Pekerjaan',
 			rating: 4.3,
 			partnershipLogos: [
 				require('@/assets/bekerjasama/telkomsel.png'),
@@ -458,17 +461,17 @@ export default{
 				require('@/assets/bekerjasama/shipper.png'),
 				require('@/assets/bekerjasama/sekolahmu.png'),
 			],
-			salesPartnerLogos: [
-				require('@/assets/mitra-penjualan/maubelajarapa.png'),
-				require('@/assets/mitra-penjualan/loket.png'),
-				require('@/assets/mitra-penjualan/shopee.png'),
-				require('@/assets/mitra-penjualan/gotix.svg'),
-				require('@/assets/mitra-penjualan/blibli.png'),
-				require('@/assets/mitra-penjualan/cicil.png'),
-				require('@/assets/mitra-penjualan/libreria.png'),
-				require('@/assets/mitra-penjualan/maubelajarapa.png'),
-				require('@/assets/mitra-penjualan/rvang.png'),
-			],
+			// salesPartnerLogos: [
+			// 	require('@/assets/mitra-penjualan/maubelajarapa.png'),
+			// 	require('@/assets/mitra-penjualan/loket.png'),
+			// 	require('@/assets/mitra-penjualan/shopee.png'),
+			// 	require('@/assets/mitra-penjualan/gotix.svg'),
+			// 	require('@/assets/mitra-penjualan/blibli.png'),
+			// 	require('@/assets/mitra-penjualan/cicil.png'),
+			// 	require('@/assets/mitra-penjualan/libreria.png'),
+			// 	require('@/assets/mitra-penjualan/maubelajarapa.png'),
+			// 	require('@/assets/mitra-penjualan/rvang.png'),
+			// ],
 			paymentPartnerLogos: [
 				require('@/assets/mitra-penjualan/update/midtrans.png'),
 				require('@/assets/mitra-penjualan/update/alfamart.png'),
@@ -546,5 +549,9 @@ export default{
 	.hover-img:hover{
 		filter: grayscale(0%)!important;
 		transition: .5s ease-in-out;
+	}
+
+	.color-text-black{
+		color: black;
 	}
 </style>

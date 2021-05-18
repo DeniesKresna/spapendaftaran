@@ -46,6 +46,21 @@ const routes = [
     component: () => import('../views/Jobhun/Academy.vue')
   },
   {
+    path: '/jobhun/askcareer',
+    name: 'JobhunAskCareer',
+    component: () => import('../views/Jobhun/AskCareer.vue')
+  },
+  {
+    path: '/jobhun/mentoraskcareer',
+    name: 'JobhunMentorAskCareer',
+    component: () => import('../views/AskCareer/Mentor.vue')
+  },
+  {
+    path: '/jobhun/careerhub',
+    name: 'JobhunCareerHub',
+    component: () => import('../views/Jobhun/CareerHub.vue')
+  },
+  {
     path: '/user/mentor',
     name: 'UserMentor',
     component: () => import('../views/User/Mentor.vue')
