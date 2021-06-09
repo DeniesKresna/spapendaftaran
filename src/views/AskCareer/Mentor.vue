@@ -335,7 +335,7 @@ export default {
             href: '/',
             },
             {
-            text: 'Mentor',
+            text: 'Ask Career',
             disabled: false,
             href: '/jobhun/askcareer',
             },

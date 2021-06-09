@@ -52,10 +52,10 @@
         height="400px"
         >
         <v-carousel-item
-						v-for="(slidesJAC,i) in slidesJACs"
-						:key="i"
-						:src="slidesJAC.src"
-						></v-carousel-item>
+            v-for="(slidesJAC,i) in slidesJACs"
+            :key="i"
+            :src="slidesJAC.src"
+            ></v-carousel-item>
         </v-carousel>
     </v-card>
 
@@ -89,7 +89,7 @@
                             class="d-flex justify-center align-center"
                             >
                                 <v-text-field
-                                    label="Cari kelas"
+                                    label="Cari mentor"
                                     solo
                                     right
                                     prepend-inner-icon="mdi-magnify"
@@ -112,7 +112,7 @@
                                 dense
                                 full-width
                                 hide-selected
-                                multiple
+                                
                                 small-chips
                                 solo
                             ></v-combobox>
@@ -131,10 +131,15 @@
         sm="4"
 		align="center"
 		>
+        <v-hover
+        v-slot="{ hover }"
+        >
 		<v-card 
 			class=""
 			width="400px"
 			rounded="0"
+            :elevation="hover ? 5 : 2"
+			:class="{ 'on-hover': hover }"
 			>
 			<v-layout>
 				<v-flex xs5>
@@ -152,19 +157,23 @@
 					></v-img> -->
 				</v-flex>
 				<v-flex xs7>
-				<v-card-title primary-title>
-						<div class="mx-n9 mt-n1 text-left"	
-						>
-							<div class="title font-weight-bold">{{ cardHeadlineJac }}</div>
-							<div class="subtitle font-weight-bold mt-1">{{ cardProfJac }}</div>
-                            <!-- <v-list-item-subtitle>{{ cardProfJac }}</v-list-item-subtitle> -->
-							<div class="font-weight-thin mt-n3">{{ cardCompanyJac }}</div><br>
-							<div class="font-weight-thin mt-n8">{{ cardCategoryJac }}</div><br>
-							<div class="font-weight-thin mt-n10">{{ cardPriceJac }}</div>
-						</div>
-
+				<v-card-title primary-title
+                class="text-left mx-n10 mt-n2">
+                    {{ cardHeadlineJac }}
 					</v-card-title>
-                        <div class="mr-lg-16 ml-n16 mt-n5" >
+
+                    <v-card-text>
+                            <div class="mx-n7 mt-n4 text-left"	
+                                >
+                                <!-- <div class="title font-weight-bold"></div> -->
+                                <v-card-subtitle class="font-weight-bold mt-n10 mx-n7">{{ cardProfJac }}</v-card-subtitle>
+                                <!-- <v-list-item-subtitle>{{ cardProfJac }}</v-list-item-subtitle> -->
+                                <h4 class="font-weight-thin mt-n3 mx-n3">{{ cardCompanyJac }}</h4><br>
+                                <h5 class="font-weight-thin mt-n7 mx-n3">{{ cardCategoryJac }}</h5><br>
+                                <h3 class="font-weight-bold mt-n4 mx-n3">{{ cardPriceJac }}</h3>
+                            </div>
+                    </v-card-text>
+                        <div class="mr-lg-16 text-left ml-n6 mt-n5" >
                             <v-rating
                             v-model="rating"
                             color="yellow darken-3"
@@ -184,7 +193,7 @@
 					color="#48B391" 
 					dark
 					small
-					class="mt-n1 font-weight-bold"
+					class="mt-3 font-weight-bold"
                     to="/jobhun/mentoraskcareer"
 					>Pilih mentor</v-btn>
 					
@@ -192,6 +201,7 @@
 				</v-flex>
 			</v-layout>
 		</v-card>
+        </v-hover>
     </v-col>
 </v-row>
 

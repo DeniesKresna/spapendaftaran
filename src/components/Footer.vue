@@ -25,7 +25,7 @@
                                     menemukan pekerjaan, 
                                     membekali diri dengan
                                     kemampuan yang relevan 
-                                    dengan industry, serta 
+                                    dengan industri, serta 
                                     menemukan mentor yang tepat. 
                                     Sedangkan perusahaan bisa mencari 
                                     pekerja dengan cara 

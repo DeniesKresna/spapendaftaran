@@ -126,7 +126,6 @@
                         </v-col>
                     </v-row>
                 </div>
-            
         </v-container>
     </div>
         
@@ -134,39 +133,52 @@
         <v-row 
 		class="mt-5 mx-16 "
 		>
-		<v-col class="my-5" 
-		v-for="n in 10"
+		<v-col class="my-3" 
+		cols="6" 
+		v-for="n in 6"
         :key="n"
-        sm="6"
 		align="center"
+		>
+		<v-hover
+		v-slot="{ hover }"
 		>
 		<v-card 
 			class="rounded-0"
-			max-width="600px"
-			height="180px"
-            @click="toJobDetail"
+			max-width="700px"
+			:elevation="hover ? 5 : 2"
+			:class="{ 'on-hover': hover }"
 			>
 			<v-layout>
-				<v-flex xs4>
+				<v-flex xs3>
 					<v-img src="@/assets/images/web/bby.jpg"
-					height="180px"
+					height="181px"
 					></v-img>
 				</v-flex>
 
 				<v-flex xs7>
-				<v-card-title primary-title>
-						<div class="mx-n1 mt-1 text-left">
-							<div class="headline font-weight-bold mt-n1">{{ cardHeadlineJch }}</div>
-							<div class="font-weight-bold mt-2">{{companyNameJch}}</div>
-							<div class="font-weight-thin mt-n1">{{locationComp}}</div><br>
-							<div class="font-weight-thin mt-n3">{{workType}}</div>
-						</div>
+				<v-card-title primary-title
+				class="mx-n1">
+					{{ cardHeadlineJch }}
 				</v-card-title>
-
+				<v-card-text>
+					<div class="mx-n1 mt-1 text-left">
+							<!-- <div class="headline font-weight-bold mt-n1"></div> -->
+							<h3 class="font-weight-bold mt-2">{{companyNameJch}}</h3>
+							<div class="font-weight-thin mt-1">{{locationComp}}</div><br>
+							<v-chip
+							color="green"
+							outlined
+							small>
+								<div class="font-weight-thin mt-n1">{{workType}}</div>
+							</v-chip>
+							
+					</div>
+				</v-card-text>
 				</v-flex>
 			</v-layout>
 		</v-card>
-    </v-col>
+		</v-hover>
+</v-col>
 </v-row>
 
     <div class="text-right mr-16 mb-7">

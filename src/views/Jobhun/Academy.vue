@@ -18,8 +18,8 @@
 			<div class="mx-n16">
 				
 				<h1 class="changeFont font-weight-black pt-16 mt-16 mx-n16">
-				Belajar kemampuan baru<br>
-        untuk karier impian!
+				Kuasai keterampilan yang tepat<br> 
+        untuk membuka peluang baru
 				</h1>
 				
         
@@ -268,8 +268,7 @@
 		<v-row class="mt-10 text-center">
 			<v-col cols="15">
 				<span class="changeFont font-weight-black text-bg">
-					Mentor Jobhun Academy<br>
-          berasal dari</span>
+					Mentor Jobhun Academy berasal dari</span>
 			</v-col>
 		</v-row>
   </div>
@@ -389,53 +388,63 @@
 		class="mt-5 mx-15"
 		>
 		<v-col class="my-4" 
-		cols="3" 
-		v-for="n in 9"
+		cols="6" 
+		v-for="n in 6"
         :key="n"
-        sm="4"
 		align="center"
 		>
-
+	<v-hover
+	v-slot="{ hover }"
+	>
 		<v-card 
 			class=""
-			width="400px"
+			max-width="600px"
+			max-height="400px"
 			rounded="0"
+			:elevation="hover ? 5 : 2"
+			:class="{ 'on-hover': hover }"
 			>
 			<v-layout>
 				<v-flex xs5>
 					<v-img src="@/assets/images/web/bby.jpg"
-					height="230px"
+					height="265px"
 					></v-img>
 				</v-flex>
 
 				<v-flex xs7>
-				<v-card-title primary-title>
-						<div class="mx-n1 mt-1 text-left"
-						
-						>
-							<div class="headline font-weight-bold">{{ cardHeadlineJa }}</div>
-							<div class="font-weight-bold mt-n1"> {{ mentorName }}</div>
-							<div class="font-weight-thin mt-n1">Jabatan</div><br>
-							<div class="font-weight-thin mt-n6">Jadwal Kelas</div><br>
-							<div class="font-weight-thin mt-n10">Rp600.000,-</div>
-						</div>
-					</v-card-title>
+					<v-card-title primary-title 
+					class="mx-n1 text-sm-left">
+						<!-- {{ cardHeadlineJa }} -->
+						Jobhun Academy: Food Photographer & Stylist
+						</v-card-title>
+						<v-card-text>
+							<div class="mx-n1 mt-1 text-left"
+							>
+								<!-- <div class="headline font-weight-bold"></div> -->
+								<h3 class="font-weight-bold mt-n3"> {{ mentorName }}</h3>
+								<v-card-subtitle class="font-weight-bold mt-n5 mx-n4">Jabatan</v-card-subtitle><br>
+								<h3 class="font-weight-thin mt-n8">Jadwal Kelas</h3><br>
+								<h2 class="font-weight-bold mt-2">Rp600.000,-</h2>
+							</div>
+						</v-card-text>
 
-					<v-card-actions>
-					<v-spacer></v-spacer>
-					<v-btn 
-					color="#48B391" 
-					dark
-					small
-					class="mt-n1 mr-1 font-weight-bold"
-					>Pilih kelas</v-btn>
-					
-				</v-card-actions>
+						<v-card-actions>
+						<v-spacer></v-spacer>
+						<v-btn 
+						color="#48B391" 
+						dark
+						small
+						class="mt-n1 mr-1 font-weight-bold"
+						to="/academy/mentoracademy"
+						>Pilih kelas</v-btn>
+					</v-card-actions>
 				</v-flex>
 			</v-layout>
 		</v-card>
+		</v-hover>
 </v-col>
 </v-row>
+
 <div class="text-right mr-16">
   <v-row justify="end">
     <v-pagination
@@ -559,14 +568,14 @@ export default{
         }
       ],
       mentorFromLogos: [
-				require('@/assets/asal-mentor/tokopedia.png'),
-				require('@/assets/asal-mentor/idn.png'),
-        require('@/assets/asal-mentor/gojek.png'),
-        require('@/assets/asal-mentor/bukalapak.png'),
-        require('@/assets/asal-mentor/cnn.png'),
-        require('@/assets/asal-mentor/paragon.png'),
-        require('@/assets/asal-mentor/ruangguru.png'),
-        require('@/assets/asal-mentor/traveloka.png'),
+				require('@/assets/Logo Web Jobhun/asal-mentor/tokopedia.png'),
+				require('@/assets/Logo Web Jobhun/asal-mentor/idn times.png'),
+        require('@/assets/Logo Web Jobhun/asal-mentor/gojek.png'),
+        require('@/assets/Logo Web Jobhun/asal-mentor/bukalapak.png'),
+        require('@/assets/Logo Web Jobhun/asal-mentor/cnn.png'),
+        require('@/assets/Logo Web Jobhun/asal-mentor/paragon.png'),
+        require('@/assets/Logo Web Jobhun/asal-mentor/ruang guru.png'),
+        require('@/assets/Logo Web Jobhun/asal-mentor/traveloka.png'),
 			],
       colors: [
           'green',
@@ -579,16 +588,16 @@ export default{
           'third'
         ],
       joinJAFromLogos: [
-				require('@/assets/bisa-daftar/maubelajarapa.png'),
-				require('@/assets/bisa-daftar/loket.png'),
-        require('@/assets/bisa-daftar/shopee.png'),
-        require('@/assets/bisa-daftar/gotix.svg'),
-        require('@/assets/bisa-daftar/blibli.png'),
-        require('@/assets/bisa-daftar/tokopedia.png'),
-        require('@/assets/bisa-daftar/libreria.png'),
-        require('@/assets/bisa-daftar/rvang.png'),
-        require('@/assets/bisa-daftar/cicil-belajar.png'),
-        require('@/assets/bisa-daftar/sekolahmu.png'),
+				require('@/assets/Logo Web Jobhun/bisa-daftar/mau belajar apa.png'),
+				require('@/assets/Logo Web Jobhun/bisa-daftar/loket.png'),
+        require('@/assets/Logo Web Jobhun/bisa-daftar/shopee.png'),
+        require('@/assets/Logo Web Jobhun/bisa-daftar/gotix.png'),
+        require('@/assets/Logo Web Jobhun/bisa-daftar/blibli.png'),
+        require('@/assets/Logo Web Jobhun/bisa-daftar/tokopedia.png'),
+        require('@/assets/Logo Web Jobhun/bisa-daftar/libreria.png'),
+        require('@/assets/Logo Web Jobhun/bisa-daftar/rvang.png'),
+        require('@/assets/Logo Web Jobhun/bisa-daftar/cicil-belajar.png'),
+        require('@/assets/Logo Web Jobhun/bisa-daftar/sekolahmu.png'),
 			],
     }
   },

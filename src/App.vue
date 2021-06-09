@@ -34,7 +34,7 @@
               to="/jobhun/academy"
               color="black"
             >
-              Academy
+                Pelatihan
             </v-btn>
           </template>
         </v-menu>
@@ -46,7 +46,7 @@
               to="/jobhun/askcareer"
               color="black"
             >
-              Ask Career
+              Cari mentor
             </v-btn>
           </template>
         </v-menu>
@@ -58,7 +58,19 @@
               to="/jobhun/careerhub"
               color="black"
             >
-              Career Hub
+              Cari loker
+            </v-btn>
+          </template>
+        </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{ attrs }">
+            <v-btn
+              text
+              v-bind="attrs"
+              to="/"
+              color="black"
+            >
+              Pasang loker
             </v-btn>
           </template>
         </v-menu>
@@ -179,7 +191,7 @@
                       >
                   <span 
                   style="font-size:1.2em"
-                  class="mb-5 font-weight-bold" >Silahkan masuk akun milikmu!</span>
+                  class="mb-5 font-weight-bold" >Silakan masuk akun milikmu!</span>
                 </v-col>
               </v-row>
             

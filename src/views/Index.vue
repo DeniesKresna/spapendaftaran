@@ -34,7 +34,7 @@
 
 <v-spacer></v-spacer>
 		
-	<v-row class="mt-1 mb-10" justify="center" align="center">
+	<v-row class="mt-1 mb-16" justify="center" align="center">
 		<v-col cols="4">
 			<div>
 				<h1>Ikuti penawaran terbaru
@@ -42,10 +42,17 @@
 			</div>
 			
 		</v-col>
-		<v-col cols="4" class="mt-5 mb-10">
-			<v-card height="300px" width="450px" 
-			class="mx-lg-12 elevation-10 d-flex justify-end mt-lg-16 mx-lg-16" >
-				<v-carousel hide-delimiters height="300px" width="450px">
+		<!-- <v-col cols="4" class="mt-5 mb-10"> -->
+			<v-card 
+			max-width="700px" 
+			class="mx-lg-12 elevation-5 d-flex justify-end mt-lg-16 mx-lg-16" >
+				<v-carousel 
+				cycle
+				show-arrows-on-hover
+				hide-delimiter-background
+				hide-delimiters
+				height="400px"
+				>
 					<v-carousel-item
 						v-for="(item,i) in items"
 						:key="i"
@@ -53,7 +60,7 @@
 						></v-carousel-item>
 					</v-carousel>
 			</v-card>
-		</v-col>
+		<!-- </v-col> -->
 	</v-row>
 
 	
@@ -77,56 +84,65 @@
 
 	<v-row 
 		class="mt-5 mx-15"
-		
 		>
 		<v-col class="my-4" 
-		cols="3" 
+		cols="6" 
 		v-for="n in 6"
         :key="n"
-        sm="4"
 		align="center"
 		>
-
+	<v-hover
+	v-slot="{ hover }"
+	>
 		<v-card 
 			class=""
-			width="400px"
+			max-width="600px"
+			max-height="400px"
 			rounded="0"
+			:elevation="hover ? 5 : 2"
+			:class="{ 'on-hover': hover }"
 			>
 			<v-layout>
 				<v-flex xs5>
 					<v-img src="@/assets/images/web/bby.jpg"
-					height="230px"
+					height="265px"
 					></v-img>
 				</v-flex>
 
 				<v-flex xs7>
-				<v-card-title primary-title>
-						<div class="mx-n1 mt-1 text-left"
-						
-						>
-							<div class="headline font-weight-bold">{{ cardHeadlineJa }}</div>
-							<div class="font-weight-bold mt-n1"> {{ mentorName }}</div>
-							<div class="font-weight-thin mt-n1">Jabatan</div><br>
-							<div class="font-weight-thin mt-n6">Jadwal Kelas</div><br>
-							<div class="font-weight-thin mt-n10">Rp600.000,-</div>
-						</div>
-					</v-card-title>
+					<v-card-title primary-title 
+					class="mx-n1 text-sm-left">
+						<!-- {{ cardHeadlineJa }} -->
+						Jobhun Academy: Food Photographer & Stylist
+						</v-card-title>
+						<v-card-text>
+							<div class="mx-n1 mt-1 text-left"
+							>
+								<!-- <div class="headline font-weight-bold"></div> -->
+								<h3 class="font-weight-bold mt-n3"> {{ mentorName }}</h3>
+								<v-card-subtitle class="font-weight-bold mt-n5 mx-n4">Jabatan</v-card-subtitle><br>
+								<h3 class="font-weight-thin mt-n8">Jadwal Kelas</h3><br>
+								<h2 class="font-weight-bold mt-2">Rp600.000,-</h2>
+							</div>
+						</v-card-text>
 
-					<v-card-actions>
-					<v-spacer></v-spacer>
-					<v-btn 
-					color="#48B391" 
-					dark
-					small
-					class="mt-n1 mr-1 font-weight-bold"
-					>Pilih kelas</v-btn>
-					
-				</v-card-actions>
+						<v-card-actions>
+						<v-spacer></v-spacer>
+						<v-btn 
+						color="#48B391" 
+						dark
+						small
+						class="mt-n1 mr-1 font-weight-bold"
+						to="/academy/mentoracademy"
+						>Pilih kelas</v-btn>
+					</v-card-actions>
 				</v-flex>
 			</v-layout>
 		</v-card>
+		</v-hover>
 </v-col>
 </v-row>
+
 
 <div class="text-right mr-15">
 	<v-btn 
@@ -135,6 +151,7 @@
 		small
 		class="mt-n1 mr-1 font-weight-bold"
 		rounded
+		to="/jobhun/academy"
 		>
 		Cari kelas
 	</v-btn>
@@ -160,33 +177,42 @@
 	</div>
 
 	<v-row 
-	class="mt-5 mx-md-16"
+	class="mt-5 mx-16"
 	>
-		<v-col class="my-5" 
-		cols="3" 
+		<v-col class="" 
+		cols="4" 
 		v-for="n in 6"
         :key="n"
-        sm="4"
 		align="center"
 		>
 		<v-layout>
-			<v-flex sm8 offset-sm3>
+			<v-flex md12>
+	<v-hover
+	v-slot="{ hover }"
+	>
 			<v-card class=""
-			height="340px"
+			height="350px"
+			:elevation="hover ? 5 : 2"
+			:class="{ 'on-hover': hover }"
 			>
 				<v-img
 				src="@/assets/images/web/bby.jpg"
-				height="180px"
+				max-height="190px"
 				></v-img>
 
-				<v-card-title primary-title>
-					<div class="text-left">
-						<div class="headline font-weight-bold mb-0 mt-n2">{{cardHeadlineJac}}</div>
-						<div class="font-weight-bold mt-n2">Posisi</div>
-						<div class="font-weight-thin mt-n1">Rp600.000,-</div>
-					</div>
+				<v-card-title primary-title
+				class="mt-n3">
+					{{cardHeadlineJac}}
+					<!-- <div class="headline font-weight-bold mb-0 mt-n2"></div> -->
 				</v-card-title>
-				<div class="mr-16 mt-n5">
+				<v-card-text>
+					<div class="text-left">
+						<v-card-subtitle class="font-weight-bold mt-n8 mx-n4">Posisi</v-card-subtitle>
+						<h2 class="font-weight-bold mt-n1 color-text-black">Rp600.000,-</h2>
+					</div>
+				</v-card-text>
+				
+				<div class="ml-11 mt-n4 text-left">
 						<v-rating
 						v-model="rating"
 						color="yellow darken-3"
@@ -199,6 +225,7 @@
 						size="18"
 						readonly
 						></v-rating>
+						<v-spacer></v-spacer>
 					</div>
 
 				<v-card-actions>
@@ -207,36 +234,29 @@
 					color="#48B391" 
 					dark
 					small
-					class="mt-1  font-weight-bold"
+					class="  font-weight-bold"
+					to="/jobhun/mentoraskcareer"
 					>Pilih mentor</v-btn>
 					
 				</v-card-actions>
 				
 			</v-card>
+	</v-hover>
 		</v-flex>
 	</v-layout>
 	</v-col>
 </v-row>
 
-<div class="text-right mr-15">
-	<v-btn 
-		color="#48B391" 
-		dark
-		small
-		class="mt-n1 mr-3 font-weight-bold"
-		rounded
-		>
-		Cari mentor
-	</v-btn>
-
+<div class="text-right mr-16">
 	<v-btn
 		color="#48B391" 
 		dark
 		small
-		class="mt-n1 mr-2 font-weight-bold"
+		class="mt-3 mr-5 font-weight-bold"
 		rounded
+		to="/jobhun/askcareer"
 		>
-		Testimoni
+		Cari mentor
 	</v-btn>
 </div>
 
@@ -259,38 +279,52 @@
 	<v-row 
 		class="mt-5 mx-16 "
 		>
-		<v-col class="my-5" 
-		cols="3" 
+		<v-col class="my-3" 
+		cols="6" 
 		v-for="n in 6"
         :key="n"
-        sm="4"
 		align="center"
+		>
+		<v-hover
+		v-slot="{ hover }"
 		>
 		<v-card 
 			class="rounded-0"
-			max-width="500px"
-			height="180px"
+			max-width="700px"
+			
+			:elevation="hover ? 5 : 2"
+			:class="{ 'on-hover': hover }"
 			>
 			<v-layout>
-				<v-flex xs5>
+				<v-flex xs3>
 					<v-img src="@/assets/images/web/bby.jpg"
-					height="180px"
+					height="181px"
 					></v-img>
 				</v-flex>
 
 				<v-flex xs7>
-				<v-card-title primary-title>
-						<div class="mx-n1 mt-1 text-left">
-							<div class="headline font-weight-bold mt-n1">{{ cardHeadlineJch }}</div>
-							<div class="font-weight-bold mt-2">{{companyNameJch}}</div>
-							<div class="font-weight-thin mt-n1">{{locationComp}}</div><br>
-							<div class="font-weight-thin mt-n3">{{workType}}</div>
-						</div>
+				<v-card-title primary-title
+				class="mx-n1">
+					{{ cardHeadlineJch }}
 				</v-card-title>
-
+				<v-card-text>
+					<div class="mx-n1 mt-1 text-left">
+							<!-- <div class="headline font-weight-bold mt-n1"></div> -->
+							<h3 class="font-weight-bold mt-2">{{companyNameJch}}</h3>
+							<div class="font-weight-thin mt-1">{{locationComp}}</div><br>
+							<v-chip
+							color="green"
+							outlined
+							small>
+								<div class="font-weight-thin mt-n1">{{workType}}</div>
+							</v-chip>
+							
+						</div>
+				</v-card-text>
 				</v-flex>
 			</v-layout>
 		</v-card>
+		</v-hover>
 </v-col>
 </v-row>
 
@@ -299,8 +333,9 @@
 		color="#48B391" 
 		dark
 		medium
-		class="mt-n1 mr-1 font-weight-bold"
+		class="mt-1 mr-1 font-weight-bold text-center"
 		rounded
+		to="/jobhun/careerhub"
 		>
 		Cari lowongan <br>kerja
 	</v-btn>
@@ -440,26 +475,26 @@ export default{
 			workType: 'Tipe Pekerjaan',
 			rating: 4.3,
 			partnershipLogos: [
-				require('@/assets/bekerjasama/telkomsel.png'),
-				require('@/assets/bekerjasama/ilmupedia.png'),
-				require('@/assets/bekerjasama/dilo.png'),
-				require('@/assets/bekerjasama/cicil.png'),
-				require('@/assets/bekerjasama/ipbi.png'),
-				require('@/assets/bekerjasama/panggilin.png'),
-				require('@/assets/bekerjasama/lias.png'),
-				require('@/assets/bekerjasama/cakap.png'),
-				require('@/assets/bekerjasama/sertiva.png'),
-				require('@/assets/bekerjasama/midtrans.png'),
-				require('@/assets/bekerjasama/qlue.png'),
-				require('@/assets/bekerjasama/dpkka.png'),
-				require('@/assets/bekerjasama/mpwr.png'),
-				require('@/assets/bekerjasama/alterra.png'),
-				require('@/assets/bekerjasama/ikigai.png'),
-				require('@/assets/bekerjasama/blibli.png'),
-				require('@/assets/bekerjasama/maubelajarapa.png'),
-				require('@/assets/bekerjasama/edufund.png'),
-				require('@/assets/bekerjasama/shipper.png'),
-				require('@/assets/bekerjasama/sekolahmu.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/telkomsel.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/ilmupedia.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/dilo.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/cicil.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/ipbi unair.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/panggilin.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/lias.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/cakap.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/sertiva.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/midtrans.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/qlue.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/dpkka unair.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/mpwr.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/alterra.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/ikigai.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/blibli.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/mau belajar apa.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/edufund.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/shipper.png'),
+				require('@/assets/Logo Web Jobhun/bekerjasama/sekolahmu.png'),
 			],
 			// salesPartnerLogos: [
 			// 	require('@/assets/mitra-penjualan/maubelajarapa.png'),
@@ -473,30 +508,30 @@ export default{
 			// 	require('@/assets/mitra-penjualan/rvang.png'),
 			// ],
 			paymentPartnerLogos: [
-				require('@/assets/mitra-penjualan/update/midtrans.png'),
-				require('@/assets/mitra-penjualan/update/alfamart.png'),
-				require('@/assets/mitra-penjualan/update/alfamidi.png'),
-				require('@/assets/mitra-penjualan/update/dandan.png'),
-				require('@/assets/mitra-penjualan/update/lawson.png'),
+				require('@/assets/Logo Web Jobhun/mitra-penjualan/midtrans.png'),
+				require('@/assets/Logo Web Jobhun/mitra-penjualan/alfamart.png'),
+				require('@/assets/Logo Web Jobhun/mitra-penjualan/alfamidi.png'),
+				require('@/assets/Logo Web Jobhun/mitra-penjualan/dan+dan.png'),
+				require('@/assets/Logo Web Jobhun/mitra-penjualan/lawson.png'),
 			],
 			featuredOnLogos: [
-				require('@/assets/media/dailysocial.png'),
-				require('@/assets/media/tvri-jatim.png'),
-				require('@/assets/media/surya.png'),
-				require('@/assets/media/tribun.png'),
-				require('@/assets/media/idn.png'),
-				require('@/assets/media/suarasurabaya.png'),
-				require('@/assets/media/basha.png'),
-				require('@/assets/media/sonora.png'),
-				require('@/assets/media/provoke.png'),
-				require('@/assets/media/sbotv.png'),
-				require('@/assets/media/scg.png'),
-				require('@/assets/media/pasfm.jpg'),
-				require('@/assets/media/prima.png'),
-				require('@/assets/media/yot.png'),
-				require('@/assets/media/ebs.png'),
-				require('@/assets/media/harianbernas.png'),
-				require('@/assets/media/hipwee.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/daily social.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/tvri.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/surya.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/tribun news.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/idn times.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/suara surabaya.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/basha.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/sonora.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/provoke.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/sbo.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/scg.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/pas fm.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/prima radio.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/yot.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/ebs.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/bernas.png'),
+				require('@/assets/Logo Web Jobhun/media-diliput/hipwee.png'),
 			],
 		}
 	},

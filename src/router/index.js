@@ -51,6 +51,11 @@ const routes = [
     component: () => import('../views/Jobhun/AskCareer.vue')
   },
   {
+    path: '/academy/mentoracademy',
+    name: 'JobhunMentorAcademy',
+    component: () => import('../views/Academy/MentorJA.vue')
+  },
+  {
     path: '/jobhun/mentoraskcareer',
     name: 'JobhunMentorAskCareer',
     component: () => import('../views/AskCareer/Mentor.vue')
